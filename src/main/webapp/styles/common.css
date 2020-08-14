@@ -1,0 +1,64 @@
+body {
+  width: 100%;
+  margin: auto;
+  font-family: 'Chelsea Market', cursive;
+}
+
+h1 {
+  font-family: 'Chelsea Market', cursive;
+  font-size: 36px;
+  color: white;
+  margin: 10px;
+}
+
+h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px;
+  color: white;
+}
+
+p {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px;
+  color: white
+}
+
+.header {
+  width: inherit;
+  background-color: rgb(1, 26, 136);
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* Style navigation bar */
+nav {
+  position: relative;
+  background-color: rgb(174, 188, 252);
+  overflow: hidden;
+}
+
+/* Align bar items */
+nav ul {
+  text-align: center;
+  margin: 0px;
+}
+
+/* Style bar items */
+nav ul li {
+  float: none;
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Change bar item coler when cursor hovers over it */
+nav ul li:hover {
+  background-color: rgb(59, 89, 226);
+}
+
+/* Style the links inside the navigation bar */
+nav ul li a {
+  color: white !important;
+  font-size: 18px;
+  text-decoration: none;
+}
