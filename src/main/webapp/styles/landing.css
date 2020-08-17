@@ -1,0 +1,36 @@
+body {
+  background-color: #303c6c;
+}
+
+.content {
+  width: inherit;
+  height: 100vh;
+  margin: auto;
+  position:relative;
+}
+
+.container {
+  position: absolute; 
+  top: 50%;
+  right: 50%;
+  height: 300px;
+  width: 600px;
+  margin: -150px -300px;
+  text-align: center; 
+}
+
+.login-button {
+  background-color: #f4976c;
+  padding: 15px;
+  width: 100px;
+  margin: 50px auto;
+}
+
+.login-button a {
+  text-decoration: none;
+  color: #fbe8a6;
+}
+
+.login-button:hover{
+  background-color: #fabc9f;
+}
