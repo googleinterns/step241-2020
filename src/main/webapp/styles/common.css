@@ -104,3 +104,19 @@ nav ul li a {
   background-color: #303c6c;
   text-align: center;
 }
+
+.button {
+  background-color: #f4976c;
+  padding: 15px;
+  width: 100px;
+  margin: 50px auto;
+}
+
+.button a {
+  text-decoration: none;
+  color: #fbe8a6;
+}
+
+.button:hover{
+  background-color: #fabc9f;
+}

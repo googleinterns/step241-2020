@@ -3,8 +3,9 @@ body {
 }
 
 .content {
+  min-height: 0;
   width: inherit;
-  height: 100vh;
+  height: 30vh;
   margin: auto;
   position:relative;
 }
@@ -13,8 +14,15 @@ body {
   position: absolute; 
   top: 50%;
   right: 50%;
-  height: 300px;
+  height: 100px;
   width: 600px;
-  margin: -150px -300px;
+  margin: -50px -300px;
   text-align: center; 
+}
+
+.submit-button {
+  background-color: #f4976c;
+  padding: 15px;
+  width: 100px;
+  margin: 50px auto;
 }
