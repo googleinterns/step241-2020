@@ -18,19 +18,3 @@ body {
   margin: -150px -300px;
   text-align: center; 
 }
-
-.login-button {
-  background-color: #f4976c;
-  padding: 15px;
-  width: 100px;
-  margin: 50px auto;
-}
-
-.login-button a {
-  text-decoration: none;
-  color: #fbe8a6;
-}
-
-.login-button:hover{
-  background-color: #fabc9f;
-}
