@@ -2,6 +2,7 @@ body {
   width: 100%;
   margin: auto;
   font-family: 'Chelsea Market', cursive;
+  background-color: #fbe8a6;
 }
 
 h1 {
@@ -25,7 +26,7 @@ p {
 
 .header {
   width: inherit;
-  background-color: rgb(1, 26, 136);
+  background-color: #303c6c;
   text-align: center;
   padding-top: 20px;
 }
@@ -33,7 +34,7 @@ p {
 /* Style navigation bar */
 nav {
   position: relative;
-  background-color: rgb(174, 188, 252);
+  background-color: #f4976c;
   overflow: hidden;
 }
 
@@ -53,7 +54,7 @@ nav ul li {
 
 /* Change bar item coler when cursor hovers over it */
 nav ul li:hover {
-  background-color: rgb(59, 89, 226);
+  background-color: #faaf8c;
 }
 
 /* Style the links inside the navigation bar */
@@ -61,4 +62,9 @@ nav ul li a {
   color: white !important;
   font-size: 18px;
   text-decoration: none;
+}
+
+.footer {
+  height: 50px;
+  margin-top: -50px;
 }
