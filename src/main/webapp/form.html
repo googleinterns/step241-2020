@@ -6,17 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
-    <link rel="stylesheet" href="/styles/landing.css">
+    <link rel="stylesheet" href="/styles/form.css">
   </head>
   <body>
     <div class="content">
       <div class="container">
         <h1>StudentRecs</h1>
         <h3>a recommendation system for students, by students!</h3>
-        <div class="button">
-          <a href="/form.html">Login Here</a>
-        </div>
       </div>
     </div>
+    <form name="user-details" action="/user" method="POST">
+      <p>Hello! my name is</p>
+      <input type="text" name="name" class="name">
+      <br><br>
+      <p>I am currently a student in department of</p>
+      <input type="text" name="department" class="department">
+      <br><br>
+      <input type="submit" />
+    </form>
   </body>
 </html>
