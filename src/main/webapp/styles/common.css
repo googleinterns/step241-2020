@@ -95,7 +95,8 @@ nav ul li a {
 }
 
 .content {
-  min-height: calc(100vh - 260px);
+  text-align: center;
+  min-height: calc(100vh - 259px);
 }
 
 .footer {
