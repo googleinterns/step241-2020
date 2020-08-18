@@ -26,6 +26,27 @@ h3 {
   margin: 5px;
 }
 
+.f1 {
+  font-family: 'Chelsea Market', cursive;
+  font-size: 36px;
+  color: white;
+  margin: 10px;
+}
+
+.f2 {
+  font-family: 'Chelsea Market', cursive;
+  font-size: 28px;
+  color: white;
+  margin: 10px;
+}
+
+.f3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px;
+  color: white;
+  margin: 5px;
+}
+
 p {
   font-family: 'Libre Baskerville', serif;
   font-size: 14px;
@@ -73,7 +94,7 @@ nav ul li a {
 }
 
 .content {
-  min-height: calc(100vh - 259px);
+  min-height: calc(100vh - 260px);
 }
 
 .footer {
