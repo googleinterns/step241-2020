@@ -2,7 +2,7 @@ body {
   width: 100%;
   margin: auto;
   font-family: 'Chelsea Market', cursive;
-  background-color: #fbe8a6;
+  background-color: white;
 }
 
 h1 {
@@ -17,17 +17,19 @@ h2 {
   font-size: 28px;
   color: white;
   margin: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 h3 {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Chelsea Market', cursive;
   font-size: 20px;
   color: white;
   margin: 5px;
 }
 
 p {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Chelsea Market', cursive;
   font-size: 14px;
   color: white
 }
@@ -37,6 +39,15 @@ p {
   background-color: #303c6c;
   text-align: center;
   padding-top: 20px;
+}
+
+footer {
+  width: inherit;
+  background-color: #303c6c;
+  font-family: 'Chelsea Market', cursive;
+  padding: 10px 0px;
+  text-align: center;
+  color: white;
 }
 
 /* Style navigation bar */
@@ -70,10 +81,6 @@ nav ul li a {
   color: white !important;
   font-size: 18px;
   text-decoration: none;
-}
-
-.content {
-  min-height: calc(100vh - 259px);
 }
 
 .footer {

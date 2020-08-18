@@ -1,0 +1,29 @@
+/* ----- Recommendation Map CSS ----- */
+
+.map-category-button {
+  font-family: 'Chelsea Market', cursive;
+  background-color: ghostwhite;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 10px;
+  width: 18%;
+  cursor: pointer;
+}
+
+.map-category-button:hover {
+  background-color: antiquewhite;
+}
+
+.map-category-section {
+  text-align: center;
+  padding: 10px;
+}
+
+#map {
+  width: 50%;
+  margin: 30px;
+  height: 500px;
+  background-color: grey;
+}
