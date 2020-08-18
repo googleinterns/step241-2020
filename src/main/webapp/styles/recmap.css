@@ -2,7 +2,9 @@
 
 .map-category-button {
   font-family: 'Chelsea Market', cursive;
-  background-color: ghostwhite;
+  background-color: darkcyan;
+  color: white;
+  border: white;
   font-size: 15px;
   padding: 10px 20px 10px 20px;
   display: inline-block;
@@ -13,7 +15,7 @@
 }
 
 .map-category-button:hover {
-  background-color: antiquewhite;
+  background-color: #21b5b5;
 }
 
 .map-category-section {
