@@ -29,9 +29,6 @@ input {
   text-align: center; 
 }
 
-.submit-button {
-  background-color: #f4976c;
-  padding: 15px;
-  width: 100px;
-  margin: 50px auto;
+.profilepic {
+  padding-left: 100px;
 }
