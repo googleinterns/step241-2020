@@ -97,6 +97,7 @@ nav ul li a {
 .content {
   text-align: center;
   min-height: calc(100vh - 259px);
+  padding: 30px;
 }
 
 .footer {
