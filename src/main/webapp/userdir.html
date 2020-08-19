@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/userdir.css">
+    <script src="/scripts/userdir.js"></script>
   </head>
-  <body>
+  <body onload="generateUserCards()">
     <div class="header">
       <h1>StudentRecs</h1>
       <h3>a recommendation system for students, by students!</h3>
@@ -22,8 +23,8 @@
     </div>
     <div class="content">
       <h1>User Directory</h1>
-      <div class="user-dir">
-        <div class="user-card">
+      <div id="user-dir">
+        <!-- <div class="user-card">
           <img class="user-img" src="/images/profilepic1.png"></img>
           <h3>Rania Rusly</h3>
           <p>Computing</p>
@@ -32,7 +33,7 @@
           <img class="user-img" src="/images/profilepic2.png"></img>
           <h3>Lorna Armstrong</h3>
           <p>Computing</p>
-        </div>
+        </div> -->
       </div>
     </div>
     <footer class="footer">
