@@ -1,20 +1,20 @@
 /* ----- Recommendation Map CSS ----- */
 
 .map-category-button {
-    background-color: rgb(1, 114, 114);
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Chelsea Market", cursive;
-    font-size: 15px;
-    text-align: center;
-    width: 18%;
-    border-width: initial;
-    border-style: initial;
-    border-color: white;
-    border-image: initial;
-    border-radius: 10px;
-    padding: 10px 20px;
+  background-color: rgb(1, 114, 114);
+  border-color: white;
+  border-image: initial;
+  border-radius: 10px;
+  border-style: initial;
+  border-width: initial;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Chelsea Market", cursive;
+  font-size: 15px;
+  padding: 10px 20px;
+  text-align: center;
+  width: 18%;
 }
 
 .map-category-button:hover {
@@ -22,15 +22,15 @@
 }
 
 .map-category-section {
-  text-align: center;
   padding: 10px;
+  text-align: center;
 }
 
 #map {
-  width: 50%;
-  margin: 30px;
-  height: 500px;
   background-color: grey;
+  height: 500px;
+  margin: 30px
+  width: 50%;
 }
 
 .map-section {
@@ -42,18 +42,18 @@
 }
 
 .info-paragraph {
-    color: rgb(0, 0, 0);
-    display: inline-block;
-    position: relative;
-    text-align: left;
-    width: 50%;
-    padding: 10px;
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  text-align: left;
+  width: 50%;
 }
 
 .info-paragraph h3 {
   float: left;
-  text-align: left;
   padding: 0px;
+  text-align: left;
 }
 
 .info-paragraph p {
