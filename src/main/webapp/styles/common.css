@@ -15,23 +15,23 @@ h1 {
 h2 {
   font-family: 'Chelsea Market', cursive;
   font-size: 28px;
-  color: white;
+  color: #000;
   margin: 10px;
   padding: 10px;
   text-align: center;
 }
 
 h3 {
-  font-family: 'Chelsea Market', cursive;
+  font-family: "Chelsea Market", cursive;
   font-size: 20px;
-  color: white;
+  color: #000;
   margin: 5px;
 }
 
 p {
   font-family: 'Chelsea Market', cursive;
   font-size: 14px;
-  color: white
+  color: #000
 }
 
 .header {
@@ -41,6 +41,10 @@ p {
   padding-top: 20px;
 }
 
+.header h3 {
+  color: white;
+}
+
 footer {
   width: inherit;
   background-color: #303c6c;
@@ -48,6 +52,10 @@ footer {
   padding: 10px 0px;
   text-align: center;
   color: white;
+}
+
+footer p {
+  color: #fff;
 }
 
 /* Style navigation bar */
@@ -81,11 +89,4 @@ nav ul li a {
   color: white !important;
   font-size: 18px;
   text-decoration: none;
-}
-
-.footer {
-  height: 80px;
-  width: inherit;
-  background-color: #303c6c;
-  text-align: center;
 }

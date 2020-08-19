@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+/* ------------ Modal Box */
 
 /* Set Up Map */
 function initMap() {
@@ -28,11 +29,29 @@ function initMap() {
   });
 }
 
-/* Place Marker Where Map is Clicked On*/
+/* Place Marker Where Map is Clicked On & Show Popup*/
 function placeMarkerAndPanTo(latLng, map) {
-  new google.maps.Marker({
+  var marker = new google.maps.Marker({
     position: latLng,
     map: map,
   });
   map.panTo(latLng);
+  togglePopup();
+  var markerPosition = marker.getPosition();
+  populateLocation(markerPosition);
+
+  /* If marker is right-clicked, delete */
+  google.maps.event.addListener(marker, 'rightclick', function(event) {
+      marker.setMap(null);
+  });
+}
+
+/* Set the PopUp to Active */
+function togglePopup() {
+  document.getElementById("popup-add-recs").classList.toggle("active");
+}
+
+/* Use the position of marker on map to auto-fill location */
+function populateLocation(pos) {
+  document.getElementById("location").value=pos.lat()+", "+pos.lng()
 }
