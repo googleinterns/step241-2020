@@ -33,7 +33,7 @@ function initMap() {
 function placeMarkerAndPanTo(latLng, map) {
   var marker = new google.maps.Marker({
     position: latLng,
-    map: map,
+    map: map
   });
   map.panTo(latLng);
   togglePopup();
@@ -53,5 +53,5 @@ function togglePopup() {
 
 /* Use the position of marker on map to auto-fill location */
 function populateLocation(pos) {
-  document.getElementById("location").value=pos.lat()+", "+pos.lng()
+  document.getElementById("location").value = pos.lat() + ", " + pos.lng()
 }
