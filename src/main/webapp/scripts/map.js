@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-/* ------------ Modal Box */
 
 /* Set Up Map */
 function initMap() {
@@ -53,5 +52,6 @@ function togglePopup() {
 
 /* Use the position of marker on map to auto-fill location */
 function populateLocation(pos) {
-  document.getElementById("location").value = pos.lat() + ", " + pos.lng()
+  var location = pos.lat() + ", " + pos.lng();
+  document.getElementById("location").value = location;
 }
