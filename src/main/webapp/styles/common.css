@@ -3,6 +3,7 @@ body {
   margin: auto;
   font-family: 'Chelsea Market', cursive;
   background-color: #fbe8a6;
+  text-align: center;
 }
 
 h1 {
@@ -49,7 +50,7 @@ h3 {
 
 p {
   font-family: 'Libre Baskerville', serif;
-  font-size: 14px;
+  font-size: 16px;
   color: white
 }
 
@@ -94,7 +95,8 @@ nav ul li a {
 }
 
 .content {
-  min-height: calc(100vh - 260px);
+  text-align: center;
+  min-height: calc(100vh - 259px);
 }
 
 .footer {
@@ -102,4 +104,23 @@ nav ul li a {
   width: inherit;
   background-color: #303c6c;
   text-align: center;
+}
+
+.button {
+  font-family: 'Chelsea Market', cursive;
+  background-color: #f4976c;
+  color: #fbe8a6;
+  font-size: 16px;
+  padding: 15px;
+  width: 100px;
+  margin: 30px auto;
+}
+
+.button a {
+  text-decoration: none;
+  color: #fbe8a6;
+}
+
+.button:hover{
+  background-color: #fabc9f;
 }
