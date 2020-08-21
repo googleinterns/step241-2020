@@ -112,7 +112,3 @@ nav ul li a {
   font-size: 18px;
   text-decoration: none;
 }
-
-.content {
-  min-height: calc(100vh - 260px);
-}
