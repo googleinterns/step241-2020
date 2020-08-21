@@ -1,0 +1,34 @@
+body {
+  background-color: #303c6c;
+}
+
+input {
+  overflow: visible;
+  font: inherit;
+  box-sizing: inherit;
+  appearance: none;
+  color: #fbe8a6;
+  border: none;
+}
+
+.content {
+  min-height: 0;
+  width: inherit;
+  height: 30vh;
+  margin: auto;
+  position:relative;
+}
+
+.container {
+  position: absolute; 
+  top: 50%;
+  right: 50%;
+  height: 100px;
+  width: 600px;
+  margin: -50px -300px;
+  text-align: center; 
+}
+
+.profilepic {
+  padding-left: 100px;
+}
