@@ -26,13 +26,30 @@ function initMap() {
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
+  /*Add Hard-Coded Markers */
+  addMarker(map);
+}
+
+/* Temporary Function to Hold Marker for Sky Garden */
+function addMarker(map) {
+  var latLng = {lat: 51.510881, lng: -0.083751}
+  var marker = new google.maps.Marker({
+      position: latLng,
+      map: map,
+      title: "Sky Garden"
+  })
+  marker.addListener("click", () => {
+        document.getElementById("rec-container").style.display = "block";
+        map.setZoom(16);
+        map.setCenter(marker.getPosition());
+  });
 }
 
 /* Place Marker Where Map is Clicked On & Show Popup*/
 function placeMarkerAndPanTo(latLng, map) {
   var marker = new google.maps.Marker({
     position: latLng,
-    map: map
+    map: map,
   });
   map.panTo(latLng);
   togglePopup();

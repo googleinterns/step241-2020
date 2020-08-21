@@ -83,11 +83,19 @@
   border-width: initial;
   box-sizing: border-box;
   color: #000;
+  display: none;
   flex: 1;
   margin: 40px;
   padding: 10px;
   position: relative;
   text-align: center;
+}
+
+#category-header {
+  background: #21b5b5;
+  font-size: 15px;
+  margin: 0px;
+  padding: 10px !important;
 }
 
 #rec-container h3 {
