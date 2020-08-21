@@ -63,8 +63,6 @@
   transition: all 150ms ease-in-out 0s;
 }
 
-/* Add Rec Form Elements */
-
 label {
   display: inline-block;
   padding-right: 5px;
