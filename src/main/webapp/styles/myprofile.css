@@ -1,6 +1,11 @@
 .button {
   width: 200px;
   height: 50px;
+  margin: auto;
+}
+
+.content {
+  min-height: calc(100vh - 350px);
 }
 
 .details-container {
@@ -12,7 +17,7 @@
   position: relative;
   text-align: center;
   width: 400px;
-  height: 400px;
+  height: 500px;
 }
 
 /* --- Recommendation Map Styling --- */
@@ -24,16 +29,24 @@
   border-radius: 20px;
   border-style: solid;
   border-width: initial;
+  width: 90%;
+  height: 400px;
+  margin: auto;
+}
+
+.map-container {
   height: 500px;
   flex: 0 0 50%;
   margin: 40px;
-  width: 50%;
+  width: 40%;
+  background-color: #f4976c;
 }
 
 .profilepic {
-  padding: 25px;
-  width: 400px;
-  height: 400px;
+  margin: 15px;
+  padding: 15px;
+  width: 200px;
+  height: 200px;
   background-color: #f4976c;
 }
 
