@@ -24,3 +24,12 @@ function initMap() {
     zoom: 15
   });
 }
+
+/* Toggle the display of the popup box to change profile */
+function togglePopup() {
+  document.getElementById("popup-profile").classList.toggle("active");
+  //pre-fill text area by the old user details
+  document.getElementById("name").innerHTML = "old name";
+  document.getElementById("department").innerHTML ="old department";
+  document.getElementById("bio").innerHTML ="old bio";
+}

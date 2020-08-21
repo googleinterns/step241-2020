@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/scripts/myprofile.js"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuk539i0M-Dm_8O_GlJowtpnWYN6Taqxg&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/myprofile.css">
+    <link rel="stylesheet" href="/styles/changeprofile.css">
   </head>
   <body onload="initMap()">
     <div class="header">
@@ -35,12 +36,33 @@
             <h2>Name</h2>
             <h3>Department</h3>
             <p>Hello I am interested in __ please feel free to contact me for __</p>
-            <button class="button">Change my profile</p>
+            <button class="button" onclick="togglePopup()">Edit profile</p>
         </div>
         <!-- User's Recommendation Map -->
         <div class="map-container">
           <h2>My favorite places</h2>
           <div id="map"></div>  
+        </div>
+        <!-- Pop up box to change profile -->
+        <div id="popup-profile">
+          <div class="overlay"></div>
+          <div class="popup-content">
+            <div class="close-button" onclick="togglePopup()">&times;</div>
+            <h2>Edit Profile</h2>
+            <p>Please change your profile by filling up this form and press submit</p>
+            <!-- Form for changing profile -->
+            <form>
+              <label for="Name">Full name:</label><br>
+              <textarea type="text" id="name" name="name" cols="40" rows="1" required></textarea><br>
+              <label for="Department">Department:</label><br>
+              <textarea type="text" id="department" name="department" cols="40" rows="1" required></textarea><br>
+              <label for="Bio">Bio:</label><br>
+              <textarea type="text" id="bio" name="bio" cols="40" rows="3" required></textarea><br>
+              <!-- <label for="Profile Picture">Profile picture:</label><br>
+              <input type="file" name="profilepic" class="profilepic" accept="image/*"><br> -->
+              <input class="button" type="submit" value="Submit">
+            </form>
+          </div>
         </div>
       </div>
     </div>
