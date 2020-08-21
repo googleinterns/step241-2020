@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Student Recommendations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/scripts/mapscript.js"></script>
+    <script src="/scripts/map.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
-    <link rel="stylesheet" href="/styles/recmap.css">
-    <link rel="stylesheet" href="/styles/addrec.css">
+    <link rel="stylesheet" href="/styles/recommendation-map.css">
+    <link rel="stylesheet" href="/styles/add-recommendation.css">
   </head>
   <body onload="initMap()">
     <div class="header">
@@ -54,28 +54,28 @@
     <div class="popup" id="popup-add-recs">
       <div class="overlay"></div>
       <div class="popup-content">
-        <div class="close-btn" onclick="togglePopup()">&times;</div>
+        <div class="close-button" onclick="togglePopup()">&times;</div>
         <h2>Add Recommendation</h2>
         <p>Please fill out this form to add a recommendation.</p>
         <!-- Form for Adding Recommendation -->
         <form>
           <label for="place-name">Place Name:</label><br>
-          <textarea type="text" id="place-name" name="place-name" cols="40" rows="1" required=""></textarea><br>
+          <textarea type="text" id="place-name" name="place-name" cols="40" rows="1" required></textarea><br>
           <label for="location">Location/Address:</label><br>
-          <textarea type="text" id="location" name="location" cols="40" rows="1" required=""></textarea><br>
+          <textarea type="text" id="location" name="location" cols="40" rows="1" required></textarea><br>
           <!-- Radio Buttons for Type of Recommendation -->
           <div class="radio-buttons">
-            <input type="radio" name="categoryList" id="restaurants" value="restaurants" required="">
+            <input type="radio" name="category-list" id="restaurants" value="restaurants" required>
             <label for="restaurants">Restaurants</label>
-            <input type="radio" name="categoryList" id="places-to-visit" value="places-to-visit">
+            <input type="radio" name="category-list" id="places-to-visit" value="places-to-visit">
             <label for="places-to-visit">Places to Visit</label><br>
-            <input type="radio" name="categoryList" id="bars-and-clubs" value="bars-and-clubs">
+            <input type="radio" name="category-list" id="bars-and-clubs" value="bars-and-clubs">
             <label for="bars-and-clubs">Bars and Clubs</label>
-            <input type="radio" name="categoryList" id="study-places" value="study-places">
+            <input type="radio" name="category-list" id="study-places" value="study-places">
             <label for="study-places">Study Places</label>
           </div>
           <label for="description">Description:</label><br>
-          <textarea type="text" id="description" name="description" cols="40" rows="8" required=""></textarea><br>
+          <textarea type="text" id="description" name="description" cols="40" rows="8" required></textarea><br>
           <input type="submit" value="Submit">
         </form>
       </div>
