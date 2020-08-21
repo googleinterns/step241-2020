@@ -46,12 +46,13 @@ p {
 }
 
 footer {
-  width: inherit;
   background-color: #303c6c;
+  color: white;
+  clear: both;
   font-family: 'Chelsea Market', cursive;
   padding: 10px 0px;
   text-align: center;
-  color: white;
+  width: inherit;
 }
 
 footer p {

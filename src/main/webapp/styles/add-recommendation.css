@@ -57,7 +57,7 @@
   transition: all 300ms ease-in-out 0s;
 }
 
-/* Add Rec Form Elements */
+/* --- Add Rec Form Elements --- */
 
 label {
   display: inline-block;
@@ -85,4 +85,34 @@ input[type="submit"] {
   font-weight: 600;
   margin: 15px;
   padding: 12px 20px;
+}
+
+/* --- Radio Buttons for Add Rec Form --- */
+
+input[type='radio']:after {
+  background-color: #d1d3d1;
+  border: 2px solid white;
+  border-radius: 15px;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  left: -1px;
+  position: relative;
+  top: -2px;
+  visibility: visible;
+  width: 15px;
+}
+
+input[type='radio']:checked:after {
+  background-color: #ffa500;
+  border: 2px solid white;
+  border-radius: 15px;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  left: -1px;
+  position: relative;
+  top: -2px;
+  visibility: visible;
+  width: 15px;
 }
