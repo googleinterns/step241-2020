@@ -1,0 +1,44 @@
+.button {
+  width: 200px;
+  height: 50px;
+}
+
+.details-container {
+  background: #303c6c;
+  box-sizing: border-box;
+  flex: 1;
+  margin: 40px;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  width: 400px;
+  height: 400px;
+}
+
+/* --- Recommendation Map Styling --- */
+
+#map {
+  background: grey;
+  border-color: #000;
+  border-image: initial;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: initial;
+  height: 500px;
+  flex: 0 0 50%;
+  margin: 40px;
+  width: 50%;
+}
+
+.profilepic {
+  padding: 25px;
+  width: 400px;
+  height: 400px;
+  background-color: #f4976c;
+}
+
+/* Wrapper Containing User Details and Map*/
+
+.wrapper {
+  display: flex;
+}
