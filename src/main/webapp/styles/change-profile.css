@@ -59,7 +59,7 @@
 }
 
 #popup-profile.active .popup-content {
-  transform: translate(-120%, -100%) scale(1);
+  transform: translate(-120%, -80%) scale(1);
   transition: all 150ms ease-in-out 0s;
 }
 
