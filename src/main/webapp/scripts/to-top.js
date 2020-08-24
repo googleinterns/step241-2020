@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var scrollTopButton = document.getElementById("to-top-button");
+const scrollTopButton = document.getElementById("to-top-button");
 
 window.onscroll = function() {
   scrollFunction()
