@@ -1,5 +1,6 @@
 .user-card {
-  background-color: #f4976c;
+  background: #f4976c;
+  border-radius: 25px;
   color: white;
   display: inline-block;
   height: 350px;
@@ -10,6 +11,7 @@
 }
 
 .user-img {
+  border-radius: 20%;
   height: 230px;
   margin: auto;
   padding: 20px;

@@ -21,10 +21,16 @@ h2 {
 }
 
 h3 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 20px;
   color: white;
+  font-family: 'Chelsea Market', serif;
+  font-size: 24px;
   margin: 5px;
+}
+
+p {
+  color: white;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 16px;
 }
 
 .f1 {
@@ -46,12 +52,6 @@ h3 {
   font-family: 'Libre Baskerville', serif;
   font-size: 20px;
   margin: 5px;
-}
-
-p {
-  color: white;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 16px;
 }
 
 .header {
@@ -100,6 +100,10 @@ nav ul li a {
   text-align: center;
 }
 
+.title {
+  color: #303c6c;
+  font-size: 48px;
+}
 .button {
   background-color: #f4976c;
   color: #fbe8a6;
