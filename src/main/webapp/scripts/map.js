@@ -12,6 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* Custom Markers */
+const yellowIcon = {
+  url: "/images/yellow-marker.png", // url
+  scaledSize: new google.maps.Size(30, 40), // scaled size
+  origin: new google.maps.Point(0, 0), // origin
+  anchor: new google.maps.Point(0, 0) // anchor
+};
+
+const blueIcon = {
+  url: "/images/blue-marker.png", // url
+  scaledSize: new google.maps.Size(30, 40), // scaled size
+  origin: new google.maps.Point(0, 0), // origin
+  anchor: new google.maps.Point(0, 0) // anchor
+};
+
+const purpleIcon = {
+  url: "/images/purple-marker.png", // url
+  scaledSize: new google.maps.Size(30, 40), // scaled size
+  origin: new google.maps.Point(0, 0), // origin
+  anchor: new google.maps.Point(0, 0) // anchor
+};
+
+const redIcon = {
+  url: "/images/red-marker.png", // url
+  scaledSize: new google.maps.Size(30, 40), // scaled size
+  origin: new google.maps.Point(0, 0), // origin
+  anchor: new google.maps.Point(0, 0) // anchor
+};
+
 /* Set Up Map */
 function initMap() {
   /* 'Hard Coded' origin, Google UK Pancras Square*/
@@ -37,6 +66,7 @@ function addMarker(map) {
       position: latLng,
       map: map,
       title: "Sky Garden"
+      /*icon: blueIcon*/
   })
   marker.addListener("click", () => {
         document.getElementById("rec-container").style.display = "block";
@@ -47,10 +77,18 @@ function addMarker(map) {
 
 /* Place Marker Where Map is Clicked On & Show Popup*/
 function placeMarkerAndPanTo(latLng, map) {
+  const greyIcon = {
+    url: "/images/grey-marker.png", // url
+    scaledSize: new google.maps.Size(30, 40), // scaled size
+    origin: new google.maps.Point(0, 0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor 
+  }
   var marker = new google.maps.Marker({
     position: latLng,
     map: map,
+    icon: greyIcon
   });
+
   map.panTo(latLng);
   togglePopup();
   var markerPosition = marker.getPosition();
