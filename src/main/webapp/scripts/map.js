@@ -61,17 +61,16 @@ function initMap() {
 
 /* Temporary Function to Hold Marker for Sky Garden */
 function addMarker(map) {
-  var latLng = {lat: 51.510881, lng: -0.083751}
-  var marker = new google.maps.Marker({
-      position: latLng,
-      map: map,
-      title: "Sky Garden"
-      /*icon: blueIcon*/
+  const skyGarden = {lat: 51.510881, lng: -0.083751}
+  const marker = new google.maps.Marker({
+    position: skyGarden,
+    map: map,
+    title: "Sky Garden"
   })
   marker.addListener("click", () => {
-        document.getElementById("rec-container").style.display = "block";
-        map.setZoom(16);
-        map.setCenter(marker.getPosition());
+    document.getElementById("rec-container").style.display = "block";
+    map.setZoom(16);
+    map.setCenter(marker.getPosition());
   });
 }
 
