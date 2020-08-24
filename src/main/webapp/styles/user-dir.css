@@ -1,17 +1,17 @@
 .user-card {
-  display: inline-block;
   background-color: #f4976c;
   color: white;
+  display: inline-block;
   height: 350px;
-  width: 270px;
-  text-align: center;
   margin: 30px;
   padding: 20px;
+  text-align: center;
+  width: 270px;
 }
 
 .user-img {
-  margin: auto;
   height: 230px;
-  width: 230px;
+  margin: auto;
   padding: 20px;
+  width: 230px;
 }
