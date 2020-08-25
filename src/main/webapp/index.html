@@ -1,30 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Student Recommendations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/scripts/map.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="/styles/recommendation-map.css">
+    <link rel="stylesheet" href="/styles/add-recommendation.css">
   </head>
-  <body>
+  <body onload="initMap()">
     <div class="header">
-      <h1>StudentRecs</h1>
+      <h1>Student Recs</h1>
       <h3>a recommendation system for students, by students!</h3>
-
+      <!-- Navigation Bar -->
       <nav>
         <ul>
           <li><a class="active" href="#recmap">Recommendation Map</a></li>
           <li><a href="#user">User Directory</a></li>
         </ul>
       </nav>
+    </div>    
+    <section class="map-section">
+      <div class="content">
+        <div class="info-paragraph">
+          <h3>Want to add a recommendation?</h3>
+          <p>No problem! Click on the map to add a new marker and then
+            you can add your recommendation. Be sure to let everyone
+            know your favourite places!</p>
+        </div>
+        <div class="info-paragraph">
+          <h3>Want to view a recommendation?</h3>
+          <p>To see recommendations, use the buttons above to select a 
+            category and then explore the markers on the map! Have a 
+            good look around and see if anything catches your eye.</p>
+        </div>
+      </div>
+      <div class="map-category-section">
+        <button class="map-category-button">Restaurants</button>
+        <button class="map-category-button">Places to Visit</button>
+        <button class="map-category-button">Bars and Clubs</button>
+        <button class="map-category-button">Study Places</button>
+      </div>
+    </section>
+    <!-- The Recommendation Map -->
+    <div id="map"></div>
+    <!-- Popup for Adding Recommendation -->
+    <div class="popup" id="popup-add-recs">
+      <div class="overlay"></div>
+      <div class="popup-content">
+        <div class="close-button" onclick="togglePopup()">&times;</div>
+        <h2>Add Recommendation</h2>
+        <p>Please fill out this form to add a recommendation.</p>
+        <!-- Form for Adding Recommendation -->
+        <form>
+          <label for="place-name">Place Name:</label><br>
+          <textarea type="text" id="place-name" name="place-name" cols="40" rows="1" required></textarea><br>
+          <label for="location">Location/Address:</label><br>
+          <textarea type="text" id="location" name="location" cols="40" rows="1" required></textarea><br>
+          <!-- Radio Buttons for Type of Recommendation -->
+          <div class="radio-buttons">
+            <input type="radio" name="category-list" id="restaurants" value="restaurants" required>
+            <label for="restaurants">Restaurants</label>
+            <input type="radio" name="category-list" id="places-to-visit" value="places-to-visit">
+            <label for="places-to-visit">Places to Visit</label><br>
+            <input type="radio" name="category-list" id="bars-and-clubs" value="bars-and-clubs">
+            <label for="bars-and-clubs">Bars and Clubs</label>
+            <input type="radio" name="category-list" id="study-places" value="study-places">
+            <label for="study-places">Study Places</label>
+          </div>
+          <label for="description">Description:</label><br>
+          <textarea type="text" id="description" name="description" cols="40" rows="8" required></textarea><br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
     </div>
-    <div class="content">
-      <h1>TODO: add content</h1>
-    </div>
-    <footer class="footer">
-      <div class="f2">made by Rania Rusly and Lorna Armstrong</div>
-      <div class="f3">STEP intern 2020</div>
+    <footer>
+      <p>Made by Lorna Armstrong and Rania Rusly</p>
     </footer>
   </body>
 </html>

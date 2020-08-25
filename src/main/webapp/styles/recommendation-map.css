@@ -1,0 +1,65 @@
+/* ----- Recommendation Map CSS ----- */
+
+.map-category-button {
+  background-color: rgb(1, 114, 114);
+  border-color: white;
+  border-image: initial;
+  border-radius: 10px;
+  border-style: initial;
+  border-width: initial;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Chelsea Market", cursive;
+  font-size: 15px;
+  padding: 10px 20px;
+  text-align: center;
+  width: 18%;
+}
+
+.map-category-button:hover {
+  background-color: #21b5b5;
+}
+
+.map-category-section {
+  padding: 10px;
+  text-align: center;
+}
+
+#map {
+  background-color: grey;
+  height: 500px;
+  margin: 30px;
+  width: 50%;
+}
+
+.map-section {
+  display: block;
+}
+
+.content {
+  display: flex;
+}
+
+.info-paragraph {
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  text-align: left;
+  width: 50%;
+}
+
+.info-paragraph h3 {
+  float: left;
+  padding: 0px;
+  text-align: left;
+}
+
+.info-paragraph p {
+  color: #000;
+  float: left;
+  font-size: 16px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
