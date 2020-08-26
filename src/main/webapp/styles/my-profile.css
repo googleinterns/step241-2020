@@ -42,7 +42,6 @@
   border: none;
   color: white;
   height: 50px;
-  margin: auto;
   width: 150px;
 }
 
@@ -50,7 +49,7 @@
   background: #9afaf7;
 }
 
-/* --- Map Styling --- */
+/* Map Styling */
 #map {
   background: grey;
   border-color: white;

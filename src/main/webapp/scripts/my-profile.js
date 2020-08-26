@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 
 /* Set Up Map */
 function initMap() {
-  /* 'Hard Coded' origin, Google UK Pancras Square*/
+  /* 'Hard Coded' origin, Google UK Pancras Square */
   const origin = {
     lat: 51.533364, 
     lng: -0.125777
@@ -28,8 +28,8 @@ function initMap() {
 /* Toggle the display of the popup box to change profile */
 function togglePopup() {
   document.getElementById("popup-profile").classList.toggle("active");
-  //pre-fill text area by the old user details
-  document.getElementById("name").innerHTML = "old name";
-  document.getElementById("department").innerHTML ="old department";
+  // pre-fill input by the old user details
+  document.getElementById("name").setAttribute("value", "old name"); 
+  document.getElementById("department").setAttribute("value", "old department"); 
   document.getElementById("bio").innerHTML ="old bio";
 }

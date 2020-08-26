@@ -5,8 +5,8 @@
 #popup-profile p {
   color: black;
 }
-/* --- Formatting for Popup Box --- */
 
+/* Formatting for Popup Box */
 #popup-profile .overlay {
   background: rgba(0, 0, 0, 0.3);
   display: none;
@@ -37,7 +37,6 @@
 }
 
 /* Close Button [X] for the Popup */
-
 #popup-profile .close-button {
   background: #222;
   border-radius: 50%;
@@ -64,12 +63,14 @@
 }
 
 label {
-  display: inline-block;
-  padding-right: 5px;
+  color: black;
 }
 
-textarea {
-  font-family: "Chelsea Market", sans-serif;
-  font-size: 16px;
-  resize: none;
+input[type="file"] {
+  padding-left: 100px;
+  color: black;
+}
+
+.button {
+  box-sizing: border-box;
 }

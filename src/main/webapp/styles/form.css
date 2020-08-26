@@ -20,25 +20,6 @@ body {
   text-align: center; 
 }
 
-input {
-  overflow: visible;
-  font: inherit;
-  color: white;
-  box-sizing: inherit;
-  appearance: none;
-  border: none;
-}
-
 label {
   color: white;
-}
-
-.profilepic {
-  padding-left: 100px;
-}
-
-textarea {
-  font-family: "Chelsea Market", sans-serif;
-  font-size: 16px;
-  resize: none;
 }

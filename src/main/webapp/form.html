@@ -16,14 +16,15 @@
       </div>
     </div>
     <form name="user-details" action="/user" method="POST">
-      <label for="Name">Hello! my name is</label><br><br>
-      <textarea type="text" id="name" name="name" cols="40" rows="1" required></textarea><br><br>
-      <label for="Department">I am currently a student in the department of</label><br><br>
-      <textarea type="text" id="department" name="department" cols="40" rows="1" required></textarea><br><br>
-      <label for="Bio">more info about me (bio)</label><br><br>
-      <textarea type="text" id="bio" name="bio" cols="40" rows="3"></textarea><br><br>
+      <label for="Name">Hello! my name is</label>
+      <input type="text" name="name" class="name" required></input>
+      <label for="Department">I am currently a student in the department of</label>
+      <input type="text" name="department" class="department" required></input>
+      <label for="Bio">more info about me (bio)</label>
+      <textarea type="text" id="bio" name="bio" cols="40" rows="3"></textarea>
       <p>and here is my profile picture!</p>
-      <input type="file" name="profilepic" class="profilepic" accept="image/*"><br><br>
+      <input type="file" name="user-img" accept="image/*">
+      <br>
       <input class="button" type="submit" />
     </form>
   </body>

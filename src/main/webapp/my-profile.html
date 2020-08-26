@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Student Recommendations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/scripts/myprofile.js"></script>
+    <script src="/scripts/my-profile.js"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuk539i0M-Dm_8O_GlJowtpnWYN6Taqxg&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
     <link rel="stylesheet" href="/styles/fonts.css">
@@ -56,14 +56,15 @@
             <p>Please change your profile by filling out this form and press submit</p><br>
             <!-- Form for changing profile -->
             <form>
-              <label for="Name">Hello! my name is</label><br><br>
-              <textarea type="text" id="name" name="name" cols="40" rows="1" required></textarea><br><br>
-              <label for="Department">I am currently a student in the department of</label><br><br>
-              <textarea type="text" id="department" name="department" cols="40" rows="1" required></textarea><br><br>
-              <label for="Bio">more info about me (bio)</label><br><br>
-              <textarea type="text" id="bio" name="bio" cols="40" rows="3"></textarea><br><br>
+              <label for="Name">Hello! my name is</label>
+              <input type="text" id="name" name="name" size="40" required></input>
+              <label for="Department">I am currently a student in the department of</label>
+              <input type="text" id="department" name="department" size="40" required></input>
+              <label for="Bio">more info about me (bio)</label>
+              <textarea type="text" id="bio" name="bio" cols="40" rows="3"></textarea>
               <p>and here is my profile picture!</p>
-              <input type="file" name="profilepic" class="profilepic" accept="image/*"><br><br>
+              <input type="file" name="profilepic" class="profilepic" accept="image/*">
+              <br>
               <input class="button" type="submit" /> 
             </form>
           </div>
