@@ -1,18 +1,21 @@
 body {
-  width: 100%;
+  background-color: #fbe8a6;
   margin: auto;
   font-family: 'Chelsea Market', cursive;
+  text-align: center;
+  width: 100%;
   background-color: white;
 }
 
 h1 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 36px;
-  color: white;
   margin: 10px;
 }
 
 h2 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 28px;
   color: #000;
@@ -22,30 +25,37 @@ h2 {
 }
 
 h3 {
+  color: white;
   font-family: "Chelsea Market", cursive;
   font-size: 20px;
   color: #000;
   margin: 5px;
 }
 
+p {
+  color: white;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 16px;
+}
+
 .f1 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 36px;
-  color: white;
   margin: 10px;
 }
 
 .f2 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 28px;
-  color: white;
   margin: 10px;
 }
 
 .f3 {
+  color: white;
   font-family: 'Libre Baskerville', serif;
   font-size: 20px;
-  color: white;
   margin: 5px;
 }
 
@@ -56,10 +66,10 @@ p {
 }
 
 .header {
-  width: inherit;
   background-color: #303c6c;
-  text-align: center;
   padding-top: 20px;
+  text-align: center;
+  width: inherit;
 }
 
 .header h3 {
@@ -82,23 +92,23 @@ footer p {
 
 /* Style navigation bar */
 nav {
-  position: relative;
   background-color: #f4976c;
   overflow: hidden;
+  position: relative;
 }
 
 /* Align bar items */
 nav ul {
-  text-align: center;
   margin: 0px;
+  text-align: center;
 }
 
 /* Style bar items */
 nav ul li {
-  float: none;
   display: inline-block;
-  text-align: center;
+  float: none;
   padding: 10px;
+  text-align: center;
 }
 
 /* Change bar item coler when cursor hovers over it */
@@ -133,4 +143,27 @@ nav ul li a {
 
 #to-top-button:hover {
   background-color: #555;
+
+.title {
+  color: #303c6c;
+  font-size: 48px;
+}
+
+.button {
+  background-color: #f4976c;
+  color: #fbe8a6;
+  font-family: 'Chelsea Market', cursive;
+  font-size: 16px;
+  margin: 30px auto;
+  padding: 15px;
+  width: 100px;
+}
+
+.button a {
+  color: #fbe8a6;
+  text-decoration: none;
+}
+
+.button:hover{
+  background-color: #fabc9f;
 }

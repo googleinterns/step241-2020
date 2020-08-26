@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Student Recommendations - Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/fonts.css">
+    <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="/styles/form.css">
+  </head>
+  <body>
+    <div class="content">
+      <div class="container">
+        <h1>Student Recommendations</h1>
+        <h3>a recommendation system for students, by students!</h3>
+      </div>
+    </div>
+    <form name="user-details" action="/user" method="POST">
+      <p>Hello! my name is</p>
+      <input type="text" name="name" class="name">
+      <br><br>
+      <p>I am currently a student in the department of</p>
+      <input type="text" name="department" class="department">
+      <br><br>
+      <p>and here is my profile picture!</p>
+      <input type="file" name="profilepic" class="profilepic" accept="image/*">
+      <br>
+      <input class="button" type="submit" />
+    </form>
+  </body>
+</html>
