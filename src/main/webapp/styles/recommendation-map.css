@@ -1,6 +1,5 @@
 
-/* --- Recommendation Map Styling --- */
-
+/* Recommendation Map Styling */
 .map-category-button {
   border-color: white;
   border-image: initial;
@@ -17,8 +16,7 @@
   width: 18%;
 }
 
-/* -- Category Button Colours -- */
-
+/* Category Button Colours */
 #restaurants-button {
   background-color: #ffba04;
 }
@@ -77,8 +75,7 @@
   display: block;
 }
 
-/* --- Content from Above Map --- */
-
+/* Content from Above Map */
 .content {
   display: flex;
 }
@@ -107,8 +104,7 @@
   padding-top: 10px;
 }
 
-/* --- Recommendation View Box --- */
-
+/* Recommendation View Box */
 #rec-container {
   background: rgb(237,237,238);
   border-color: #000;
