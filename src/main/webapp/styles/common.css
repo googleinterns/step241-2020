@@ -77,12 +77,13 @@ p {
 }
 
 footer {
-  width: inherit;
   background-color: #303c6c;
+  color: white;
+  clear: both;
   font-family: 'Chelsea Market', cursive;
   padding: 10px 0px;
   text-align: center;
-  color: white;
+  width: inherit;
 }
 
 footer p {
@@ -122,11 +123,26 @@ nav ul li a {
   text-decoration: none;
 }
 
-.content {
-  min-height: calc(100vh - 259px);
-  padding: 30px;
-  text-align: center;
+/* Back to Top Button */
+#to-top-button {
+  background-color: black;
+  border: 5px solid white;
+  border-radius: 4px;
+  bottom: 20px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: 'Chelsea Market', cursive;
+  font-size: 18px;
+  outline: none;
+  padding: 15px;
+  position: fixed;
+  right: 30px;
+  z-index: 99;
 }
+
+#to-top-button:hover {
+  background-color: #555;
 
 .title {
   color: #303c6c;
@@ -150,11 +166,4 @@ nav ul li a {
 
 .button:hover{
   background-color: #fabc9f;
-}
-
-.footer {
-  background-color: #303c6c;
-  height: 80px;
-  text-align: center;
-  width: inherit;
 }

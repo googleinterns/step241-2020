@@ -5,6 +5,7 @@
     <title>Student Recommendations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/scripts/map.js"></script>
+    <script src="/scripts/index.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
       defer
@@ -26,6 +27,7 @@
         </ul>
       </nav>
     </div>    
+    <button onclick="toTopFunction()" id="to-top-button">Up to Top</button>
     <section class="map-section">
       <div class="content">
         <div class="info-paragraph">
@@ -42,14 +44,30 @@
         </div>
       </div>
       <div class="map-category-section">
-        <button class="map-category-button">Restaurants</button>
-        <button class="map-category-button">Places to Visit</button>
-        <button class="map-category-button">Bars and Clubs</button>
-        <button class="map-category-button">Study Places</button>
+        <button class="map-category-button" id="restaurants-button">Restaurants</button>
+        <button class="map-category-button" id="places-button">Places to Visit</button>
+        <button class="map-category-button" id="bars-and-clubs-button">Bars and Clubs</button>
+        <button class="map-category-button" id="study-button">Study Places</button>
       </div>
     </section>
-    <!-- The Recommendation Map -->
-    <div id="map"></div>
+    <div class="wrapper">
+      <!-- The Recommendation Map -->
+      <div id="map"></div>  
+      <!-- View Recommendation Area -->
+      <div id="rec-container">
+        <p id="category-header">- Places to Visit -</p>
+        <h3>Sky Garden</h3>
+        <h4>Location / Address</h4>
+        <p id="rec-address">51.510881° N, -0.083751° W</p>
+        <h4>Description</h4>
+        <p>Sky Garden is a great place to visit, with really good
+          views of London. You can enjoy the 360 degree view
+          of the city - for free! They are public gardens and 
+          definitely worth a visit when you have the time.
+          Remember to keep socially distanced!
+        </p>
+      </div>
+    </div>
     <!-- Popup for Adding Recommendation -->
     <div class="popup" id="popup-add-recs">
       <div class="overlay"></div>
