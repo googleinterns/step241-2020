@@ -29,6 +29,6 @@ input {
   overflow: visible;
 }
 
-.profilepic {
-  padding-left: 100px;
+label {
+  color: white;
 }

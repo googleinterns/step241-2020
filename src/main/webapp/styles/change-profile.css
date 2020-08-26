@@ -1,0 +1,76 @@
+#popup-profile h2 {
+  color: black;
+}
+
+#popup-profile p {
+  color: black;
+}
+
+/* Formatting for Popup Box */
+#popup-profile .overlay {
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  height: 100%;
+  left: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 0;
+}
+
+#popup-profile .popup-content {
+  background: #fbe8a6;
+  border-color: #000;
+  border-image: initial;
+  border-style: solid;
+  border-width: initial;
+  box-sizing: border-box;
+  color: #000;
+  width: 600px;
+  left: 75%;
+  top: 65%;
+  margin: 10px;
+  padding: 20px;
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 2;
+}
+
+/* Close Button [X] for the Popup */
+#popup-profile .close-button {
+  background: #222;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 600;
+  height: 30px;
+  line-height: 30px;
+  position: absolute;
+  right: 20px;
+  text-align: center;
+  top: 20px;
+  width: 30px;
+}
+
+#popup-profile.active .overlay {
+  display: block;
+}
+
+#popup-profile.active .popup-content {
+  transform: translate(-120%, -80%) scale(1);
+  transition: all 150ms ease-in-out 0s;
+}
+
+label {
+  color: black;
+}
+
+input[type="file"] {
+  padding-left: 100px;
+  color: black;
+}
+
+.button {
+  box-sizing: border-box;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Student Recommendations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/scripts/my-profile.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <link rel="stylesheet" href="/styles/fonts.css">
+    <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="/styles/my-profile.css">
+    <link rel="stylesheet" href="/styles/change-profile.css">
+  </head>
+  <body onload="initMap()">
+    <div class="header">
+      <h1>Student Recs</h1>
+      <h3>a recommendation system for students, by students!</h3>
+      <!-- Navigation Bar -->
+      <nav>
+        <ul>
+          <li><a href="/recommendation-map.html">Recommendation Map</a></li>
+          <li><a href="/user-dir.html">User Directory</a></li>
+          <li><a class="active" href="/my-profile.html">My Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1 class="title">User Directory</h1>
+    <div class="content">
+      <div class="wrapper">
+        <!-- User Details -->
+        <div class="details-container">
+          <div class="details">
+            <img class="user-img" src="/images/avatar.jpg"></img>
+            <h2>Name</h2>
+            <h3>Department</h3>
+            <p>User's bio goes here
+                Lorem Ipsum
+            </p>
+          </div>
+          <button class="button" onclick="togglePopup()">Edit profile</p>
+        </div>
+        <!-- User's Recommendation Map -->
+        <div class="map-container">
+          <h2>My favorite places</h2><br>
+          <div id="map"></div>  
+        </div>
+        <!-- Pop up box to change profile -->
+        <div id="popup-profile">
+          <div class="overlay"></div>
+          <div class="popup-content">
+            <div class="close-button" onclick="togglePopup()">&times;</div>
+            <h2>Edit Profile</h2>
+            <p>Please change your profile by filling out this form and press submit</p><br>
+            <!-- Form for changing profile -->
+            <form>
+              <label for="Name">Hello! my name is</label>
+              <input type="text" id="name" name="name" size="40" required></input>
+              <label for="Department">I am currently a student in the department of</label>
+              <input type="text" id="department" name="department" size="40" required></input>
+              <label for="Bio">more info about me (bio)</label>
+              <textarea type="text" id="bio" name="bio" cols="40" rows="3"></textarea>
+              <p>and here is my profile picture!</p>
+              <input type="file" name="profilepic" class="profilepic" accept="image/*">
+              <br>
+              <input class="button" type="submit" /> 
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="f2">made by Rania Rusly and Lorna Armstrong</div>
+      <div class="f3">STEP intern 2020</div>
+    </footer>
+  </body>
+</html>

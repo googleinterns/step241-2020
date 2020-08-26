@@ -11,7 +11,7 @@ h1 {
   color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 36px;
-  margin: 10px;
+  margin: 20px;
 }
 
 h2 {
@@ -61,8 +61,8 @@ p {
 
 p {
   font-family: 'Chelsea Market', cursive;
-  font-size: 14px;
-  color: #000
+  font-size: 16px;
+  color: white
 }
 
 .header {
@@ -151,19 +151,47 @@ nav ul li a {
 
 .button {
   background-color: #f4976c;
-  color: #fbe8a6;
+  border: none;
+  border-radius: 25px;
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 16px;
-  margin: 30px auto;
+  margin: 10px auto;
   padding: 15px;
   width: 100px;
 }
 
 .button a {
-  color: #fbe8a6;
+  color: white;
   text-decoration: none;
 }
 
 .button:hover{
   background-color: #fabc9f;
+}
+
+label {
+  color: white;
+  display: block;
+  padding: 10px;
+}
+
+input {
+  color: black;
+  font: inherit;
+  overflow: visible;
+  appearance: none;
+  margin: 10px;
+}
+
+input[type="file"] {
+  padding-left: 100px;
+  color: white;
+}
+
+textarea {
+  color: black;
+  font-family: "Chelsea Market", sans-serif;
+  font-size: 16px;
+  resize: none;
 }
