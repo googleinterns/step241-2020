@@ -3,21 +3,30 @@ body {
 }
 
 .content {
-  min-height: 0;
-  width: inherit;
   height: 30vh;
   margin: auto;
+  min-height: 0;
   position:relative;
+  width: inherit;
 }
 
 .container {
-  position: absolute; 
-  top: 50%;
-  right: 50%;
   height: 100px;
-  width: 600px;
   margin: -50px -300px;
+  position: absolute; 
+  right: 50%;
+  top: 50%;
   text-align: center; 
+  width: 600px;
+}
+
+input {
+  appearance: none;
+  border: none;
+  box-sizing: inherit;
+  color: #fbe8a6;
+  font: inherit;
+  overflow: visible;
 }
 
 label {

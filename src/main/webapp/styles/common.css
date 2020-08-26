@@ -1,50 +1,61 @@
 body {
-  width: 100%;
+  background-color: #fbe8a6;
   margin: auto;
   font-family: 'Chelsea Market', cursive;
-  background-color: #fbe8a6;
   text-align: center;
+  width: 100%;
+  background-color: white;
 }
 
 h1 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 36px;
-  color: white;
   margin: 20px;
 }
 
 h2 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 28px;
-  color: white;
+  color: #000;
   margin: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 h3 {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 20px;
   color: white;
+  font-family: "Chelsea Market", cursive;
+  font-size: 20px;
+  color: #000;
   margin: 5px;
 }
 
+p {
+  color: white;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 16px;
+}
+
 .f1 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 36px;
-  color: white;
   margin: 10px;
 }
 
 .f2 {
+  color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 28px;
-  color: white;
   margin: 10px;
 }
 
 .f3 {
+  color: white;
   font-family: 'Libre Baskerville', serif;
   font-size: 20px;
-  color: white;
   margin: 5px;
 }
 
@@ -55,31 +66,49 @@ p {
 }
 
 .header {
-  width: inherit;
   background-color: #303c6c;
-  text-align: center;
   padding-top: 20px;
+  text-align: center;
+  width: inherit;
+}
+
+.header h3 {
+  color: white;
+}
+
+footer {
+  background-color: #303c6c;
+  color: white;
+  clear: both;
+  font-family: 'Chelsea Market', cursive;
+  padding: 10px 0px;
+  text-align: center;
+  width: inherit;
+}
+
+footer p {
+  color: #fff;
 }
 
 /* Style navigation bar */
 nav {
-  position: relative;
   background-color: #f4976c;
   overflow: hidden;
+  position: relative;
 }
 
 /* Align bar items */
 nav ul {
-  text-align: center;
   margin: 0px;
+  text-align: center;
 }
 
 /* Style bar items */
 nav ul li {
-  float: none;
   display: inline-block;
-  text-align: center;
+  float: none;
   padding: 10px;
+  text-align: center;
 }
 
 /* Change bar item coler when cursor hovers over it */
@@ -94,16 +123,30 @@ nav ul li a {
   text-decoration: none;
 }
 
-.content {
-  text-align: center;
-  min-height: calc(100vh - 259px);
+/* Back to Top Button */
+#to-top-button {
+  background-color: black;
+  border: 5px solid white;
+  border-radius: 4px;
+  bottom: 20px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: 'Chelsea Market', cursive;
+  font-size: 18px;
+  outline: none;
+  padding: 15px;
+  position: fixed;
+  right: 30px;
+  z-index: 99;
 }
 
-.footer {
-  height: 80px;
-  width: inherit;
-  background-color: #303c6c;
-  text-align: center;
+#to-top-button:hover {
+  background-color: #555;
+
+.title {
+  color: #303c6c;
+  font-size: 48px;
 }
 
 .button {

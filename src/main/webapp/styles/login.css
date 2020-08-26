@@ -3,18 +3,18 @@ body {
 }
 
 .content {
-  width: inherit;
-  height: 100vh;
   margin: auto;
-  position:relative;
+  position: relative;
+  height: 100vh;
+  width: inherit;
 }
 
 .container {
-  position: absolute; 
-  top: 50%;
-  right: 50%;
   height: 300px;
-  width: 600px;
   margin: -150px -300px;
+  position: absolute; 
+  right: 50%;
   text-align: center; 
+  top: 50%;
+  width: 600px;
 }
