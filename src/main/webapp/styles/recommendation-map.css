@@ -1,17 +1,5 @@
-h2 {
-  color: #000;
-}
-
-h3 {
-  color: #000;
-}
-
-p {
-  color: #000;
-}
-
-label {
-  color: #000;
+h2, h3, p, label {
+  color: black;
 }
 
 /* Recommendation Map Styling */
