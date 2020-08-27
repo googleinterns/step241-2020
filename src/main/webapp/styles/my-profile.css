@@ -40,7 +40,7 @@
 .button {    
   background: #38afac;
   border: none;
-  color: white;
+  color: white !important;
   height: 50px;
   width: 150px;
 }
