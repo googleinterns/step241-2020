@@ -22,11 +22,17 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gson.Gson;
+import com.google.sps.data.User;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +41,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that sends user data to datastore */
-@WebServlet("/user-form")
+@WebServlet("/user-data")
 public class UserDataServlet extends HttpServlet {
   
   private DatastoreService datastore;
@@ -44,6 +50,30 @@ public class UserDataServlet extends HttpServlet {
   public void init(){
     datastore = DatastoreServiceFactory.getDatastoreService();
     blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+  }
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get list of entities of user details from data store
+    Query query = new Query("User").addSort("name", SortDirection.ASCENDING);
+    PreparedQuery prepared = datastore.prepare(query);
+
+    // Convert entities to java class user entities
+    List<User> users = new ArrayList<>();
+    for (Entity entity : prepared.asIterable()) {
+      String userEmail = (String) entity.getProperty("userEmail");
+      String name = (String) entity.getProperty("name");
+      String department = (String) entity.getProperty("department");
+      String bio = (String) entity.getProperty("bio");
+      String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
+      long timestamp = (long) entity.getProperty("timestamp");
+      users.add(new User(userEmail, name, department, bio, profilePictureUrl, timestamp));
+    }
+
+    // Return list of user details
+    String json = new Gson().toJson(users);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
   }
 
   @Override

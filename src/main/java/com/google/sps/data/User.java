@@ -15,21 +15,21 @@
 package com.google.sps.data;
 
 /** The class represents user details. */
-public final class Comment {
+public final class User {
 
   private final String userEmail;
   private final String name;
   private final String department;
   private final String bio;
-  private final String profilePicUrl;
+  private final String profilePictureUrl;
   private final long timestamp;
 
-  public Comment(String userEmail, String name, String department, String bio, String profilePicUrl, long timestamp) {
+  public User(String userEmail, String name, String department, String bio, String profilePictureUrl, long timestamp) {
     this.userEmail = userEmail;
     this.name = name;
     this.department = department;
     this.bio = bio;
-    this.profilePicUrl = profilePicUrl;
+    this.profilePictureUrl = profilePictureUrl;
     this.timestamp = timestamp;
   }
 }
