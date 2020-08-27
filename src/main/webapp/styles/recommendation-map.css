@@ -1,3 +1,6 @@
+h2, h3, p, label {
+  color: black;
+}
 
 /* Recommendation Map Styling */
 .map-category-button {
