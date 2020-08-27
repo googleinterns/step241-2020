@@ -14,6 +14,6 @@
 
 function loadUploadUrl(){
   fetch("blobstore-url").then(result => result.text()).then((uploadUrl) => {
-    document.getElementById("user-data").setAttribute("action", uploadUrl);
+    document.getElementById("user-form").setAttribute("action", uploadUrl);
   });
 }
