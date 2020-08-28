@@ -15,7 +15,7 @@
 function loadProfile(redirectUrl){
   initMap();
   loadDetails();
-  loadUploadUrl();
+  loadFormSubmissionUrl()();
 }
 
 /* Set Up Map */
