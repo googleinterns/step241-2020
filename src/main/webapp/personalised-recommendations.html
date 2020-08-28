@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Student Recommendations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/fonts.css">
+    <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="/styles/personalised-recommendations.css">
+  </head>
+  <body>
+    <div class="header">
+      <h1>Student Recs</h1>
+      <h2>a recommendation system for students, by students!</h2>
+      <!-- Navigation Bar -->
+      <nav>
+        <ul>
+          <li><a href="/recommendation-map.html">Recommendation Map</a></li>
+          <li><a class="active" href="/personalised-recommendations.html">Personalised Recommendations</a></li>
+          <li><a href="/user-directory.html">User Directory</a></li>
+          <li><a href="/my-profile.html">My Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1 class="title">Personalised Recommendations</h1>
+    <!-- Instructions -->
+    <p id="instructions">Fill in your preferences to generate the top 5 recommendations for you!</p>
+    <div class="content">
+      <div class="wrapper">
+        <div class="preferences-container">
+        <!-- User Preferences -->
+          <div class="preferences">
+            <h2>Preferences</h2>
+            <div class="button-row">
+              <label class="category active">
+                <input type="radio" name="recommendation-category" id="restaurants"> Restaurants
+              </label>
+              <label class="category">
+                <input type="radio" name="recommendation-category" id="places-to-visit"> Places to Visit
+              </label>
+              <label class="category">
+                <input type="radio" name="recommendation-category" id="bars-clubs"> Bars & Clubs
+              </label>
+              <label class="category">
+                <input type="radio" name="recommendation-category" id="study-places"> Study Places
+              </label>
+            </div>
+            <div class="button-row">
+                <div class="flex-item">Cheap</div>
+                <label class="flex-item"><input type="radio" value="1" name="price"></label>
+                <label class="flex-item"><input type="radio" value="2" name="price"></label>
+                <label class="flex-item"><input type="radio" value="3" name="price"></label>
+                <label class="flex-item"><input type="radio" value="4" name="price"></label>
+                <label class="flex-item"><input type="radio" value="5" name="price"></label>
+                <div class="flex-item">Expensive</div>
+            </div>
+            <div class="button-row">
+                <div class="flex-item">Quiet</div>
+                <label class="flex-item"><input type="radio" value="1" name="crowd"></label>
+                <label class="flex-item"><input type="radio" value="2" name="crowd"></label>
+                <label class="flex-item"><input type="radio" value="3" name="crowd"></label>
+                <label class="flex-item"><input type="radio" value="4" name="crowd"></label>
+                <label class="flex-item"><input type="radio" value="5" name="crowd"></label>
+                <div class="flex-item">Loud</div>
+            </div>
+            <button class="button">Generate Recommendations</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="f2">Made by Rania Rusly and Lorna Armstrong</div>
+      <div class="f3">STEP intern 2020</div>
+    </footer>
+  </body>
+</html>
