@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -98,6 +98,7 @@ public class UserDataServlet extends HttpServlet {
     user.setProperty("department", department);
     user.setProperty("bio", bio);
     user.setProperty("timestamp", timestamp);
+    // TODO: not change profilePictureUrl if no file is uploaded
     if(profilePictureUrl != null){
       user.setProperty("profilePictureUrl", profilePictureUrl);
     }
