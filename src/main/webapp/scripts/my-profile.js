@@ -12,6 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+function loadProfile(redirectUrl){
+  initMap();
+  loadDetails();
+  loadUploadUrl();
+}
+
 /* Set Up Map */
 function initMap() {
   /* 'Hard Coded' origin, Google UK Pancras Square */
@@ -25,11 +31,24 @@ function initMap() {
   });
 }
 
+/* Load current user's profile details */
+function loadDetails(){
+  fetch("personal-data").then(result => result.json()).then((user) => {
+    // Populate user details section
+    const profilePictureHTML = "<img class=\"user-img\" src=\"" + user.profilePictureUrl + "\"></img>";
+    const nameHTML = "<h2>" + user.name + "</h2>";
+    const departmentHTML = "<h3>" + user.department + "</h3>";
+    const bioHTML = "<p>" + user.bio + "</p>";
+    document.getElementById("details").innerHTML = profilePictureHTML + nameHTML + departmentHTML + bioHTML;
+
+    // Pre-fill input for editting profile with the current user details
+    document.getElementById("name").setAttribute("value", user.name); 
+    document.getElementById("department").setAttribute("value", user.department); 
+    document.getElementById("bio").innerHTML = user.bio;
+  });
+}
+
 /* Toggle the display of the popup box to change profile */
 function togglePopup() {
   document.getElementById("popup-profile").classList.toggle("active");
-  // pre-fill input by the old user details
-  document.getElementById("name").setAttribute("value", "old name"); 
-  document.getElementById("department").setAttribute("value", "old department"); 
-  document.getElementById("bio").innerHTML ="old bio";
 }

@@ -24,6 +24,8 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
@@ -32,6 +34,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.User;
 import java.io.IOException;
+import java.lang.Exception;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +43,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that sends user data to datastore */
+/** Servlet that sends and get user data to and from the datastore */
 @WebServlet("/user-data")
 public class UserDataServlet extends HttpServlet {
   
@@ -88,22 +91,32 @@ public class UserDataServlet extends HttpServlet {
     String bio = request.getParameter("bio");
     String profilePictureUrl = getUploadedFileUrl(request, "user-img");
 
-    // Create entity based on user data
-    Entity userEntity = new Entity("User");
-    userEntity.setProperty("userEmail", userEmail);
-    userEntity.setProperty("name", name);
-    userEntity.setProperty("department", department);
-    userEntity.setProperty("bio", bio);
-    userEntity.setProperty("profilePictureUrl", profilePictureUrl);
-    userEntity.setProperty("timestamp", timestamp);
+    // Build user entity and upsert to datastore
+    Entity user = new Entity("User", userEmail);
+    user.setProperty("userEmail", userEmail);
+    user.setProperty("name", name);
+    user.setProperty("department", department);
+    user.setProperty("bio", bio);
+    user.setProperty("timestamp", timestamp);
+    if(profilePictureUrl != null){
+      user.setProperty("profilePictureUrl", profilePictureUrl);
+    }
+    datastore.put(user);
     
-    // Send user data to datastore
-    datastore.put(userEntity);
-    response.sendRedirect("/recommendation-map.html");
+    response.sendRedirect(request.getParameter("redirectUrl"));
   }
 
   // Get URL to the uploaded file
-  private String getUploadedFileUrl(HttpServletRequest request, String inputElementName){
+  private String getUploadedFileUrl(HttpServletRequest request, String inputElementName) {
+    // User does not submit any file
+    try {
+      if(request.getPart(inputElementName).getSize() == 0) {
+        return null;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
     List<BlobKey> blobKeys = blobstoreService.getUploads(request).get(inputElementName);
 
     // User submitted form without selecting a file, so we can't get a URL. (devserver)

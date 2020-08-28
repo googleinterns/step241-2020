@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Student Recommendations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/scripts/common.js"></script>
     <script src="/scripts/my-profile.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
@@ -14,7 +15,7 @@
     <link rel="stylesheet" href="/styles/my-profile.css">
     <link rel="stylesheet" href="/styles/change-profile.css">
   </head>
-  <body onload="initMap()">
+  <body onload="loadProfile()">
     <div class="header">
       <h1>Student Recs</h1>
       <h3>a recommendation system for students, by students!</h3>
@@ -32,14 +33,7 @@
       <div class="wrapper">
         <!-- User Details -->
         <div class="details-container">
-          <div class="details">
-            <img class="user-img" src="/images/avatar.jpg"></img>
-            <h2>Name</h2>
-            <h3>Department</h3>
-            <p>User's bio goes here
-                Lorem Ipsum
-            </p>
-          </div>
+          <div id="details"></div>
           <button class="button" onclick="togglePopup()">Edit profile</p>
         </div>
         <!-- User's Recommendation Map -->
@@ -55,7 +49,7 @@
             <h2>Edit Profile</h2>
             <p>Please change your profile by filling out this form and press submit</p><br>
             <!-- Form for changing profile -->
-            <form>
+            <form id="user-form" method="POST" enctype="multipart/form-data">            
               <label for="Name">Hello! my name is</label>
               <input type="text" id="name" name="name" size="40" required></input>
               <label for="Department">I am currently a student in the department of</label>
@@ -63,8 +57,9 @@
               <label for="Bio">more info about me (bio)</label>
               <textarea type="text" id="bio" name="bio" cols="40" rows="3"></textarea>
               <p>and here is my profile picture!</p>
-              <input type="file" name="profilepic" class="profilepic" accept="image/*">
+              <!-- <input type="file" name="user-img" class="user-img" accept="image/*"> -->
               <br>
+              <input type="hidden" name="redirectUrl" value="/my-profile.html" />
               <input class="button" type="submit" /> 
             </form>
           </div>
