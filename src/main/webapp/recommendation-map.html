@@ -30,31 +30,32 @@
       </nav>
     </div>    
     <button onclick="toTopFunction()" id="to-top-button">Up to Top</button>
-    <section class="map-section">
-      <div class="content">
-        <div class="info-paragraph">
-          <h3>Want to add a recommendation?</h3>
-          <p>No problem! Click on the map to add a new marker and then
-            you can add your recommendation. Be sure to let everyone
-            know your favourite places!</p>
-        </div>
-        <div class="info-paragraph">
-          <h3>Want to view a recommendation?</h3>
-          <p>To see recommendations, use the buttons above to select a 
-            category and then explore the markers on the map! Have a 
-            good look around and see if anything catches your eye.</p>
-        </div>
+    <h1 class="title">Recommendation Map</h1>
+    <div class="content">
+      <div class="info-paragraph">
+        <h3>Want to add a recommendation?</h3>
+        <p>No problem! Click on the map to add a new marker and then
+          you can add your recommendation. Be sure to let everyone
+          know your favourite places!</p>
       </div>
-      <div class="map-category-section">
-        <button class="map-category-button" id="restaurants-button">Restaurants</button>
-        <button class="map-category-button" id="places-button">Places to Visit</button>
-        <button class="map-category-button" id="bars-and-clubs-button">Bars and Clubs</button>
-        <button class="map-category-button" id="study-button">Study Places</button>
+      <div class="info-paragraph">
+        <h3>Want to view a recommendation?</h3>
+        <p>To see recommendations, use the buttons above to select a 
+          category and then explore the markers on the map! Have a 
+          good look around and see if anything catches your eye.</p>
       </div>
-    </section>
+    </div>
     <div class="wrapper">
       <!-- The Recommendation Map -->
-      <div id="map"></div>  
+      <div class="map-container">
+        <div class="map-category-section">
+          <button class="map-category-button" id="restaurants-button">Restaurants</button>
+          <button class="map-category-button" id="places-button">Places to Visit</button>
+          <button class="map-category-button" id="bars-and-clubs-button">Bars and Clubs</button>
+          <button class="map-category-button" id="study-button">Study Places</button>
+        </div>
+        <div id="map"></div>  
+      </div>
       <!-- View Recommendation Area -->
       <div id="rec-container">
         <p id="category-header">- Places to Visit -</p>
