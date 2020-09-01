@@ -7,7 +7,7 @@
     <script src="/scripts/map.js"></script>
     <script src="/scripts/common.js"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&libraries=&v=weekly"
       defer
     ></script>
     <link rel="stylesheet" href="/styles/fonts.css">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/styles/recommendation-map.css">
     <link rel="stylesheet" href="/styles/add-recommendation.css">
   </head>
-  <body onload="initMap()">
+  <body>
     <div class="header">
       <h1>Student Recs</h1>
       <h3>a recommendation system for students, by students!</h3>
@@ -29,7 +29,8 @@
         </ul>
       </nav>
     </div>    
-    <button onclick="toTopFunction()" id="to-top-button">Up to Top</button>
+    <!-- TODO debug this as it causes a console error 
+    <button onclick="toTopFunction()" id="to-top-button">Up to Top</button> -->
     <h1 class="title">Recommendation Map</h1>
     <div class="content">
       <div class="info-paragraph">
@@ -59,11 +60,11 @@
       <!-- View Recommendation Area -->
       <div id="rec-container">
         <p id="category-header">- Places to Visit -</p>
-        <h3>Sky Garden</h3>
+        <h3 id="place-title">Sky Garden</h3>
         <h4>Location / Address</h4>
         <p id="rec-address">51.510881° N, -0.083751° W</p>
         <h4>Description</h4>
-        <p>Sky Garden is a great place to visit, with really good
+        <p id="place-recommendation">Sky Garden is a great place to visit, with really good
           views of London. You can enjoy the 360 degree view
           of the city - for free! They are public gardens and 
           definitely worth a visit when you have the time.

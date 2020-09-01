@@ -15,11 +15,11 @@
 const scrollTopButton = document.getElementById("to-top-button");
 
 window.onscroll = function() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    scrollTopButton.style.display = "block";
-  } else {
-    scrollTopButton.style.display = "none";
-  }
+//   if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+//     scrollTopButton.style.display = "block";
+//   } else {
+//     scrollTopButton.style.display = "none";
+//   }
 };
 
 // When the user clicks on the button, scroll to the top of the document
