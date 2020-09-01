@@ -53,17 +53,6 @@ public final class Matrix {
     return m;
   }
 
-  // return a matrix which is the result of transposing this matrix
-  public Matrix transpose(){
-    Matrix transposed = new Matrix(m, n);
-    for(int i = 0; i < n; i++) {
-      for(int j = 0; j < m; j++) {
-        transposed.setValue(data[i][j], j, i);
-      }
-    }
-    return transposed;
-  }
-
   // return a matrix which is the result of multiplying
   // this matrix and another matrix
   public Matrix multiply(Matrix that) {
