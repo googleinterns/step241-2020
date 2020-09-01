@@ -14,27 +14,38 @@
 
 package com.google.sps.servlets;
 
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gson.Gson;
-import com.google.sps.data.LoginDetails;
+import com.google.sps.data.Matrix;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/recommender")
+public class RecommenderServlet extends HttpServlet {
+
+  private final int FACTORS_N = 3;
+  private final String[] factors = {"price", "crowd", "distance"};
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    UserService userService = UserServiceFactory.getUserService();
-    boolean isUserLoggedIn = userService.isUserLoggedIn();
-    String loginURL = userService.createLoginURL("/form.html");
-    LoginDetails loginDetails = new LoginDetails(isUserLoggedIn, loginURL);
+    Matrix resultMatrix = recommendationMatix().multiply(preferenceMatrix(request));
+    // TODO: return recommendation based on the final points for each recommendation
+  }
 
-    response.setContentType("application/json");
-    response.getWriter().println(new Gson().toJson(loginDetails));
+  private Matrix recommendationMatix(){
+    // TODO: construct matrix of which represents the recommendations' points for every factor
+    return new Matrix(0,0);
+  }
+
+  // construct a matrix of size FACTORS_N x 1 which represents user's points
+  // every coloumn represents factor considered
+  private Matrix preferenceMatrix(HttpServletRequest request){
+    Matrix preference = new Matrix(FACTORS_N, 1);
+    for(int i = 0;  i < FACTORS_N; i++) {
+      int point = Integer.parseInt(request.getParameter(factors[i]));
+      preference.setValue(point, i, 1);
+    }
+    return preference;
   }
 }
