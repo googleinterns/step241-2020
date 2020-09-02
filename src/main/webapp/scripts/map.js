@@ -99,6 +99,7 @@ function addMarker(map) {
     /* Update the HTML */
     var markerRec = getRecommendationDetails(marker.title);
     document.getElementById("category-header").innerHTML = markerRec[0];
+    document.getElementById("category-header").style.backgroundColor = getBackgroundColour(markerRec[0]);
     document.getElementById("place-title").innerHTML = markerRec[1];
     document.getElementById("rec-address").innerHTML = new google.maps.LatLng(markerRec[2], markerRec[3]);
     document.getElementById("place-recommendation").innerHTML = markerRec[4];
@@ -119,6 +120,21 @@ function getRecommendationDetails(name) {
     }
   }
   return null;
+}
+
+function getBackgroundColour(category) {
+    switch(category) {
+    case 'Restaurants':
+      return "#ffba04";
+    case 'Places to Visit':
+      return "#21b5b5";
+    case 'Bars and Clubs':
+      return "#a73f9b";
+    case 'Study Places':
+      return "#ff5b5b";
+    default:
+      return "";
+  } 
 }
 
 /* Returns the Coloured Marker for Category */
