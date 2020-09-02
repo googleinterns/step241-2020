@@ -25,7 +25,7 @@
   text-align: center;
   top: 65%;
   transform: translate(-50%, -50%) scale(0);
-  width: 450px;
+  width: 500px;
   z-index: 2;
 }
 
@@ -51,14 +51,13 @@
 }
 
 .popup.active .popup-content {
-  transform: translate(-50%, -70%) scale(1);
+  transform: translate(-50%, -30%) scale(1);
   transition: all 300ms ease-in-out 0s;
 }
 
 /* Add Rec Form Elements */
 label {
   display: inline-block;
-  padding-right: 5px;
 }
 
 textarea {
@@ -111,4 +110,33 @@ input[type='radio']:checked:after {
   top: -2px;
   visibility: visible;
   width: 15px;
+}
+
+.flex-item:before {
+  content: '';
+  padding-top: 26%;
+}
+
+.flex-item {
+  align-items: center;
+  color:#fff;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+}
+
+.flex-item-description {
+  align-items: center;
+  color:#000;
+  display: flex;
+  font-size: 15px;
+  font-weight: 500;
+  justify-content: center;
+  width: 80px;
+}
+
+.button-row {
+  display: flex;
+  margin-bottom: 5px;
+  text-align: center;
 }
