@@ -61,7 +61,7 @@ function initMap() {
   const origin = {
     lat: 51.533364, 
     lng: -0.125777
-  }
+  };
   const map = new google.maps.Map(document.getElementById("map"), {
     center: origin,
     zoom: 15
@@ -75,55 +75,37 @@ function initMap() {
 }
 
 function addMarker(map) {
-  /* Hard-Coded Marker Data */
-  var placeName;
-  var placeLatLng;
-  var placeCategory;
-  var placeRecommendation;
-
   /* Iterate through stored recommendations to get details */
   for (i = 0; i < recommendations.length; i++) {
-    var rec = recommendations[i]
-    placeCategory = rec[0];
-    placeName = rec[1];
-    placeLatLng = new google.maps.LatLng(rec[2], rec[3]);
-    placeRecommendation = rec[4];
+    const recommendation = recommendations[i];
+    const placeCategory = recommendation[0];
+    const placeName = recommendation[1];
+    const placeLatLng = new google.maps.LatLng(recommendation[2], recommendation[3]);
+    const placeRecommendation = recommendation[4];
     const marker = new google.maps.Marker({
       position: placeLatLng,
       map: map,
       title: placeName,
       icon: getColourMarker(placeCategory)
-    })
+    });
     /* Add Listener for Click on Marker */
     google.maps.event.addListener(marker, "click", () => {
-    /* Update the HTML */
-    var markerRec = getRecommendationDetails(marker.title);
-    document.getElementById("category-header").innerHTML = markerRec[0];
-    document.getElementById("category-header").style.backgroundColor = getBackgroundColour(markerRec[0]);
-    document.getElementById("place-title").innerHTML = markerRec[1];
-    document.getElementById("rec-address").innerHTML = new google.maps.LatLng(markerRec[2], markerRec[3]);
-    document.getElementById("place-recommendation").innerHTML = markerRec[4];
-    document.getElementById("rec-container").style.display = "block";
-    /* Adjust the map settings */
-    map.setZoom(16);
-    map.setCenter(marker.getPosition());
-   });
+      /* Update the HTML */
+      document.getElementById("category-header").innerHTML = placeCategory;
+      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(placeCategory);
+      document.getElementById("place-title").innerHTML = placeName;
+      document.getElementById("rec-address").innerHTML = placeLatLng;
+      document.getElementById("place-recommendation").innerHTML = placeRecommendation;
+      document.getElementById("rec-container").style.display = "block";
+      /* Adjust the map settings */
+      map.setZoom(16);
+      map.setCenter(marker.getPosition());
+    });
   }
-}
-
-function getRecommendationDetails(name) {
-  /* Iterate through stored recommendations to get details */
-  for(i = 0; i<recommendations.length; i++) {
-    var rec = recommendations[i];
-    if (rec[1] == name) {
-      return rec;
-    }
-  }
-  return null;
 }
 
 function getBackgroundColour(category) {
-    switch(category) {
+  switch(category) {
     case 'Restaurants':
       return "#ffba04";
     case 'Places to Visit':
@@ -134,7 +116,7 @@ function getBackgroundColour(category) {
       return "#ff5b5b";
     default:
       return "";
-  } 
+  }
 }
 
 /* Returns the Coloured Marker for Category */
@@ -155,7 +137,7 @@ function getColourMarker(category) {
 
 /* Place Marker Where Map is Clicked On & Show Popup*/
 function placeMarkerAndPanTo(latLng, map) {
-  var marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     position: latLng,
     map: map,
     icon: greyIcon
@@ -163,12 +145,12 @@ function placeMarkerAndPanTo(latLng, map) {
 
   map.panTo(latLng);
   togglePopup();
-  var markerPosition = marker.getPosition();
+  const markerPosition = marker.getPosition();
   populateLocation(markerPosition);
 
   /* If marker is right-clicked, delete */
   google.maps.event.addListener(marker, 'rightclick', function(event) {
-      marker.setMap(null);
+    marker.setMap(null);
   });
 }
 
@@ -179,6 +161,6 @@ function togglePopup() {
 
 /* Use the position of marker on map to auto-fill location */
 function populateLocation(pos) {
-  var location = pos.lat() + ", " + pos.lng();
+  const location = pos.lat() + ", " + pos.lng();
   document.getElementById("location").value = location;
 }
