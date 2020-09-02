@@ -141,14 +141,14 @@ h2, h3, p, label {
 }
 
 #rec-container h4 {
-  color: cadetblue;
+  color: #8a8a8a;
   font-size: 17px;
   font-weight: 500;
   margin: 0px;
 }
 
 #rec-address {
-  color: grey;
+  color: #000;
 }
 
 #rec-container p {
