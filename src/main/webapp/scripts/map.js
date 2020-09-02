@@ -21,13 +21,13 @@ var greyIcon;
 
 /* Hard-coded Recommendations */
 const recommendations = [
-  ['Places to Visit', 'Sky Garden', '51.510881, -0.083751', 'Sky Garden is a great place to visit, with really good views of London. \
+  ['Places to Visit', 'Sky Garden', 51.510881, -0.083751, 'Sky Garden is a great place to visit, with really good views of London. \
   You can enjoy the 360 degree view of the city - for free! They are public gardens and definitely worth a visit \
   when you have the time. Remember to keep socially distanced!'],
-  ['Restaurants', 'Mildreds Kings Cross', '51.531299, -0.117168', 'A lovely little place to grab something to eat! There are a lot of \
+  ['Restaurants', 'Mildreds Kings Cross', 51.531299, -0.11716, 'A lovely little place to grab something to eat! There are a lot of \
   different options and a great atmosphere inside Mildred\'s!'],
-  ['Bars and Clubs', 'Fitz\'s Bar', '51.517735, -0.097112', 'This is a recommendation for Fitz\'s Bar in London.'],
-  ['Study Places', 'Bloomsbury Coffee House', '51.525212, -0.126469', 'A really great place to study!']
+  ['Bars and Clubs', 'Fitz\'s Bar', 51.517735, -0.097112, 'This is a recommendation for Fitz\'s Bar in London.'],
+  ['Study Places', 'Bloomsbury Coffee House', 51.525212, -0.126469, 'A really great place to study!']
 ]
 
 window.onload = function() {
@@ -76,65 +76,65 @@ function initMap() {
 
 function addMarker(map) {
   /* Hard-Coded Marker Data */
-  const mildredsKingsCross = new google.maps.Marker({
-    position: {lat: 51.531299, lng: -0.117168},
-    map: map,
-    title: 'Mildreds Kings Cross',
-    icon: yellowIcon
-  });
-  const skyGarden = new google.maps.Marker({
-    position: {lat: 51.510881, lng: -0.083751},
-    map: map,
-    title: 'Sky Garden',
-    icon: blueIcon
-  })
-  const fitzBar = new google.maps.Marker({
-    position: {lat: 51.517735, lng: -0.097112},
-    map: map,
-    title: 'Fitz\'s Bar',
-    icon: purpleIcon
-  });
-  const bloomsburyCoffeeHouse = new google.maps.Marker({
-    position: {lat: 51.525212, lng: -0.126469},
-    map: map,
-    title: 'Bloomsbury Coffee House',
-    icon: redIcon
-  });
-  
-  waitForClick(map, mildredsKingsCross);
-  waitForClick(map, skyGarden);
-  waitForClick(map, fitzBar);
-  waitForClick(map, bloomsburyCoffeeHouse);
-}
-
-function waitForClick(map, marker) {
-  var placeName = marker.getTitle();
-  var placeLongLat;
+  var placeName;
+  var placeLatLng;
   var placeCategory;
   var placeRecommendation;
 
   /* Iterate through stored recommendations to get details */
   for (i = 0; i < recommendations.length; i++) {
     var rec = recommendations[i]
-    if (rec[1] == placeName){
-      placeCategory = rec[0];
-      placeLongLat = rec[2];
-      placeRecommendation = rec[3];
-      break;
-    }
-  }
-
-  marker.addListener("click", () => {
+    placeCategory = rec[0];
+    placeName = rec[1];
+    placeLatLng = new google.maps.LatLng(rec[2], rec[3]);
+    placeRecommendation = rec[4];
+    const marker = new google.maps.Marker({
+      position: placeLatLng,
+      map: map,
+      title: placeName,
+      icon: getColourMarker(placeCategory)
+    })
+    /* Add Listener for Click on Marker */
+    google.maps.event.addListener(marker, "click", () => {
     /* Update the HTML */
-    document.getElementById("category-header").innerHTML = placeCategory;
-    document.getElementById("place-title").innerHTML = placeName;
-    document.getElementById("rec-address").innerHTML = placeLongLat;
-    document.getElementById("place-recommendation").innerHTML = placeRecommendation;
+    var markerRec = getRecommendationDetails(marker.title);
+    document.getElementById("category-header").innerHTML = markerRec[0];
+    document.getElementById("place-title").innerHTML = markerRec[1];
+    document.getElementById("rec-address").innerHTML = new google.maps.LatLng(markerRec[2], markerRec[3]);
+    document.getElementById("place-recommendation").innerHTML = markerRec[4];
     document.getElementById("rec-container").style.display = "block";
     /* Adjust the map settings */
     map.setZoom(16);
     map.setCenter(marker.getPosition());
-  });
+   });
+  }
+}
+
+function getRecommendationDetails(name) {
+  /* Iterate through stored recommendations to get details */
+  for(i = 0; i<recommendations.length; i++) {
+    var rec = recommendations[i];
+    if (rec[1] == name) {
+      return rec;
+    }
+  }
+  return null;
+}
+
+/* Returns the Coloured Marker for Category */
+function getColourMarker(category) {
+  switch(category) {
+    case 'Restaurants':
+      return yellowIcon;
+    case 'Places to Visit':
+      return blueIcon;
+    case 'Bars and Clubs':
+      return purpleIcon;
+    case 'Study Places':
+      return redIcon;
+    default:
+      return "";
+  }
 }
 
 /* Place Marker Where Map is Clicked On & Show Popup*/
