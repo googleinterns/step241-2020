@@ -34,30 +34,30 @@ window.onload = function() {
   /* Custom Markers */
   yellowIcon = {
     url: "/images/yellow-marker.png",
-    scaledSize: new google.maps.Size(30, 40),
+    scaledSize: new google.maps.Size(30, 40)
   };
   blueIcon = {
     url: "/images/blue-marker.png",
-    scaledSize: new google.maps.Size(30, 40),
+    scaledSize: new google.maps.Size(30, 40)
   };
   purpleIcon = {
     url: "/images/purple-marker.png", 
-    scaledSize: new google.maps.Size(30, 40),
+    scaledSize: new google.maps.Size(30, 40)
   };
   redIcon = {
     url: "/images/red-marker.png", 
-    scaledSize: new google.maps.Size(30, 40),
+    scaledSize: new google.maps.Size(30, 40)
   };
   greyIcon = {
     url: "/images/grey-marker.png",
-    scaledSize: new google.maps.Size(30, 40),
+    scaledSize: new google.maps.Size(30, 40)
   }
   initMap();
 }
 
 /* Set Up Map */
 function initMap() { 
-  /* 'Hard Coded' origin, Google UK Pancras Square*/
+  /* 'Hard Coded' origin, Google UK Pancras Square */
   const origin = {
     lat: 51.533364, 
     lng: -0.125777
@@ -70,12 +70,12 @@ function initMap() {
     placeMarkerAndPanTo(e.latLng, map);
   });
   
-  /*Add Hard-Coded Markers */
+  /* Add Hard-Coded Markers */
   addMarker(map);
 }
 
 function addMarker(map) {
-  //hardcoded marker data
+  /* Hard-Coded Marker Data */
   const mildredsKingsCross = new google.maps.Marker({
     position: {lat: 51.531299, lng: -0.117168},
     map: map,
