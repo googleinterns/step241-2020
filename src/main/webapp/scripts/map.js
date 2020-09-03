@@ -52,8 +52,10 @@ window.onload = function() {
     url: "/images/grey-marker.png",
     scaledSize: new google.maps.Size(30, 40)
   }
-  initMap();
+  initMap(); 
 }
+
+let map;
 
 /* Set Up Map */
 function initMap() { 
@@ -62,19 +64,24 @@ function initMap() {
     lat: 51.533364, 
     lng: -0.125777
   }
-  const map = new google.maps.Map(document.getElementById("map"), {
+  
+  map = new google.maps.Map(document.getElementById("map"), {
     center: origin,
     zoom: 15
   });
-  map.addListener("click", e => {
-    placeMarkerAndPanTo(e.latLng, map);
-  });
+  
+  /* Get all stored markers */
+  fetchMarkers();
+
+   map.addListener("click", e => {
+     placeMarkerAndPanTo(e.latLng);
+   });
   
   /* Add Hard-Coded Markers */
-  addMarker(map);
+  addHardCodedMarkers(map);
 }
 
-function addMarker(map) {
+function addHardCodedMarkers(map) {
   /* Hard-Coded Marker Data */
   var placeName;
   var placeLatLng;
@@ -110,6 +117,8 @@ function addMarker(map) {
    });
   }
 }
+
+let addedMarker;
 
 function getRecommendationDetails(name) {
   /* Iterate through stored recommendations to get details */
@@ -154,27 +163,38 @@ function getColourMarker(category) {
 }
 
 /* Place Marker Where Map is Clicked On & Show Popup*/
-function placeMarkerAndPanTo(latLng, map) {
-  var marker = new google.maps.Marker({
+function placeMarkerAndPanTo(latLng) {
+  /* Make marker for the clicked location */
+  const marker = new google.maps.Marker({
     position: latLng,
     map: map,
     icon: greyIcon
   });
-
+  /* Recenter the Map */
   map.panTo(latLng);
-  togglePopup();
+  /* Show the popup box */
+  togglePopup(latLng);
+  /* Update the latitude and longitude values in the popup */
   var markerPosition = marker.getPosition();
   populateLocation(markerPosition);
 
   /* If marker is right-clicked, delete */
-  google.maps.event.addListener(marker, 'rightclick', function(event) {
-      marker.setMap(null);
-  });
+   google.maps.event.addListener(marker, 'rightclick', function(event) {
+       marker.setMap(null);
+   });
+}
+
+function saveMarker() {
+  /* Add marker to datastore */
+  postMarker(latLng);
 }
 
 /* Set the PopUp to Active */
-function togglePopup() {
+function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
+  document.getElementById("submit-recommendation").addEventListener("click", function() {
+      postMarker(latLng);
+  }, false);
 }
 
 /* Use the position of marker on map to auto-fill location */
@@ -182,3 +202,23 @@ function populateLocation(pos) {
   var location = pos.lat() + ", " + pos.lng();
   document.getElementById("location").value = location;
 }
+
+function postMarker(latLng) {
+  const params = new URLSearchParams();
+  params.append('lat', latLng.lat());
+  params.append('lng', latLng.lng());
+  fetch('/added-markers', {
+      method: 'POST', 
+      body: params
+    });
+}
+
+/* Fetch mall markers and add to map*/
+function fetchMarkers() {
+  fetch('/added-markers')
+  .then(response => response.json())
+  .then((markers) => {
+    markers.forEach((marker) => {
+        placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))});
+  });
+} 
