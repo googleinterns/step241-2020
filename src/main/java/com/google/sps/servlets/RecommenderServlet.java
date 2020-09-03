@@ -14,7 +14,6 @@
 
 package com.google.sps.servlets;
 
-import com.google.sps.data.Matrix;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,28 +23,53 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/recommender")
 public class RecommenderServlet extends HttpServlet {
 
+  private final int RECOMMENDATIONS = 3;
   private final int FACTORS_N = 3;
   private final String[] factors = {"price", "crowd", "distance"};
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Matrix resultMatrix = recommendationMatix().multiply(preferenceMatrix(request));
-    // TODO: return recommendation based on the final points for each recommendation
+    List<Pair<Integer, Integer>> distances = getRecommendationsDistances(request);
+    distances.sort(Comparator.<Pair<Integer, Integer>>comparingInt(Pair::getKey).thenComparingInt(Pair::getValue));
+    // TODO: retrieve and return top 5 recommendations based on the value
   }
 
-  private Matrix recommendationMatix(){
-    // TODO: construct matrix of which represents the recommendations' points for every factor
-    return new Matrix(0,0);
-  }
+  private List<Pair<Integer, Integer>> getRecommendationsDistances(HttpServletRequest request){
+    String category = request.getParameter("category");
+    List<Entity> recommendations = getRecommendationsByCategory(category);
 
-  // construct a matrix of size FACTORS_N x 1 which represents user's points
-  // every coloumn represents factor considered
-  private Matrix preferenceMatrix(HttpServletRequest request){
-    Matrix preference = new Matrix(FACTORS_N, 1);
-    for(int i = 0;  i < FACTORS_N; i++) {
-      int point = Integer.parseInt(request.getParameter(factors[i]));
-      preference.setValue(point, i, 1);
+    List<Pair<Integer, Integer>> distances = new ArrayList<>();
+    for(Entity recommendation : recommendations) {
+      int id= entity.getKey().getId();
+      int distance = calculateDistance(request, entity),
+      distances.add(new Pair<>(distance, id));
     }
-    return preference;
+    return distances;
+  }
+
+  private List<Entity> getRecommendationsByCategory(String category){
+    Query query = new Query("recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
+    for(String factor : factors) {
+      query.addProjection(new PropertyProjection(factor, Integer.class));
+    }
+    return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+  }
+
+  private Integer calculateDistance(HttpServletRequest request, Entity recommendation) {
+    int distance = 0;
+    for(String factor : factors) {
+      int recommendationValue = (int) recommendation.getProperty(factor);
+      int preferenceValue = Integer.parseInt(request.getParameter(factor));
+      distance += Math.pow((recommendationValue - preferenceValue), 2);
+    }
+    return distance;
+  }
+
+  private List<Entity> getRecommendationsByCategory(String category){
+    Query query = new Query("recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
+    for(String factor : factors) {
+      query.addProjection(new PropertyProjection(factor, Integer.class));
+    }
+    return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 }
