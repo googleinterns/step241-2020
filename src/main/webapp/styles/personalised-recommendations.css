@@ -1,0 +1,96 @@
+#instructions {
+  color: black;
+}
+
+/* Wrapper Containing Preference Form and Recommendations */
+.wrapper {
+  display: flex;
+  width: 50%;
+}
+
+.preferences-container {
+  background: #f4976c;
+  border-radius: 25px;
+  box-sizing: border-box;
+  flex: 1;
+  margin: 40px;
+  padding: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+.preferences {    
+  margin: 30px 40px 0px 40px;
+}
+
+.button-row, button-row-description {
+  display: flex;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.category-bar {
+  display: inline-flex;
+}
+
+.flex-item:before {
+  content: '';
+  padding-top: 26%;
+}
+
+.flex-item {
+  align-items: center;
+  color:#fff;
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  justify-content: center;
+  width: 100px;
+}
+
+.rating-buttons li {
+  float: left;
+  list-style-type: none;
+  padding: 10px;
+}
+
+input[type='radio']:after {
+  background-color: #d1d3d1;
+  border: 2px solid white;
+  border-radius: 15px;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  left: -1px;
+  position: relative;
+  top: -2px;
+  visibility: visible;
+  width: 15px;
+}
+
+input[type='radio']:checked:after {
+  background-color: #38afac;
+  border: 2px solid white;
+  border-radius: 15px;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  left: -1px;
+  position: relative;
+  top: -2px;
+  visibility: visible;
+  width: 15px;
+}
+
+/* Generate Recommendations Button */
+.button {    
+  background: #38afac;
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 200px;
+}
+
+.button:hover {    
+  background: #77d1ce;
+}

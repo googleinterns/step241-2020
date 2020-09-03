@@ -5,6 +5,8 @@ h3, p, label {
 /* Recommendation Map Styling */
 .map-category-button {
   border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
   color: white;
   cursor: pointer;
   display: inline-block;
@@ -59,9 +61,18 @@ h3, p, label {
   text-align: center;
 }
 
+.map-container {
+  background: #f4976c;
+  border-radius: 25px;
+  box-sizing: border-box;
+  flex: 0 0 60%;
+  margin: 40px;
+  padding: 35px;
+}
+
 #map {
   background: grey;
-  border-color: #000;
+  border-color: #fff;
   border-image: initial;
   border-radius: 20px;
   border-style: solid;
@@ -69,11 +80,6 @@ h3, p, label {
   height: 500px;
   flex: 0 0 50%;
   margin: 40px;
-  width: 50%;
-}
-
-.map-section {
-  display: block;
 }
 
 /* Content from Above Map */
