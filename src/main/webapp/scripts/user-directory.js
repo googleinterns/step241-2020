@@ -18,27 +18,32 @@ function generateUserCards() {
     {
       name: "User name 1",
       department: "Department1",
-      profilepic: "/images/avatar.jpg"
+      profilepic: "/images/avatar.jpg",
+      email: "useremail1@google.com"
     },
     {
       name: "User name 2",
       department: "Department2",
-      profilepic: "/images/avatar.jpg"
+      profilepic: "/images/avatar.jpg",
+      email: "useremail2@google.com"
     },
     {
       name: "User name 3",
       department: "Department3",
-      profilepic: "/images/avatar.jpg"
+      profilepic: "/images/avatar.jpg",
+      email: "useremail3@google.com"
     },
     {
       name: "User name 4",
       department: "Department4",
-      profilepic: "/images/avatar.jpg"
+      profilepic: "/images/avatar.jpg",
+      email: "useremail4@google.com"
     },
     {
       name: "User name 5",
       department: "Department5",
-      profilepic: "/images/avatar.jpg"
+      profilepic: "/images/avatar.jpg",
+      email: "useremail5@google.com"
     },
   ];
 
@@ -49,7 +54,9 @@ function generateUserCards() {
     const profilepicHTML = "<img class=\"user-img\" src=\"" + user.profilepic + "\"></img>";
     const nameHTML = "<h3>" + user.name + "</h3>";
     const departmentHTML = "<p>" + user.department + "</p>";
-    userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML;
+    const emailTo = "<a href='mailto:" + user.email + "?subject=Enquiries for Student Recommendations'>message me</a>";
+    const button = "<div class='button' >" + emailTo + "</div>";
+    userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML + button;
     userDirElement.appendChild(userCardElement);
   });
 }
