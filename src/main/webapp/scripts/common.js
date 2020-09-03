@@ -24,16 +24,22 @@ window.onscroll = function() {
 
 window.onload = function() {
   fetch("/login").then(result => result.json()).then((details) => {
+    const loginPageURL = window.location.protocol + "//" + window.location.host + "/";
+    console.log(window.location.href);
     if (!details.isUserLoggedIn) {
-        
       // If user is not logged in then redirect to the login page, if not already there
-      const loginPageURL = window.location.protocol + "//" + window.location.host;
       if(window.location.href !== loginPageURL) {
         window.location.href = loginPageURL;
       }
 
       // On the login page put the link to login with email on the login button 
       document.getElementById("login-link").href = details.loginURL;
+    }
+    else if (window.location.href === loginPageURL) {
+        console.log(window.location.href);
+      // If user is logged in and currently on login page, then redirect to the recommendation map
+      const recommendationMapURL = loginPageURL + "recommendation-map.html"
+      window.location.href = recommendationMapURL;
     }
   });
 }
