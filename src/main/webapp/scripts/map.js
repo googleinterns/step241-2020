@@ -184,11 +184,6 @@ function placeMarkerAndPanTo(latLng) {
    });
 }
 
-function saveMarker() {
-  /* Add marker to datastore */
-  postMarker(latLng);
-}
-
 /* Set the PopUp to Active */
 function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
