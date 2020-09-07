@@ -181,7 +181,7 @@ function placeMarkerAndPanTo(latLng) {
   /* If marker is right-clicked, delete */
   google.maps.event.addListener(marker, "rightclick", function(event) {
     marker.setMap(null);
-   });
+  });
 }
 
 /* Set the PopUp to Active */
