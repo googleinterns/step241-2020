@@ -31,7 +31,7 @@ function toTopFunction() {
 // Fetch blobstore URL, i.e. action URL which is called when form is submitted
 // this URL is needed to enable uploading image to blobstore
 function loadFormSubmissionUrl() {
-  fetch("blobstore-url").then(result => result.text()).then((uploadUrl) => {
+  fetch("upload-url").then(result => result.text()).then((uploadUrl) => {
     document.getElementById("user-form").setAttribute("action", uploadUrl);
   });
 }

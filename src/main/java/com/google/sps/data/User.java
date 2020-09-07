@@ -22,14 +22,14 @@ public final class User {
   private final String department;
   private final String bio;
   private final String profilePictureUrl;
-  private final long timestamp;
+  private final long updatedTime;
 
-  public User(String userEmail, String name, String department, String bio, String profilePictureUrl, long timestamp) {
+  public User(String userEmail, String name, String department, String bio, String profilePictureUrl, long updatedTime) {
     this.userEmail = userEmail;
     this.name = name;
     this.department = department;
     this.bio = bio;
     this.profilePictureUrl = profilePictureUrl;
-    this.timestamp = timestamp;
+    this.updatedTime = updatedTime;
   }
 }

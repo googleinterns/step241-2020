@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns blostore upload URL which enables uploading image to blobstore */
-@WebServlet("/blobstore-url")
-public class BlobstoreUrlServlet extends HttpServlet {
+@WebServlet("/upload-url")
+public class UploadUrlServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

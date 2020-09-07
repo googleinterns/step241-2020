@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function loadProfile(redirectUrl){
+function loadProfile(redirectUrl) {
   initMap();
   loadDetails();
-  loadFormSubmissionUrl()();
+  loadFormSubmissionUrl();
 }
 
 /* Set Up Map */
@@ -32,19 +32,24 @@ function initMap() {
 }
 
 /* Load current user's profile details */
-function loadDetails(){
-  fetch("personal-data").then(result => result.json()).then((user) => {
-    // Populate user details section
-    const profilePictureHTML = "<img class=\"user-img\" src=\"" + user.profilePictureUrl + "\"></img>";
-    const nameHTML = "<h2>" + user.name + "</h2>";
-    const departmentHTML = "<h3>" + user.department + "</h3>";
-    const bioHTML = "<p>" + user.bio + "</p>";
-    document.getElementById("details").innerHTML = profilePictureHTML + nameHTML + departmentHTML + bioHTML;
+function loadDetails() {
+  fetch("personal-data").then(async (response) => {
+    if(!response.ok) {
+      alert("User not found");
+    } else {
+      const user = await response.json();
+      // Populate user details section
+      const profilePictureHTML = "<img class=\"user-img\" src=\"" + user.profilePictureUrl + "\"></img>";
+      const nameHTML = "<h2>" + user.name + "</h2>";
+      const departmentHTML = "<h3>" + user.department + "</h3>";
+      const bioHTML = "<p>" + user.bio + "</p>";
+      document.getElementById("details").innerHTML = profilePictureHTML + nameHTML + departmentHTML + bioHTML;
 
-    // Pre-fill input for editting profile with the current user details
-    document.getElementById("name").setAttribute("value", user.name); 
-    document.getElementById("department").setAttribute("value", user.department); 
-    document.getElementById("bio").innerHTML = user.bio;
+      // Pre-fill input for editting profile with the current user details
+      document.getElementById("name").setAttribute("value", user.name); 
+      document.getElementById("department").setAttribute("value", user.department); 
+      document.getElementById("bio").innerHTML = user.bio;
+    }
   });
 }
 

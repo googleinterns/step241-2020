@@ -50,14 +50,15 @@ public class PersonalDataServlet extends HttpServlet {
       String department = (String) entity.getProperty("department");
       String bio = (String) entity.getProperty("bio");
       String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
-      long timestamp = (long) entity.getProperty("timestamp");
+      long updatedTime = (long) entity.getProperty("updatedTime");
 
       // Return current user's details
-      String json = new Gson().toJson(new User(userEmail, name, department, bio, profilePictureUrl, timestamp));
-      response.setContentType("application/json;");
+      String json = new Gson().toJson(new User(userEmail, name, department, bio, profilePictureUrl, updatedTime));
+      response.setContentType("application/json");
       response.getWriter().println(json);
-    } catch (EntityNotFoundException e){
+    } catch (EntityNotFoundException e) {
       e.printStackTrace();
+      response.sendError(HttpServletResponse.SC_NOT_FOUND);
     }
   }
 }

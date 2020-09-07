@@ -69,8 +69,8 @@ public class UserDataServlet extends HttpServlet {
       String department = (String) entity.getProperty("department");
       String bio = (String) entity.getProperty("bio");
       String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
-      long timestamp = (long) entity.getProperty("timestamp");
-      users.add(new User(userEmail, name, department, bio, profilePictureUrl, timestamp));
+      long updatedTime = (long) entity.getProperty("updatedTime");
+      users.add(new User(userEmail, name, department, bio, profilePictureUrl, updatedTime));
     }
 
     // Return list of user details
@@ -89,7 +89,7 @@ public class UserDataServlet extends HttpServlet {
     String name = request.getParameter("name");
     String department = request.getParameter("department");
     String bio = request.getParameter("bio");
-    String profilePictureUrl = getUploadedFileUrl(request, "user-img");
+    String profilePictureUrl = getUploadedFileUrl(request);
 
     // Build user entity and upsert to datastore
     Entity user = new Entity("User", userEmail);
@@ -98,7 +98,7 @@ public class UserDataServlet extends HttpServlet {
     user.setProperty("department", department);
     user.setProperty("bio", bio);
     user.setProperty("timestamp", timestamp);
-    // TODO: not change profilePictureUrl if no file is uploaded
+    // TODO: do not change profilePictureUrl if no file is uploaded
     if(profilePictureUrl != null){
       user.setProperty("profilePictureUrl", profilePictureUrl);
     }
@@ -108,26 +108,26 @@ public class UserDataServlet extends HttpServlet {
   }
 
   // Get URL to the uploaded file
-  private String getUploadedFileUrl(HttpServletRequest request, String inputElementName) {
+  private String getUploadedFileUrl(HttpServletRequest request) {
     // User does not submit any file
     try {
-      if(request.getPart(inputElementName).getSize() == 0) {
+      if(request.getPart("user-img").getSize() == 0) {
         return null;
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
 
-    List<BlobKey> blobKeys = blobstoreService.getUploads(request).get(inputElementName);
+    List<BlobKey> blobKeys = blobstoreService.getUploads(request).get("user-img");
 
     // User submitted form without selecting a file, so we can't get a URL. (devserver)
     if(blobKeys == null || blobKeys.isEmpty()) {
       return null;
     }
 
-    // User submitted form without selecting a file, so we can't get a URL. (live server)
     BlobKey blobKey = blobKeys.get(0);
     BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
+    // User submitted form without selecting a file, so we can't get a URL. (live server)
     if (blobInfo.getSize() == 0) {
       blobstoreService.delete(blobKey);
       return null;
