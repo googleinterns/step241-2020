@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/user-directory.css">
+    <script src="/scripts/common.js"></script>
     <script src="/scripts/user-directory.js"></script>
   </head>
   <body onload="generateUserCards()">
+    <button onclick="toTopFunction()" id="to-top-button">Up to Top</button>
     <div class="header">
       <h1>Student Recommendations</h1>
-      <h3>a recommendation system for students, by students!</h3>
+      <h2>a recommendation system for students, by students!</h2>
       <nav>
         <ul>
           <li><a href="/recommendation-map.html">Recommendation Map</a></li>
+          <li><a href="/personalised-recommendations.html">Personalised Recommendations</a></li>
           <li><a class="active" href="/user-directory.html">User Directory</a></li>
           <li><a href="/my-profile.html">My Profile</a></li>
         </ul>
