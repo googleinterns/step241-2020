@@ -19,31 +19,31 @@ function generateUserCards() {
       name: "User name 1",
       department: "Department1",
       profilepic: "/images/avatar.jpg",
-      email: "useremail1@google.com"
+      email: "useremail1@example.com"
     },
     {
       name: "User name 2",
       department: "Department2",
       profilepic: "/images/avatar.jpg",
-      email: "useremail2@google.com"
+      email: "useremail2@example.com"
     },
     {
       name: "User name 3",
       department: "Department3",
       profilepic: "/images/avatar.jpg",
-      email: "useremail3@google.com"
+      email: "useremail3@example.com"
     },
     {
       name: "User name 4",
       department: "Department4",
       profilepic: "/images/avatar.jpg",
-      email: "useremail4@google.com"
+      email: "useremail4@example.com"
     },
     {
       name: "User name 5",
       department: "Department5",
       profilepic: "/images/avatar.jpg",
-      email: "useremail5@google.com"
+      email: "useremail5@example.com"
     },
   ];
 
