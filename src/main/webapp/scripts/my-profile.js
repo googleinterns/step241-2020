@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function loadProfile(redirectUrl) {
+function loadProfile() {
   initMap();
   loadDetails();
   loadFormSubmissionUrl();
@@ -34,7 +34,7 @@ function initMap() {
 /* Load current user's profile details */
 function loadDetails() {
   fetch("personal-data").then(async (response) => {
-    if(!response.ok) {
+    if (!response.ok) {
       alert("User not found");
     } else {
       const user = await response.json();
