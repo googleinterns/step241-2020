@@ -214,6 +214,7 @@ function fetchMarkers() {
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))});
+      placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))
+    });
   });
 }
