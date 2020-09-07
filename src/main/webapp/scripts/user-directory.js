@@ -55,8 +55,8 @@ function generateUserCards() {
     const nameHTML = "<h3>" + user.name + "</h3>";
     const departmentHTML = "<p>" + user.department + "</p>";
     const emailTo = "<a href='mailto:" + user.email + "?subject=Enquiries for Student Recommendations'>message me</a>";
-    const button = "<div class='button' >" + emailTo + "</div>";
-    userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML + button;
+    const emailButtonHTML = "<div class='button' >" + emailTo + "</div>";
+    userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML + emailButtonHTML;
     userDirElement.appendChild(userCardElement);
   });
 }
