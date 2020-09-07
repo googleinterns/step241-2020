@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,4 +46,12 @@ window.onload = function() {
 function toTopFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+}
+
+// Fetch blobstore URL, i.e. action URL which is called when form is submitted
+// this URL is needed to enable uploading image to blobstore
+function loadFormSubmissionUrl() {
+  fetch("upload-url").then(result => result.text()).then((uploadUrl) => {
+    document.getElementById("user-form").setAttribute("action", uploadUrl);
+  });
 }

@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <title>Student Recommendations - Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/scripts/common.js"></script>
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/form.css">
     <script src="/scripts/common.js"></script>
   </head>
-  <body>
+  <body onload="loadFormSubmissionUrl()">
     <div class="content">
       <div class="container">
         <h1>Student Recommendations</h1>
         <h3>a recommendation system for students, by students!</h3>
       </div>
     </div>
-    <form name="user-details" action="/user" method="POST">
+    <form id="user-form" method="POST" enctype="multipart/form-data">
       <label for="Name">Hello! my name is</label>
       <input type="text" name="name" class="name" required></input>
       <label for="Department">I am currently a student in the department of</label>
@@ -26,9 +27,8 @@
       <p>and here is my profile picture!</p>
       <input type="file" name="user-img" accept="image/*">
       <br>
-      <div class="button">
-        <a href="/recommendation-map.html">Submit</a>
-      </div>
+      <input type="hidden" name="redirectUrl" value="/recommendation-map.html" />
+      <input class="button" type="submit" /> 
     </form>
   </body>
 </html>
