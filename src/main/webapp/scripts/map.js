@@ -52,7 +52,7 @@ window.onload = function() {
     url: "/images/grey-marker.png",
     scaledSize: new google.maps.Size(30, 40)
   }
-  initMap(); 
+  initMap();
 }
 
 let map;
@@ -179,17 +179,16 @@ function placeMarkerAndPanTo(latLng) {
   populateLocation(markerPosition);
 
   /* If marker is right-clicked, delete */
-   google.maps.event.addListener(marker, 'rightclick', function(event) {
-       marker.setMap(null);
+  google.maps.event.addListener(marker, "rightclick", function(event) {
+    marker.setMap(null);
    });
 }
 
 /* Set the PopUp to Active */
 function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
-  document.getElementById("submit-recommendation").addEventListener("click", function() {
-      postMarker(latLng);
-  }, false);
+  document.getElementById("submit-recommendation").addEventListener("click", () =>
+    postMarker(latLng), false);
 }
 
 /* Use the position of marker on map to auto-fill location */
@@ -198,14 +197,15 @@ function populateLocation(pos) {
   document.getElementById("location").value = location;
 }
 
+/* POST marker */
 function postMarker(latLng) {
   const params = new URLSearchParams();
   params.append('lat', latLng.lat());
   params.append('lng', latLng.lng());
   fetch('/added-markers', {
-      method: 'POST', 
-      body: params
-    });
+    method: 'POST', 
+    body: params
+  });
 }
 
 /* Fetch mall markers and add to map*/
@@ -214,6 +214,6 @@ function fetchMarkers() {
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-        placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))});
+      placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))});
   });
-} 
+}
