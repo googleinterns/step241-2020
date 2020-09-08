@@ -26,7 +26,21 @@ h3 {
   color: white;
   font-family: 'Questrial', sans-serif;
   font-size: 28px;
-  margin: 5px;
+  margin: 10px;
+}
+
+h4 {
+  color: white;
+  font-family: 'Questrial', sans-serif;
+  font-size: 22px;
+  margin: 10px;
+}
+
+h5 {
+  color: white;
+  font-family: 'Questrial', sans-serif;
+  font-size: 22px;
+  margin: 10px;
 }
 
 p {
@@ -136,6 +150,7 @@ nav ul li a {
 
 .title {
   color: #303c6c;
+  font-family: 'Questrial', sans-serif;
   font-size: 48px;
   font-weight: 700;
   padding: 30px;
@@ -143,6 +158,7 @@ nav ul li a {
 
 .subtitle {
   color: white;
+  font-family: 'Questrial', sans-serif;
   font-size: 40px;
   font-weight: 700;
 }
@@ -196,4 +212,9 @@ textarea {
   font-size: 20px;
   padding: 10px;
   resize: none;
+}
+
+select {
+  margin: 10px;
+  padding: 10px;
 }

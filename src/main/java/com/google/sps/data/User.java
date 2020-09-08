@@ -17,17 +17,21 @@ package com.google.sps.data;
 /** The class represents user details. */
 public final class User {
 
-  private final String userEmail;
+  private final String email;
   private final String name;
   private final String department;
+  private final int year;
+  private final long phone;
   private final String bio;
   private final String profilePictureUrl;
   private final long updatedTime;
 
-  public User(String userEmail, String name, String department, String bio, String profilePictureUrl, long updatedTime) {
-    this.userEmail = userEmail;
+  public User(String email, String name, String department, int year, long phone, String bio, String profilePictureUrl, long updatedTime) {
+    this.email = email;
     this.name = name;
     this.department = department;
+    this.year = year;
+    this.phone = phone;
     this.bio = bio;
     this.profilePictureUrl = profilePictureUrl;
     this.updatedTime = updatedTime;
