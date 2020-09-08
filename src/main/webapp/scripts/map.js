@@ -178,7 +178,7 @@ function placeMarkerAndPanTo(latLng) {
   /* If marker is right-clicked, delete */
   google.maps.event.addListener(marker, "rightclick", function(event) {
     marker.setMap(null);
-   });
+  });
 }
 
 /* Set the PopUp to Active */
@@ -211,6 +211,7 @@ function fetchMarkers() {
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))});
+      placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))
+    });
   });
 }
