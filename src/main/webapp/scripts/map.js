@@ -73,15 +73,15 @@ function initMap() {
   /* Get all stored markers */
   fetchMarkers();
 
-   map.addListener("click", e => {
-     placeMarkerAndPanTo(e.latLng);
-   });
+  map.addListener("click", e => {
+    placeMarkerAndPanTo(e.latLng);
+  });
   
   /* Add Hard-Coded Markers */
-  addHardCodedMarkers(map);
+  addHardCodedMarkers();
 }
 
-function addHardCodedMarkers(map) {
+function addHardCodedMarkers() {
   /* Hard-Coded Marker Data */
   var placeName;
   var placeLatLng;
@@ -117,8 +117,6 @@ function addHardCodedMarkers(map) {
    });
   }
 }
-
-let addedMarker;
 
 function getRecommendationDetails(name) {
   /* Iterate through stored recommendations to get details */
@@ -175,8 +173,7 @@ function placeMarkerAndPanTo(latLng) {
   /* Show the popup box */
   togglePopup(latLng);
   /* Update the latitude and longitude values in the popup */
-  var markerPosition = marker.getPosition();
-  populateLocation(markerPosition);
+  populateLocation(marker.getPosition());
 
   /* If marker is right-clicked, delete */
   google.maps.event.addListener(marker, "rightclick", function(event) {
@@ -202,15 +199,15 @@ function postMarker(latLng) {
   const params = new URLSearchParams();
   params.append('lat', latLng.lat());
   params.append('lng', latLng.lng());
-  fetch('/added-markers', {
+  fetch('/add-marker', {
     method: 'POST', 
     body: params
   });
 }
 
-/* Fetch mall markers and add to map*/
+/* Fetch all markers from datastore and add to map*/
 function fetchMarkers() {
-  fetch('/added-markers')
+  fetch('/all-markers')
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {

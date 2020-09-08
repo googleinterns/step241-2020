@@ -22,24 +22,13 @@ import com.google.appengine.api.datastore.Query;
 import com.google.gson.Gson;
 import com.google.sps.data.Marker;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/added-markers")
-public class MapServlet extends HttpServlet {
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    Collection<Marker> allMarkers = getMarkers();
-    Gson gson = new Gson();
-    String json = gson.toJson(allMarkers);
-    response.getWriter().println(json);
-  }
+@WebServlet("/add-marker")
+public class MarkerServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -47,23 +36,6 @@ public class MapServlet extends HttpServlet {
     double lng = Double.parseDouble(request.getParameter("lng"));
     Marker marker = new Marker(lat, lng);
     storeMarker(marker);
-  }
-
-  private Collection<Marker> getMarkers() {
-    /* Collection to hold all markers from datastore */
-    Collection <Marker> allMarkers = new ArrayList<>();
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Query query = new Query("Marker");
-    PreparedQuery results = datastore.prepare(query);
-
-    for (Entity entity : results.asIterable()) {
-      double lat = (double) entity.getProperty("lat");
-      double lng = (double) entity.getProperty("lng");
-      Marker marker = new Marker(lat, lng);
-      allMarkers.add(marker);
-    }
-    return allMarkers;
   }
 
   private void storeMarker(Marker marker) {

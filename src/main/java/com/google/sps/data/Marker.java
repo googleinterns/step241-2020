@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* This class is a marker, containing latitude and longitude values,
+and it is intended to be used as a marker on a Google map */
+
 package com.google.sps.data;
 
 public class Marker {
