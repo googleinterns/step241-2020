@@ -1,24 +1,22 @@
 body {
-  background-color: #fbe8a6;
+  background-color: white;
   margin: auto;
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Questrial', sans-serif;
   text-align: center;
   width: 100%;
-  background-color: white;
 }
 
 h1 {
   color: white;
   font-family: 'Chelsea Market', cursive;
   font-size: 36px;
-  margin: 10px;
+  margin: 20px;
 }
 
 h2 {
   color: white;
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Questrial', sans-serif;
   font-size: 28px;
-  color: #000;
   margin: 10px;
   padding: 10px;
   text-align: center;
@@ -26,16 +24,15 @@ h2 {
 
 h3 {
   color: white;
-  font-family: "Chelsea Market", cursive;
-  font-size: 20px;
-  color: #000;
+  font-family: 'Questrial', sans-serif;
+  font-size: 28px;
   margin: 5px;
 }
 
 p {
   color: white;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 16px;
+  font-family: 'Questrial', sans-serif;
+  font-size: 22px;
 }
 
 .f1 {
@@ -47,42 +44,34 @@ p {
 
 .f2 {
   color: white;
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Questrial', sans-serif;
   font-size: 28px;
   margin: 10px;
 }
 
 .f3 {
   color: white;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Questrial', sans-serif;
   font-size: 20px;
   margin: 5px;
 }
 
-p {
-  font-family: 'Chelsea Market', cursive;
-  font-size: 14px;
-  color: #000
-}
-
 .header {
   background-color: #303c6c;
+  color: white;
   padding-top: 20px;
   text-align: center;
   width: inherit;
 }
 
-.header h3 {
-  color: white;
-}
-
 footer {
-  width: inherit;
   background-color: #303c6c;
+  color: white;
+  clear: both;
   font-family: 'Chelsea Market', cursive;
   padding: 10px 0px;
   text-align: center;
-  color: white;
+  width: inherit;
 }
 
 footer p {
@@ -106,7 +95,7 @@ nav ul {
 nav ul li {
   display: inline-block;
   float: none;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -118,33 +107,60 @@ nav ul li:hover {
 /* Style the links inside the navigation bar */
 nav ul li a {
   color: white !important;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.content {
-  min-height: calc(100vh - 259px);
-  padding: 30px;
-  text-align: center;
+/* Back to Top Button */
+#to-top-button {
+  background-color: #303c6c;
+  border: 5px solid white;
+  border-radius: 4px;
+  bottom: 20px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: 'Questrial', sans-serif;
+  font-size: 18px;
+  outline: none;
+  padding: 15px;
+  position: fixed;
+  right: 30px;
+  z-index: 99;
+}
+
+#to-top-button:hover {
+  background-color: #555;
 }
 
 .title {
   color: #303c6c;
   font-size: 48px;
+  font-weight: 700;
+  padding: 30px;
+}
+
+.subtitle {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
 }
 
 .button {
   background-color: #f4976c;
-  color: #fbe8a6;
-  font-family: 'Chelsea Market', cursive;
-  font-size: 16px;
-  margin: 30px auto;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
+  margin: 10px auto;
   padding: 15px;
   width: 100px;
 }
 
 .button a {
-  color: #fbe8a6;
+  color: white;
   text-decoration: none;
 }
 
@@ -152,9 +168,32 @@ nav ul li a {
   background-color: #fabc9f;
 }
 
-.footer {
-  background-color: #303c6c;
-  height: 80px;
-  text-align: center;
-  width: inherit;
+label {
+  color: white;
+  display: block;
+  font-size: 20px;
+  padding: 10px;
+}
+
+input {
+  appearance: none;
+  color: black;
+  font: inherit;
+  font-size: 20px;
+  overflow: visible;
+  padding: 10px;
+  margin: 10px;
+}
+
+input[type="file"] {
+  padding-left: 100px;
+  color: white;
+}
+
+textarea {
+  color: black;
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  resize: none;
 }

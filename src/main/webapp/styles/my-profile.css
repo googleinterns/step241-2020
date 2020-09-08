@@ -1,0 +1,67 @@
+/* Wrapper Containing User Details and Map*/
+.wrapper {
+  display: flex;
+}
+
+.content {
+  min-height: calc(100vh -200px);
+}
+
+.details-container {
+  background: #f4976c;
+  border-radius: 25px;
+  box-sizing: border-box;
+  flex: 1;
+  margin: 40px;
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+}
+
+.map-container {
+  background: #f4976c;
+  border-radius: 25px;
+  box-sizing: border-box;
+  flex: 0 0 60%;
+  margin: 40px;
+  padding: 35px;
+  width: 40%;
+}
+
+.user-img {
+  border-radius: 20%;
+  height: 200px;
+  margin: 15px;
+  padding: 15px;
+  width: 200px;
+}
+
+#details {    
+  height: 500px;
+  margin: 100px 30px 0px;
+}
+
+.button {    
+  background: #38afac;
+  border: none;
+  color: white !important;
+  height: 50px;
+  width: 150px;
+}
+
+.button:hover {    
+  background: #9afaf7;
+}
+
+/* Map Styling */
+#map {
+  background: grey;
+  border-color: white;
+  border-image: initial;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: initial;
+  height: 600px;
+  margin: 30px auto;
+  width: 90%;
+}
