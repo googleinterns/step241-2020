@@ -20,11 +20,12 @@ function generateUserCards() {
       userCardElement.className = "user-card";
       const profilePictureHTML = "<img class=\"user-img\" src=\"" + user.profilePictureUrl + "\"></img>";
       const nameHTML = "<h3>" + user.name + "</h3>";
-      const departmentHTML = "<h4>" + user.department + "</h4>";
+      const departmentHTML = "<h4>" + user.department + "Year" + user.year + "</h4>";
+      const phoneHTML = "<h5>" + user.phone + "</h5>";
       const bioHTML = "<p>" + user.bio + "</p>";
       const emailTo = "<a href='mailto:" + user.email + "?subject=Enquiries for Student Recommendations'>message me</a>";
-      const emailButtonHTML = "<div class='button' >" + emailTo + "</div>";
-      userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML + emailButtonHTML;
+      const emailButtonHTML = "<div class='button'>" + emailTo + "</div>";
+      userCardElement.innerHTML = profilePictureHTML + nameHTML + departmentHTML + phoneHTML + emailButtonHTML;
       userDirectoryElement.appendChild(userCardElement);
     });
   });
