@@ -130,7 +130,7 @@ function getRecommendationDetails(name) {
 }
 
 function getBackgroundColour(category) {
-    switch(category) {
+  switch(category) {
     case 'Restaurants':
       return "#ffba04";
     case 'Places to Visit':
