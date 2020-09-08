@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <title>Student Recommendations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/scripts/map.js"></script>
-    <script src="/scripts/common.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&libraries=&v=weekly"
       defer
     ></script>
+    <script src="/scripts/map.js"></script>
+    <script src="/scripts/common.js"></script>
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/recommendation-map.css">
     <link rel="stylesheet" href="/styles/add-recommendation.css">
   </head>
-  <body>
+  <body onload="initMap()">
     <div class="header">
       <h1>Student Recs</h1>
       <h3>a recommendation system for students, by students!</h3>
@@ -28,9 +28,8 @@
           <li><a href="/my-profile.html">My Profile</a></li>
         </ul>
       </nav>
-    </div>    
-    <!-- TODO debug this as it causes a console error 
-    <button onclick="toTopFunction()" id="to-top-button">Up to Top</button> -->
+    </div>     
+    <button onclick="toTopFunction()" id="to-top-button">Up to Top</button>
     <h1 class="title">Recommendation Map</h1>
     <div class="content">
       <div class="info-paragraph">
@@ -59,17 +58,12 @@
       </div>
       <!-- View Recommendation Area -->
       <div id="rec-container">
-        <p id="category-header">- Places to Visit -</p>
-        <h3 id="place-title">Sky Garden</h3>
+        <p id="category-header"></p>
+        <h3 id="place-title"></h3>
         <h4>Location / Address</h4>
-        <p id="rec-address">51.510881° N, -0.083751° W</p>
+        <p id="rec-address"></p>
         <h4>Description</h4>
-        <p id="place-recommendation">Sky Garden is a great place to visit, with really good
-          views of London. You can enjoy the 360 degree view
-          of the city - for free! They are public gardens and 
-          definitely worth a visit when you have the time.
-          Remember to keep socially distanced!
-        </p>
+        <p id="place-recommendation"></p>
       </div>
     </div>
     <!-- Popup for Adding Recommendation -->

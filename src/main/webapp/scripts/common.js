@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,14 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const scrollTopButton = document.getElementById("to-top-button");
-
 window.onscroll = function() {
-//   if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-//     scrollTopButton.style.display = "block";
-//   } else {
-//     scrollTopButton.style.display = "none";
-//   }
+  const scrollTopButton = document.getElementById("to-top-button");
 };
 
 // When the user clicks on the button, scroll to the top of the document

@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,47 +12,74 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* Global Icon Variables */
-var yellowIcon;
-var blueIcon;
-var purpleIcon;
-var redIcon;
-var greyIcon;
+const skyGarden = {
+  name: "Sky Garden", 
+  category: "Places to Visit", 
+  lat: 51.510881, 
+  lng: -0.083751,
+  description: "Sky Garden is a great place to visit, with really good views of London. \
+  You can enjoy the 360 degree view of the city - for free! They are public gardens and \
+  definitely worth a visit when you have the time. Remember to keep socially distanced!", 
+  costRating: 1, 
+  crowdRating: 4
+};
 
-/* Hard-coded Recommendations */
+const mildredsKingsCross = {
+  name: "Mildreds Kings Cross", 
+  category: "Restaurants", 
+  lat: 51.531299, 
+  lng:-0.11716,
+  description: "A lovely little place to grab something to eat! There are a lot of \
+  different options and a great atmosphere inside Mildred\'s!", 
+  costRating: 1, 
+  crowdRating: 1
+};
+
+const fitzBar = {
+  name: "Fitz\'s Bar", 
+  category: "Bars and Clubs", 
+  lat: 51.517735, 
+  lng: -0.097112, 
+  description: "This is a recommendation for Fitz\'s Bar in London.",
+  costRating: 5, 
+  crowdRating: 3
+};
+
+const BloomsburyCoffeeHouse = {
+  name: "Bloomsbury Coffee House", 
+  category: "Study Places", 
+  lat: 51.525212, 
+  lng: -0.126469, 
+  description: "A really great place to study!", 
+  costRating: 2, 
+  crowdRating: 3
+};
+
+/* Hard-coded recommendations */
 const recommendations = [
-  ['Places to Visit', 'Sky Garden', 51.510881, -0.083751, 'Sky Garden is a great place to visit, with really good views of London. \
-  You can enjoy the 360 degree view of the city - for free! They are public gardens and definitely worth a visit \
-  when you have the time. Remember to keep socially distanced!'],
-  ['Restaurants', 'Mildreds Kings Cross', 51.531299, -0.11716, 'A lovely little place to grab something to eat! There are a lot of \
-  different options and a great atmosphere inside Mildred\'s!'],
-  ['Bars and Clubs', 'Fitz\'s Bar', 51.517735, -0.097112, 'This is a recommendation for Fitz\'s Bar in London.'],
-  ['Study Places', 'Bloomsbury Coffee House', 51.525212, -0.126469, 'A really great place to study!']
-]
+  skyGarden, mildredsKingsCross, fitzBar, BloomsburyCoffeeHouse
+];
 
-window.onload = function() {
-  /* Custom Markers */
-  yellowIcon = {
-    url: "/images/yellow-marker.png",
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  blueIcon = {
-    url: "/images/blue-marker.png",
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  purpleIcon = {
-    url: "/images/purple-marker.png", 
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  redIcon = {
-    url: "/images/red-marker.png", 
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  greyIcon = {
-    url: "/images/grey-marker.png",
-    scaledSize: new google.maps.Size(30, 40)
-  }
-  initMap();
+/* Custom Markers */
+const yellowIcon = {
+  url: "/images/yellow-marker.png",
+  scaledSize: new Image(30, 40)
+};
+const blueIcon = {
+  url: "/images/blue-marker.png",
+  scaledSize: new Image(30, 40)
+};
+const purpleIcon = {
+  url: "/images/purple-marker.png", 
+  scaledSize: new Image(30, 40)
+};
+const redIcon = {
+  url: "/images/red-marker.png", 
+  scaledSize: new Image(30, 40)
+};
+const greyIcon = {
+  url: "/images/grey-marker.png",
+  scaledSize: new Image(30, 40)
 }
 
 /* Set Up Map */
@@ -78,15 +105,18 @@ function addMarker(map) {
   /* Iterate through stored recommendations to get details */
   for (i = 0; i < recommendations.length; i++) {
     const recommendation = recommendations[i];
-    const placeCategory = recommendation[0];
-    const placeName = recommendation[1];
-    const placeLatLng = new google.maps.LatLng(recommendation[2], recommendation[3]);
-    const placeRecommendation = recommendation[4];
+    const placeCategory = recommendation.category;
+    const placeName = recommendation.name;
+    const placeLatLng = new google.maps.LatLng(recommendation.lat, recommendation.lng);
+    const placeRecommendation = recommendation.description;
+    const placeCost = recommendation.costRating;
+    const placeCrowd = recommendation.crowdRating;
+    /* TODO link the marker to the placeCost, placeCrowd, placeRecommendation (to store recommendation) */
     const marker = new google.maps.Marker({
       position: placeLatLng,
       map: map,
       title: placeName,
-      icon: getColourMarker(placeCategory)
+      icon: getColourMarker(placeCategory) //returns the coloured marker that matches the recommendation category
     });
     /* Add Listener for Click on Marker */
     google.maps.event.addListener(marker, "click", () => {
@@ -107,13 +137,13 @@ function addMarker(map) {
 function getBackgroundColour(category) {
   switch(category) {
     case 'Restaurants':
-      return "#ffba04";
+      return "#ffba04"; //yellow
     case 'Places to Visit':
-      return "#21b5b5";
+      return "#21b5b5"; //blue
     case 'Bars and Clubs':
-      return "#a73f9b";
+      return "#a73f9b"; //purple
     case 'Study Places':
-      return "#ff5b5b";
+      return "#ff5b5b"; //red
     default:
       return "";
   }
