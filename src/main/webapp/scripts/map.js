@@ -18,8 +18,8 @@ const skyGarden = {
   lat: 51.510881, 
   lng: -0.083751,
   description: "Sky Garden is a great place to visit, with really good views of London. \
-  You can enjoy the 360 degree view of the city - for free! They are public gardens and \
-  definitely worth a visit when you have the time. Remember to keep socially distanced!", 
+      You can enjoy the 360 degree view of the city - for free! They are public gardens and \
+      definitely worth a visit when you have the time. Remember to keep socially distanced!", 
   costRating: 1, 
   crowdRating: 4
 };
@@ -30,7 +30,7 @@ const mildredsKingsCross = {
   lat: 51.531299, 
   lng:-0.11716,
   description: "A lovely little place to grab something to eat! There are a lot of \
-  different options and a great atmosphere inside Mildred\'s!", 
+      different options and a great atmosphere inside Mildred\'s!", 
   costRating: 1, 
   crowdRating: 1
 };
@@ -45,7 +45,7 @@ const fitzBar = {
   crowdRating: 3
 };
 
-const BloomsburyCoffeeHouse = {
+const bloomsburyCoffeeHouse = {
   name: "Bloomsbury Coffee House", 
   category: "Study Places", 
   lat: 51.525212, 
@@ -109,14 +109,12 @@ function addMarker(map) {
     const placeName = recommendation.name;
     const placeLatLng = new google.maps.LatLng(recommendation.lat, recommendation.lng);
     const placeRecommendation = recommendation.description;
-    const placeCost = recommendation.costRating;
-    const placeCrowd = recommendation.crowdRating;
     /* TODO link the marker to the placeCost, placeCrowd, placeRecommendation (to store recommendation) */
     const marker = new google.maps.Marker({
       position: placeLatLng,
       map: map,
       title: placeName,
-      icon: getColourMarker(placeCategory) //returns the coloured marker that matches the recommendation category
+      icon: getColourMarker(placeCategory)
     });
     /* Add Listener for Click on Marker */
     google.maps.event.addListener(marker, "click", () => {
