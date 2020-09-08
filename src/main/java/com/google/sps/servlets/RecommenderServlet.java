@@ -40,7 +40,7 @@ public class RecommenderServlet extends HttpServlet {
 
     List<Pair<Integer, Integer>> distances = new ArrayList<>();
     for(Entity recommendation : recommendations) {
-      int id= entity.getKey().getId();
+      int id = entity.getKey().getId();
       int distance = calculateDistance(request, entity),
       distances.add(new Pair<>(distance, id));
     }
@@ -63,13 +63,5 @@ public class RecommenderServlet extends HttpServlet {
       distance += Math.pow((recommendationValue - preferenceValue), 2);
     }
     return distance;
-  }
-
-  private List<Entity> getRecommendationsByCategory(String category){
-    Query query = new Query("recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
-    for(String factor : factors) {
-      query.addProjection(new PropertyProjection(factor, Integer.class));
-    }
-    return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
   }
 }
