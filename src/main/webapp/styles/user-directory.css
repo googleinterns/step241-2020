@@ -22,3 +22,14 @@ h3, h4, p {
   padding: 20px;
   width: 230px;
 }
+
+.button {    
+  background: #38afac;
+  border: none;
+  color: white !important;
+  width: 150px;
+}
+
+.button:hover {    
+  background: #5cd6d6;
+}

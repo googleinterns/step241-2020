@@ -22,7 +22,9 @@ function generateUserCards() {
       const nameHTML = "<h3>" + user.name + "</h3>";
       const departmentHTML = "<h4>" + user.department + "</h4>";
       const bioHTML = "<p>" + user.bio + "</p>";
-      userCardElement.innerHTML = profilePictureHTML + nameHTML + departmentHTML + bioHTML;
+      const emailTo = "<a href='mailto:" + user.email + "?subject=Enquiries for Student Recommendations'>message me</a>";
+      const emailButtonHTML = "<div class='button' >" + emailTo + "</div>";
+      userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML + emailButtonHTML;
       userDirectoryElement.appendChild(userCardElement);
     });
   });
