@@ -78,7 +78,7 @@ function initMap() {
   });
   
   /* Add Hard-Coded Markers */
-  //addHardCodedMarkers();
+  addHardCodedMarkers();
 }
 
 function addHardCodedMarkers() {
