@@ -78,7 +78,7 @@ function initMap() {
   });
   
   /* Add Hard-Coded Markers */
-  addHardCodedMarkers();
+  //addHardCodedMarkers();
 }
 
 function addHardCodedMarkers() {
@@ -181,6 +181,15 @@ function placeMarkerAndPanTo(latLng) {
   });
 }
 
+/* Function to place markers from the datastore */
+function placeMarker(latLng) {
+  const marker = new google.maps.Marker ({
+    position: latLng,
+    map: map,
+    icon: greyIcon, // TODO change the colour of the icon depending on the category
+  });
+}
+
 /* Set the PopUp to Active */
 function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
@@ -211,7 +220,7 @@ function fetchMarkers() {
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarkerAndPanTo(new google.maps.LatLng(marker.lat, marker.lng))
+      placeMarker(new google.maps.LatLng(marker.lat, marker.lng))
     });
   });
 }

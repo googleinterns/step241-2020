@@ -40,14 +40,13 @@ public class MapMarkersServlet extends HttpServlet {
     String json = gson.toJson(allMarkers);
     response.getWriter().println(json);
   }
-
+  
   private Collection<Marker> getMarkers() {
     /* Collection to hold all markers from datastore */
     Collection <Marker> allMarkers = new ArrayList<>();
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query query = new Query("Marker");
     PreparedQuery results = datastore.prepare(query);
-
     for (Entity entity : results.asIterable()) {
       double lat = (double) entity.getProperty("lat");
       double lng = (double) entity.getProperty("lng");
