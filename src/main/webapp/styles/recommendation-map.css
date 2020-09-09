@@ -155,6 +155,39 @@ h3, p, label {
   padding: 5px 30px 10px 30px;
 }
 
+.recommendation-buttons {
+  position: relative;
+}
+
+#favourite-button {
+  background: #21b5b5;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 15px;
+  position: absolute;
+  width: 200px;
+  text-align: center;
+}
+
+#favourite-button:hover {
+  background: #22ccccd2;
+}
+
+#unfavourite-button {
+  background: #ffba04;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 15px;
+  position: absolute;
+  width: 200px;
+  text-align: center;
+}
+
+#unfavourite-button:hover {
+  background: #f7c642e5;
+}
 /* Wrapper Containing Map and Recommendation Box */
 .wrapper {
   display: flex;

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 const skyGarden = {
+  id: 1,
   name: "Sky Garden", 
   category: "Places to Visit", 
   lat: 51.510881, 
@@ -25,6 +26,7 @@ const skyGarden = {
 };
 
 const mildredsKingsCross = {
+  id: 2,
   name: "Mildreds Kings Cross", 
   category: "Restaurants", 
   lat: 51.531299, 
@@ -36,6 +38,7 @@ const mildredsKingsCross = {
 };
 
 const fitzBar = {
+  id: 3,
   name: "Fitz\'s Bar", 
   category: "Bars and Clubs", 
   lat: 51.517735, 
@@ -46,6 +49,7 @@ const fitzBar = {
 };
 
 const bloomsburyCoffeeHouse = {
+  id: 4,
   name: "Bloomsbury Coffee House", 
   category: "Study Places", 
   lat: 51.525212, 
@@ -109,6 +113,7 @@ function addMarker(map) {
     const placeName = recommendation.name;
     const placeLatLng = new google.maps.LatLng(recommendation.lat, recommendation.lng);
     const placeRecommendation = recommendation.description;
+    const recommendationId = recommendation.id;
     /* TODO link the marker to the placeCost, placeCrowd, placeRecommendation (to store recommendation) */
     const marker = new google.maps.Marker({
       position: placeLatLng,
@@ -125,6 +130,7 @@ function addMarker(map) {
       document.getElementById("rec-address").innerHTML = placeLatLng;
       document.getElementById("place-recommendation").innerHTML = placeRecommendation;
       document.getElementById("rec-container").style.display = "block";
+      setFavouriteButtonDisplay(recommendationId);
       /* Adjust the map settings */
       map.setZoom(16);
       map.setCenter(marker.getPosition());
@@ -180,6 +186,38 @@ function placeMarkerAndPanTo(latLng, map) {
   google.maps.event.addListener(marker, 'rightclick', function(event) {
     marker.setMap(null);
   });
+}
+
+function setFavouriteButtonDisplay(recommendationId) {
+  fetch("/check-favourite?id=" + recommendationId).then(result => result.text()).then((favouriteId) => {
+    console.log("fave" + favouriteId);
+    const favouriteButton = document.getElementById("favourite-button");
+    const unfavouriteButton = document.getElementById("unfavourite-button");
+    if(favouriteId === "null") {
+      unfavouriteButton.display = "none";
+      favouriteButton.display = "block";
+      favouriteButton.onclick = () => addFavourite(recommendationId);
+    } 
+    else {
+      unfavouriteButton.display = "block";
+      unfavouriteButton.onclick = () => removeFavourite(favouriteId, recommendationId);
+      favouriteButton.display = "none";
+    }
+  });
+}
+
+function addFavourite(recommendationId) {
+  const params = new URLSearchParams();
+  params.append("id", recommendationId);
+  fetch("/add-favourite", {method: "POST", body: params})
+    .then(() =>setFavouriteButtonDisplay(recommendationId));
+}
+
+function removeFavourite(favouriteId, recommendationId) {
+  const params = new URLSearchParams();
+  params.append("id", favouriteId);
+  fetch("/remove-favourite", {method: "POST", body: params})
+    .then(() => setFavouriteButtonDisplay(recommendationId));
 }
 
 /* Set the PopUp to Active */
