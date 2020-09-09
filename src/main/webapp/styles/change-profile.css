@@ -1,8 +1,4 @@
-#popup-profile h2 {
-  color: black;
-}
-
-#popup-profile p {
+#popup-profile h2, #popup-profile p {
   color: black;
 }
 
@@ -58,12 +54,13 @@
 }
 
 #popup-profile.active .popup-content {
-  transform: translate(-120%, -80%) scale(1);
+  transform: translate(-120%, -50%) scale(1);
   transition: all 150ms ease-in-out 0s;
 }
 
 label {
   color: black;
+  font-size: 20px;
 }
 
 input[type="file"] {

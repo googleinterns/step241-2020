@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <title>Student Recommendations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&libraries=&v=weekly"
-      defer
-    ></script>
-    <script src="/scripts/map.js"></script>
-    <script src="/scripts/common.js"></script>
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/recommendation-map.css">
     <link rel="stylesheet" href="/styles/add-recommendation.css">
+    <script src="/scripts/common.js"></script>
+    <script src="/scripts/map.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDME967qxzDl6dYJTT_d25n6yPHM1LOehw&libraries=&v=weekly"
+      defer
+    ></script>
   </head>
   <body onload="initMap()">
     <div class="header">
-      <h1>Student Recs</h1>
-      <h3>a recommendation system for students, by students!</h3>
+      <h1>Student Recommendations</h1>
+      <h2>a recommendation system for students, by students!</h2>
       <!-- Navigation Bar -->
       <nav>
         <ul>
@@ -92,6 +92,26 @@
           </div>
           <label for="description">Description:</label><br>
           <textarea type="text" id="description" name="description" cols="40" rows="8" required></textarea><br>
+          <p>How expensive is the place?</p><br>
+          <div class="button-row">
+            <div class="flex-item-description">Cheap</div>
+            <label class="flex-item"><input type="radio" value="1" name="price" required></label>
+            <label class="flex-item"><input type="radio" value="2" name="price"></label>
+            <label class="flex-item"><input type="radio" value="3" name="price"></label>
+            <label class="flex-item"><input type="radio" value="4" name="price"></label>
+            <label class="flex-item"><input type="radio" value="5" name="price"></label>
+            <div class="flex-item-description">Expensive</div>
+          </div>
+          <p>How is the crowd at the place?</p><br>
+          <div class="button-row">
+            <div class="flex-item-description">Quiet</div>
+            <label class="flex-item"><input type="radio" value="1" name="crowd" required></label>
+            <label class="flex-item"><input type="radio" value="2" name="crowd"></label>
+            <label class="flex-item"><input type="radio" value="3" name="crowd"></label>
+            <label class="flex-item"><input type="radio" value="4" name="crowd"></label>
+            <label class="flex-item"><input type="radio" value="5" name="crowd"></label>
+            <div class="flex-item-description">Loud</div>
+          </div>
           <input type="submit" value="Submit">
         </form>
       </div>

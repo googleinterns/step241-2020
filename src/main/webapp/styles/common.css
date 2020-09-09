@@ -1,10 +1,9 @@
 body {
-  background-color: #fbe8a6;
+  background-color: white;
   margin: auto;
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Questrial', sans-serif;
   text-align: center;
   width: 100%;
-  background-color: white;
 }
 
 h1 {
@@ -16,7 +15,7 @@ h1 {
 
 h2 {
   color: white;
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Questrial', sans-serif;
   font-size: 28px;
   margin: 10px;
   padding: 10px;
@@ -25,15 +24,15 @@ h2 {
 
 h3 {
   color: white;
-  font-family: "Chelsea Market", cursive;
-  font-size: 20px;
+  font-family: 'Questrial', sans-serif;
+  font-size: 28px;
   margin: 5px;
 }
 
 p {
   color: white;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 16px;
+  font-family: 'Questrial', sans-serif;
+  font-size: 22px;
 }
 
 .f1 {
@@ -45,33 +44,24 @@ p {
 
 .f2 {
   color: white;
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Questrial', sans-serif;
   font-size: 28px;
   margin: 10px;
 }
 
 .f3 {
   color: white;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Questrial', sans-serif;
   font-size: 20px;
   margin: 5px;
 }
 
-p {
-  font-family: 'Chelsea Market', cursive;
-  font-size: 16px;
-  color: white
-}
-
 .header {
   background-color: #303c6c;
+  color: white;
   padding-top: 20px;
   text-align: center;
   width: inherit;
-}
-
-.header h3 {
-  color: white;
 }
 
 footer {
@@ -105,7 +95,7 @@ nav ul {
 nav ul li {
   display: inline-block;
   float: none;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -117,7 +107,8 @@ nav ul li:hover {
 /* Style the links inside the navigation bar */
 nav ul li a {
   color: white !important;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -130,7 +121,7 @@ nav ul li a {
   color: white;
   cursor: pointer;
   display: block;
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Questrial', sans-serif;
   font-size: 18px;
   outline: none;
   padding: 15px;
@@ -146,6 +137,14 @@ nav ul li a {
 .title {
   color: #303c6c;
   font-size: 48px;
+  font-weight: 700;
+  padding: 30px;
+}
+
+.subtitle {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
 }
 
 .button {
@@ -153,8 +152,8 @@ nav ul li a {
   border: none;
   border-radius: 25px;
   color: white;
-  font-family: 'Chelsea Market', cursive;
-  font-size: 16px;
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
   margin: 10px auto;
   padding: 15px;
   width: 100px;
@@ -172,14 +171,17 @@ nav ul li a {
 label {
   color: white;
   display: block;
+  font-size: 20px;
   padding: 10px;
 }
 
 input {
+  appearance: none;
   color: black;
   font: inherit;
+  font-size: 20px;
   overflow: visible;
-  appearance: none;
+  padding: 10px;
   margin: 10px;
 }
 
@@ -190,7 +192,8 @@ input[type="file"] {
 
 textarea {
   color: black;
-  font-family: "Chelsea Market", sans-serif;
-  font-size: 16px;
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
+  padding: 10px;
   resize: none;
 }
