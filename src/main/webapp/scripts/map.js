@@ -57,7 +57,7 @@ const bloomsburyCoffeeHouse = {
 
 /* Hard-coded recommendations */
 const recommendations = [
-  skyGarden, mildredsKingsCross, fitzBar, BloomsburyCoffeeHouse
+  skyGarden, mildredsKingsCross, fitzBar, bloomsburyCoffeeHouse
 ];
 
 /* Custom Markers */

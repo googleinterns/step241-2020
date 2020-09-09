@@ -12,10 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-window.onscroll = function() {
-  const scrollTopButton = document.getElementById("to-top-button");
-};
-
 // When the user clicks on the button, scroll to the top of the document
 function toTopFunction() {
   document.body.scrollTop = 0;
