@@ -12,16 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const scrollTopButton = document.getElementById("to-top-button");
-
-window.onscroll = function() {
-  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-    scrollTopButton.style.display = "block";
-  } else {
-    scrollTopButton.style.display = "none";
-  }
-};
-
 window.onload = function() {
   fetch("/login").then(result => result.json()).then((details) => {
     const loginPageURL = window.location.protocol + "//" + window.location.host + "/";
