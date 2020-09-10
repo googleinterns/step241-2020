@@ -93,15 +93,19 @@ function initMap() {
     center: origin,
     zoom: 15
   });
+  
+  /* Get all stored markers */
+  fetchMarkers(map);
+
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
   
   /* Add Hard-Coded Markers */
-  addMarker(map);
+  addHardCodedMarkers(map);
 }
 
-function addMarker(map) {
+function addHardCodedMarkers(map) {
   /* Iterate through stored recommendations to get details */
   for (i = 0; i < recommendations.length; i++) {
     const recommendation = recommendations[i];
@@ -135,13 +139,13 @@ function addMarker(map) {
 function getBackgroundColour(category) {
   switch(category) {
     case 'Restaurants':
-      return "#ffba04"; //yellow
+      return "#ffba04"; // yellow
     case 'Places to Visit':
-      return "#21b5b5"; //blue
+      return "#21b5b5"; // blue
     case 'Bars and Clubs':
-      return "#a73f9b"; //purple
+      return "#a73f9b"; // purple
     case 'Study Places':
-      return "#ff5b5b"; //red
+      return "#ff5b5b"; // red
     default:
       return "";
   }
@@ -170,25 +174,59 @@ function placeMarkerAndPanTo(latLng, map) {
     map: map,
     icon: greyIcon
   });
-
+  /* Recenter the Map */
   map.panTo(latLng);
-  togglePopup();
-  const markerPosition = marker.getPosition();
-  populateLocation(markerPosition);
+  togglePopup(latLng);
+  /* Update the latitude and longitude values in the popup */
+  populateLocation(latLng);
 
   /* If marker is right-clicked, delete */
-  google.maps.event.addListener(marker, 'rightclick', function(event) {
+  google.maps.event.addListener(marker, "rightclick", function(event) {
     marker.setMap(null);
+  });
+}
+  
+/* Function to place markers from the datastore */
+function placeMarker(latLng, map) {
+  new google.maps.Marker ({
+    position: latLng,
+    map: map,
+    icon: greyIcon, // TODO change the colour of the icon depending on the category
   });
 }
 
 /* Set the PopUp to Active */
-function togglePopup() {
+function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
+  // TODO clear list of events / previously added event listeners
+  document.getElementById("submit-recommendation").addEventListener("click", () =>
+    postMarker(latLng));
 }
 
 /* Use the position of marker on map to auto-fill location */
 function populateLocation(pos) {
   const location = pos.lat() + ", " + pos.lng();
   document.getElementById("location").value = location;
+}
+
+/* POST marker */
+function postMarker(latLng) {
+  const params = new URLSearchParams();
+  params.append('lat', latLng.lat());
+  params.append('lng', latLng.lng());
+  fetch('/add-marker', {
+    method: 'POST', 
+    body: params
+  });
+}
+
+/* Fetch all markers from datastore and add to map*/
+function fetchMarkers(map) {
+  fetch('/all-markers')
+  .then(response => response.json())
+  .then((markers) => {
+    markers.forEach((marker) => {
+      placeMarker(new google.maps.LatLng(marker.lat, marker.lng), map)
+    });
+  });
 }
