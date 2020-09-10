@@ -194,7 +194,7 @@ function placeMarker(latLng) {
 function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
   document.getElementById("submit-recommendation").addEventListener("click", () =>
-    postMarker(latLng), false);
+    postMarker(latLng));
 }
 
 /* Use the position of marker on map to auto-fill location */
