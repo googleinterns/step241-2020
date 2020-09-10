@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /* Servlet that adds one Marker to datastore */
 @WebServlet("/add-marker")
-public class MarkerServlet extends HttpServlet {
+public class AddMarkerServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

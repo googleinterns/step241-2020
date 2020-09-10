@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /* Servlet that fetches all Markers from datastore */
 @WebServlet("/all-markers")
-public class MapMarkersServlet extends HttpServlet {
+public class AllMarkersServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
