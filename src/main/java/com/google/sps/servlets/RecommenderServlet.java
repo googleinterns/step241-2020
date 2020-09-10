@@ -14,11 +14,14 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 @WebServlet("/recommender")
 public class RecommenderServlet extends HttpServlet {
@@ -41,7 +44,7 @@ public class RecommenderServlet extends HttpServlet {
     List<Pair<Integer, Integer>> distances = new ArrayList<>();
     for(Entity recommendation : recommendations) {
       int id = entity.getKey().getId();
-      int distance = calculateDistance(request, entity),
+      int distance = calculateDistance(request, entity);
       distances.add(new Pair<>(distance, id));
     }
     return distances;
