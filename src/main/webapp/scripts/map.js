@@ -83,7 +83,7 @@ const greyIcon = {
 }
 
 /* Set Up Map */
-function initMap() { 
+function initMap(category) { 
   /* 'Hard Coded' origin, Google UK Pancras Square */
   const origin = {
     lat: 51.533364, 
@@ -96,15 +96,20 @@ function initMap() {
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
-  
+
   /* Add Hard-Coded Markers */
-  addMarker(map);
+  if(category) {
+    addMarker(map, recommendations.filter(recommendation => recommendation.category === category));
+  }
+  else {
+    addMarker(map, recommendations);
+  }
 }
 
-function addMarker(map) {
-  /* Iterate through stored recommendations to get details */
-  for (i = 0; i < recommendations.length; i++) {
-    const recommendation = recommendations[i];
+function addMarker(map, recommendationsToAdd) {
+  /* Iterate through stored recommendationsToAdd to get details */
+  for (i = 0; i < recommendationsToAdd.length; i++) {
+    const recommendation = recommendationsToAdd[i];
     const placeCategory = recommendation.category;
     const placeName = recommendation.name;
     const placeLatLng = new google.maps.LatLng(recommendation.lat, recommendation.lng);
