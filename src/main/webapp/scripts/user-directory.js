@@ -13,7 +13,7 @@
 // limitations under the License.
 
 function generateUserCards() {
-  fetch("user-directory").then(result => result.json()).then((users) => {
+  fetch("/user-directory").then(result => result.json()).then((users) => {
     const userDirectoryElement = document.getElementById("user-directory");
     users.forEach((user) => {
       const userCardElement = document.createElement("div");

@@ -37,7 +37,7 @@ public final class User {
     this.updatedTime = updatedTime;
   }
 
-  public User(String email, String name, String profilePictureUrl) {
-    this(email, name, "", 0, 0, "", profilePictureUrl, 0);
+  public User(String email, String name, String department, int year, String profilePictureUrl) {
+    this(email, name, department, year, 0, "", profilePictureUrl, 0);
   }
 }

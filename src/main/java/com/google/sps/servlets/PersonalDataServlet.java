@@ -44,7 +44,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that get the current user's data */
+/** Servlet that gets the current user's data */
 @WebServlet("/personal-data")
 public class PersonalDataServlet extends HttpServlet {
   

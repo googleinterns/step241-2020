@@ -27,16 +27,14 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.User;
 import java.io.IOException;
-import java.lang.Exception;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that get user directory data (summary) from the datastore */
+/** Servlet that gets user directory data (summary) from the datastore */
 @WebServlet("/user-directory")
 public class UserDirectoryServlet extends HttpServlet {
 
@@ -51,8 +49,10 @@ public class UserDirectoryServlet extends HttpServlet {
     for (Entity entity : prepared.asIterable()) {
       String email = (String) entity.getProperty("email");
       String name = (String) entity.getProperty("name");
+      String department = (String) entity.getProperty("department");
+      int year = (int) (long) entity.getProperty("year");
       String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
-      users.add(new User(email, name, profilePictureUrl));
+      users.add(new User(email, name, department, year, profilePictureUrl));
     }
 
     // Return list of user details
