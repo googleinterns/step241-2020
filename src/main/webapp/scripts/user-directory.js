@@ -13,43 +13,19 @@
 // limitations under the License.
 
 function generateUserCards() {
-  const users =
-  [
-    {
-      name: "User name 1",
-      department: "Department1",
-      profilepic: "/images/avatar.jpg"
-    },
-    {
-      name: "User name 2",
-      department: "Department2",
-      profilepic: "/images/avatar.jpg"
-    },
-    {
-      name: "User name 3",
-      department: "Department3",
-      profilepic: "/images/avatar.jpg"
-    },
-    {
-      name: "User name 4",
-      department: "Department4",
-      profilepic: "/images/avatar.jpg"
-    },
-    {
-      name: "User name 5",
-      department: "Department5",
-      profilepic: "/images/avatar.jpg"
-    },
-  ];
-
-  const userDirElement = document.getElementById("user-dir");
-  users.forEach((user) => {
-    const userCardElement = document.createElement("div");
-    userCardElement.className = "user-card";
-    const profilepicHTML = "<img class=\"user-img\" src=\"" + user.profilepic + "\"></img>";
-    const nameHTML = "<h3>" + user.name + "</h3>";
-    const departmentHTML = "<p>" + user.department + "</p>";
-    userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML;
-    userDirElement.appendChild(userCardElement);
+  fetch("user-data").then(result => result.json()).then((users) => {
+    const userDirectoryElement = document.getElementById("user-directory");
+    users.forEach((user) => {
+      const userCardElement = document.createElement("div");
+      userCardElement.className = "user-card";
+      const profilePictureHTML = "<img class=\"user-img\" src=\"" + user.profilePictureUrl + "\"></img>";
+      const nameHTML = "<h3>" + user.name + "</h3>";
+      const departmentHTML = "<h4>" + user.department + "</h4>";
+      const bioHTML = "<p>" + user.bio + "</p>";
+      const emailTo = "<a href='mailto:" + user.email + "?subject=Enquiries for Student Recommendations'>message me</a>";
+      const emailButtonHTML = "<div class='button' >" + emailTo + "</div>";
+      userCardElement.innerHTML = profilepicHTML + nameHTML + departmentHTML + emailButtonHTML;
+      userDirectoryElement.appendChild(userCardElement);
+    });
   });
 }

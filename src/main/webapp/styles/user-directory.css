@@ -1,13 +1,18 @@
+h3, h4, p {
+  line-height: 1.15;
+}
+
 .user-card {
   background: #f4976c;
   border-radius: 25px;
   color: white;
   display: inline-block;
-  height: 350px;
+  height: 500px;
   margin: 30px;
   padding: 20px;
   text-align: center;
-  width: 270px;
+  width: 300px;
+  vertical-align: bottom;
 }
 
 .user-img {
@@ -16,4 +21,15 @@
   margin: auto;
   padding: 20px;
   width: 230px;
+}
+
+.button {    
+  background: #38afac;
+  border: none;
+  color: white !important;
+  width: 150px;
+}
+
+.button:hover {    
+  background: #5cd6d6;
 }

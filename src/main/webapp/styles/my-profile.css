@@ -3,6 +3,10 @@
   display: flex;
 }
 
+.content {
+  min-height: calc(100vh -200px);
+}
+
 .details-container {
   background: #f4976c;
   border-radius: 25px;
@@ -32,7 +36,7 @@
   width: 200px;
 }
 
-.details {    
+#details {    
   height: 500px;
   margin: 100px 30px 0px;
 }
@@ -40,7 +44,7 @@
 .button {    
   background: #38afac;
   border: none;
-  color: white;
+  color: white !important;
   height: 50px;
   width: 150px;
 }
