@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,50 +12,75 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* Global Icon Variables */
-var yellowIcon;
-var blueIcon;
-var purpleIcon;
-var redIcon;
-var greyIcon;
+const skyGarden = {
+  name: "Sky Garden", 
+  category: "Places to Visit", 
+  lat: 51.510881, 
+  lng: -0.083751,
+  description: "Sky Garden is a great place to visit, with really good views of London. \
+      You can enjoy the 360 degree view of the city - for free! They are public gardens and \
+      definitely worth a visit when you have the time. Remember to keep socially distanced!", 
+  costRating: 1, 
+  crowdRating: 4
+};
 
-/* Hard-coded Recommendations */
+const mildredsKingsCross = {
+  name: "Mildreds Kings Cross", 
+  category: "Restaurants", 
+  lat: 51.531299, 
+  lng:-0.11716,
+  description: "A lovely little place to grab something to eat! There are a lot of \
+      different options and a great atmosphere inside Mildred\'s!", 
+  costRating: 1, 
+  crowdRating: 1
+};
+
+const fitzBar = {
+  name: "Fitz\'s Bar", 
+  category: "Bars and Clubs", 
+  lat: 51.517735, 
+  lng: -0.097112, 
+  description: "This is a recommendation for Fitz\'s Bar in London.",
+  costRating: 5, 
+  crowdRating: 3
+};
+
+const bloomsburyCoffeeHouse = {
+  name: "Bloomsbury Coffee House", 
+  category: "Study Places", 
+  lat: 51.525212, 
+  lng: -0.126469, 
+  description: "A really great place to study!", 
+  costRating: 2, 
+  crowdRating: 3
+};
+
+/* Hard-coded recommendations */
 const recommendations = [
-  ['Places to Visit', 'Sky Garden', 51.510881, -0.083751, 'Sky Garden is a great place to visit, with really good views of London. \
-  You can enjoy the 360 degree view of the city - for free! They are public gardens and definitely worth a visit \
-  when you have the time. Remember to keep socially distanced!'],
-  ['Restaurants', 'Mildreds Kings Cross', 51.531299, -0.11716, 'A lovely little place to grab something to eat! There are a lot of \
-  different options and a great atmosphere inside Mildred\'s!'],
-  ['Bars and Clubs', 'Fitz\'s Bar', 51.517735, -0.097112, 'This is a recommendation for Fitz\'s Bar in London.'],
-  ['Study Places', 'Bloomsbury Coffee House', 51.525212, -0.126469, 'A really great place to study!']
-]
+  skyGarden, mildredsKingsCross, fitzBar, bloomsburyCoffeeHouse
+];
 
-window.onload = function() {
-  /* Custom Markers */
-  yellowIcon = {
-    url: "/images/yellow-marker.png",
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  blueIcon = {
-    url: "/images/blue-marker.png",
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  purpleIcon = {
-    url: "/images/purple-marker.png", 
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  redIcon = {
-    url: "/images/red-marker.png", 
-    scaledSize: new google.maps.Size(30, 40)
-  };
-  greyIcon = {
-    url: "/images/grey-marker.png",
-    scaledSize: new google.maps.Size(30, 40)
-  }
-  initMap();
+/* Custom Markers */
+const yellowIcon = {
+  url: "/images/yellow-marker.png",
+  scaledSize: new Image(30, 40)
+};
+const blueIcon = {
+  url: "/images/blue-marker.png",
+  scaledSize: new Image(30, 40)
+};
+const purpleIcon = {
+  url: "/images/purple-marker.png", 
+  scaledSize: new Image(30, 40)
+};
+const redIcon = {
+  url: "/images/red-marker.png", 
+  scaledSize: new Image(30, 40)
+};
+const greyIcon = {
+  url: "/images/grey-marker.png",
+  scaledSize: new Image(30, 40)
 }
-
-let map;
 
 /* Set Up Map */
 function initMap() { 
@@ -63,9 +88,7 @@ function initMap() {
   const origin = {
     lat: 51.533364, 
     lng: -0.125777
-  }
-  
-  map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map"), {
     center: origin,
     zoom: 15
   });
@@ -81,67 +104,50 @@ function initMap() {
   addHardCodedMarkers();
 }
 
-function addHardCodedMarkers() {
-  /* Hard-Coded Marker Data */
-  var placeName;
-  var placeLatLng;
-  var placeCategory;
-  var placeRecommendation;
-
+function addMarker(map) {
   /* Iterate through stored recommendations to get details */
   for (i = 0; i < recommendations.length; i++) {
-    var rec = recommendations[i]
-    placeCategory = rec[0];
-    placeName = rec[1];
-    placeLatLng = new google.maps.LatLng(rec[2], rec[3]);
-    placeRecommendation = rec[4];
+    const recommendation = recommendations[i];
+    const placeCategory = recommendation.category;
+    const placeName = recommendation.name;
+    const placeLatLng = new google.maps.LatLng(recommendation.lat, recommendation.lng);
+    const placeRecommendation = recommendation.description;
+    /* TODO link the marker to the placeCost, placeCrowd, placeRecommendation (to store recommendation) */
     const marker = new google.maps.Marker({
       position: placeLatLng,
       map: map,
       title: placeName,
       icon: getColourMarker(placeCategory)
-    })
+    });
     /* Add Listener for Click on Marker */
     google.maps.event.addListener(marker, "click", () => {
-    /* Update the HTML */
-    var markerRec = getRecommendationDetails(marker.title);
-    document.getElementById("category-header").innerHTML = markerRec[0];
-    document.getElementById("category-header").style.backgroundColor = getBackgroundColour(markerRec[0]);
-    document.getElementById("place-title").innerHTML = markerRec[1];
-    document.getElementById("rec-address").innerHTML = new google.maps.LatLng(markerRec[2], markerRec[3]);
-    document.getElementById("place-recommendation").innerHTML = markerRec[4];
-    document.getElementById("rec-container").style.display = "block";
-    /* Adjust the map settings */
-    map.setZoom(16);
-    map.setCenter(marker.getPosition());
-   });
+      /* Update the HTML */
+      document.getElementById("category-header").innerHTML = placeCategory;
+      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(placeCategory);
+      document.getElementById("place-title").innerHTML = placeName;
+      document.getElementById("rec-address").innerHTML = placeLatLng;
+      document.getElementById("place-recommendation").innerHTML = placeRecommendation;
+      document.getElementById("rec-container").style.display = "block";
+      /* Adjust the map settings */
+      map.setZoom(16);
+      map.setCenter(marker.getPosition());
+    });
   }
-}
-
-function getRecommendationDetails(name) {
-  /* Iterate through stored recommendations to get details */
-  for(i = 0; i<recommendations.length; i++) {
-    var rec = recommendations[i];
-    if (rec[1] == name) {
-      return rec;
-    }
-  }
-  return null;
 }
 
 function getBackgroundColour(category) {
   switch(category) {
     case 'Restaurants':
-      return "#ffba04";
+      return "#ffba04"; // yellow
     case 'Places to Visit':
-      return "#21b5b5";
+      return "#21b5b5"; // blue
     case 'Bars and Clubs':
-      return "#a73f9b";
+      return "#a73f9b"; // purple
     case 'Study Places':
-      return "#ff5b5b";
+      return "#ff5b5b"; // red
     default:
       return "";
-  } 
+  }
 }
 
 /* Returns the Coloured Marker for Category */
@@ -161,8 +167,7 @@ function getColourMarker(category) {
 }
 
 /* Place Marker Where Map is Clicked On & Show Popup*/
-function placeMarkerAndPanTo(latLng) {
-  /* Make marker for the clicked location */
+function placeMarkerAndPanTo(latLng, map) {
   const marker = new google.maps.Marker({
     position: latLng,
     map: map,
@@ -170,23 +175,21 @@ function placeMarkerAndPanTo(latLng) {
   });
   /* Recenter the Map */
   map.panTo(latLng);
-  /* Show the popup box */
-  togglePopup(latLng);
-  /* Update the latitude and longitude values in the popup */
-  populateLocation(marker.getPosition());
-
-  /* If marker is right-clicked, delete */
-  google.maps.event.addListener(marker, "rightclick", function(event) {
-    marker.setMap(null);
-  });
-}
-
+  
 /* Function to place markers from the datastore */
 function placeMarker(latLng) {
   const marker = new google.maps.Marker ({
     position: latLng,
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
+  });
+  togglePopup();
+  /* Update the latitude and longitude values in the popup */
+  populateLocation(marker.getPosition());
+
+  /* If marker is right-clicked, delete */
+  google.maps.event.addListener(marker, 'rightclick', function(event) {
+    marker.setMap(null);
   });
 }
 
@@ -199,7 +202,7 @@ function togglePopup(latLng) {
 
 /* Use the position of marker on map to auto-fill location */
 function populateLocation(pos) {
-  var location = pos.lat() + ", " + pos.lng();
+  const location = pos.lat() + ", " + pos.lng();
   document.getElementById("location").value = location;
 }
 
