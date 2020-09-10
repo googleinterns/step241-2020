@@ -88,23 +88,24 @@ function initMap() {
   const origin = {
     lat: 51.533364, 
     lng: -0.125777
+  };
   const map = new google.maps.Map(document.getElementById("map"), {
     center: origin,
     zoom: 15
   });
   
   /* Get all stored markers */
-  fetchMarkers();
+  fetchMarkers(map);
 
   map.addListener("click", e => {
-    placeMarkerAndPanTo(e.latLng);
+    placeMarkerAndPanTo(e.latLng, map);
   });
   
   /* Add Hard-Coded Markers */
-  addHardCodedMarkers();
+  addHardCodedMarkers(map);
 }
 
-function addMarker(map) {
+function addHardCodedMarkers(map) {
   /* Iterate through stored recommendations to get details */
   for (i = 0; i < recommendations.length; i++) {
     const recommendation = recommendations[i];
@@ -175,27 +176,29 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   /* Recenter the Map */
   map.panTo(latLng);
+  togglePopup(latLng);
+  /* Update the latitude and longitude values in the popup */
+  populateLocation(latLng);
+
+  /* If marker is right-clicked, delete */
+  google.maps.event.addListener(marker, "rightclick", function(event) {
+    marker.setMap(null);
+  });
+}
   
 /* Function to place markers from the datastore */
-function placeMarker(latLng) {
-  const marker = new google.maps.Marker ({
+function placeMarker(latLng, map) {
+  new google.maps.Marker ({
     position: latLng,
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
-  });
-  togglePopup();
-  /* Update the latitude and longitude values in the popup */
-  populateLocation(marker.getPosition());
-
-  /* If marker is right-clicked, delete */
-  google.maps.event.addListener(marker, 'rightclick', function(event) {
-    marker.setMap(null);
   });
 }
 
 /* Set the PopUp to Active */
 function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
+  // TODO clear list of events / previously added event listeners
   document.getElementById("submit-recommendation").addEventListener("click", () =>
     postMarker(latLng));
 }
@@ -218,12 +221,12 @@ function postMarker(latLng) {
 }
 
 /* Fetch all markers from datastore and add to map*/
-function fetchMarkers() {
+function fetchMarkers(map) {
   fetch('/all-markers')
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarker(new google.maps.LatLng(marker.lat, marker.lng))
+      placeMarker(new google.maps.LatLng(marker.lat, marker.lng), map)
     });
   });
 }
