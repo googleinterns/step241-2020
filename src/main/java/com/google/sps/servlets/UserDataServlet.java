@@ -67,8 +67,10 @@ public class UserDataServlet extends HttpServlet {
       String email = (String) entity.getProperty("email");
       String name = (String) entity.getProperty("name");
       String department = (String) entity.getProperty("department");
+      // double casting is needed since integer is stored as long integer in datastore.
+      // Reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
       int year = (int) (long) entity.getProperty("year");
-      long phone = (long) entity.getProperty("phone");
+      String phone = (String) entity.getProperty("phone");
       String bio = (String) entity.getProperty("bio");
       String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
       long updatedTime = (long) entity.getProperty("updatedTime");
@@ -91,7 +93,7 @@ public class UserDataServlet extends HttpServlet {
     String name = request.getParameter("name");
     String department = request.getParameter("department");
     int year = Integer.parseInt(request.getParameter("year"));
-    long phone = Long.parseLong(request.getParameter("phone"));
+    String phone = request.getParameter("phone");
     String bio = request.getParameter("bio");
     String profilePictureUrl = getUploadedFileUrl(request);
 
