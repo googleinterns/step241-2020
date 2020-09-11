@@ -47,7 +47,6 @@ public class PersonalDataServlet extends HttpServlet {
       // Get current user details from datastore
       Entity entity = DatastoreServiceFactory.getDatastoreService().get(userKey);
       String name = (String) entity.getProperty("name");
-<<<<<<< HEAD
       String department = (String) entity.getProperty("department");
       // double casting is needed since integer is stored as long integer in datastore.
       // Reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
