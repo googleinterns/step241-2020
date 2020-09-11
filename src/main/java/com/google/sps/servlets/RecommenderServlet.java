@@ -70,10 +70,12 @@ public class RecommenderServlet extends HttpServlet {
 
   private int calculateDistance(HttpServletRequest request, Entity recommendation) {
     int distance = 0;
+    // for every factor considered
     for(String factor : factors) {
-      //
+      // get the rating of the recommendation and the rating from the user preference
       int recommendationRating = (int) recommendation.getProperty(factor);
       int preferenceRating = Integer.parseInt(request.getParameter(factor));
+      // then square the absolute difference to calculate the distance
       distance += Math.pow((recommendationRating - preferenceRating), 2);
     }
     return distance;
