@@ -94,8 +94,8 @@ function initMap() {
     zoom: 15
   });
   
-  /* Get all stored markers */
-  fetchMarkers(map);
+  /* Get all stored recommendation lat, lng and id */
+  fetchMarkerInfo(map);
 
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
@@ -176,7 +176,7 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   /* Recenter the Map */
   map.panTo(latLng);
-  togglePopup(latLng, marker);
+  togglePopup(latLng);
   /* Update the latitude and longitude values in the popup */
   populateLocation(latLng);
 
@@ -187,20 +187,39 @@ function placeMarkerAndPanTo(latLng, map) {
 }
 
 /* Function to place markers from the datastore */
-function placeMarker(latLng, map) {
+function placeMarker(markerDetails, map) {
+  System.out.println("placeMarker is called;")
+  /* Create marker on map */
   const marker = new google.maps.Marker ({
-    position: latLng,
+    position: new google.maps.LatLng(markerDetails.latitude, markerDetails.longitude),
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
   });
+
+  marker.set("id", markerDetails.id); //add the id to the marker
+
+  /* Add Listener for Click on Marker */
+  //google.maps.event.addListener(marker, "click", () => {
+    /* TODO search datastore to find the recommendation for that lat and lng */
+    /* TODO fetch recommendation data from datastore */
+      
+    /* Update the HTML */
+    // document.getElementById("category-header").innerHTML = marker.id;
+    // document.getElementById("category-header").style.backgroundColor = getBackgroundColour(placeCategory);
+    // document.getElementById("place-title").innerHTML = placeName;
+    // document.getElementById("rec-address").innerHTML = placeLatLng;
+    // document.getElementById("place-recommendation").innerHTML = placeRecommendation;
+     //document.getElementById("rec-container").style.display = "block";
+    // /* Adjust the map settings */
+    // map.setZoom(16);
+    // map.setCenter(marker.getPosition());
+  //});
 }
 
 /* Set the PopUp to Active */
 function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
   // TODO clear list of events / previously added event listeners
-  document.getElementById("submit-recommendation").addEventListener("click", () =>
-    storeMarker(latLng));
 }
 
 /* Use the position of marker on map to auto-fill location */
@@ -209,24 +228,14 @@ function populateLocation(pos) {
   document.getElementById("location").value = location;
 }
 
-/* store marker in datastore */
-function storeMarker(latLng) {
-  const params = new URLSearchParams();
-  params.append('lat', latLng.lat());
-  params.append('lng', latLng.lng());
-  fetch('/add-marker', {
-    method: 'POST', 
-    body: params
-  });
-}
-
 /* Fetch all markers from datastore and add to map*/
-function fetchMarkers(map) {
+function fetchMarkerInfo(map) {
+  console.log("fetched markers");
   fetch('/all-markers')
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarker(new google.maps.LatLng(marker.lat, marker.lng), map)
+      placeMarker(marker, map)
     });
   });
 }
