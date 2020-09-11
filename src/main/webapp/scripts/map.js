@@ -176,7 +176,7 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   /* Recenter the Map */
   map.panTo(latLng);
-  togglePopup(latLng);
+  togglePopup(latLng, marker);
   /* Update the latitude and longitude values in the popup */
   populateLocation(latLng);
 
@@ -185,10 +185,10 @@ function placeMarkerAndPanTo(latLng, map) {
     marker.setMap(null);
   });
 }
-  
+
 /* Function to place markers from the datastore */
 function placeMarker(latLng, map) {
-  new google.maps.Marker ({
+  const marker = new google.maps.Marker ({
     position: latLng,
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
@@ -200,7 +200,7 @@ function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
   // TODO clear list of events / previously added event listeners
   document.getElementById("submit-recommendation").addEventListener("click", () =>
-    postMarker(latLng));
+    storeMarker(latLng));
 }
 
 /* Use the position of marker on map to auto-fill location */
@@ -209,8 +209,8 @@ function populateLocation(pos) {
   document.getElementById("location").value = location;
 }
 
-/* POST marker */
-function postMarker(latLng) {
+/* store marker in datastore */
+function storeMarker(latLng) {
   const params = new URLSearchParams();
   params.append('lat', latLng.lat());
   params.append('lng', latLng.lng());
