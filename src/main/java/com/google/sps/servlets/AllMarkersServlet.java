@@ -39,19 +39,21 @@ public class AllMarkersServlet extends HttpServlet {
     Collection<Marker> allMarkers = getMarkers();
     Gson gson = new Gson();
     String json = gson.toJson(allMarkers);
+    System.out.println(json);
     response.getWriter().println(json);
   }
   
   private Collection<Marker> getMarkers() {
     /* Collection to hold all markers from datastore */
-    Collection <Marker> allMarkers = new ArrayList<>();
+    Collection<Marker> allMarkers = new ArrayList<>();
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Query query = new Query("Marker");
+    Query query = new Query("Recommendation");
     PreparedQuery results = datastore.prepare(query);
     for (Entity entity : results.asIterable()) {
       double lat = (double) entity.getProperty("latitude");
       double lng = (double) entity.getProperty("longitude");
-      Marker marker = new Marker(lat, lng);
+      long id = entity.getKey().getId();
+      Marker marker = new Marker(lat, lng, id);
       allMarkers.add(marker);
     }
     return allMarkers;

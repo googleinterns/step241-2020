@@ -26,13 +26,23 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that stores user recommendation data in datastore */
 @WebServlet("/recommendation")
 public class RecommendationServlet extends HttpServlet {
+  
+  private DatastoreService datastore;
+
+  public void init() {
+    datastore = DatastoreServiceFactory.getDatastoreService();
+  }
+  
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get details for recommendation 
+  }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
     String name = request.getParameter("place-name");
     String formattedLatLng = request.getParameter("location");
-
     // Get latitude and longitude from formattedLatLng
 
     /* Expected format for formattedLatLng:

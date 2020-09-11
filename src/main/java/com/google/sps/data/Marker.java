@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /* This class is a marker, containing latitude and longitude values,
-and it is intended to be used as a marker on a Google map */
+and ID. It is intended to be used as a marker on a Google map */
 
 package com.google.sps.data;
 
@@ -22,10 +22,12 @@ public class Marker {
     /* Information stored for each Marker */
     private final double lat;
     private final double lng;
+    private final long id;
 
-    public Marker(double lat, double lng) {
+    public Marker(double lat, double lng, long id) {
       this.lat = lat;
       this.lng = lng;
+      this.id = id;
     }
 
     public double getLat() {
@@ -34,5 +36,9 @@ public class Marker {
 
     public double getLng() {
       return this.lng;
+    }
+
+    public long getId() {
+      return this.id;
     }
 }

@@ -94,7 +94,7 @@ function initMap(category) {
     zoom: 15
   });
   
-  /* Get all stored markers */
+  /* Get all stored recommendation lat, lng and id */
   fetchAndPlaceMarkers(map);
 
   map.addListener("click", e => {
@@ -201,31 +201,37 @@ function placeMarker(markerDetails, map) {
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
   });
+
+  marker.set("id", markerDetails.id); //add the id to the marker
+
+  /* Add Listener for Click on Marker */
+  //google.maps.event.addListener(marker, "click", () => {
+    /* TODO search datastore to find the recommendation for that lat and lng */
+    /* TODO fetch recommendation data from datastore */
+      
+    /* Update the HTML */
+    // document.getElementById("category-header").innerHTML = marker.id;
+    // document.getElementById("category-header").style.backgroundColor = getBackgroundColour(placeCategory);
+    // document.getElementById("place-title").innerHTML = placeName;
+    // document.getElementById("rec-address").innerHTML = placeLatLng;
+    // document.getElementById("place-recommendation").innerHTML = placeRecommendation;
+     //document.getElementById("rec-container").style.display = "block";
+    // /* Adjust the map settings */
+    // map.setZoom(16);
+    // map.setCenter(marker.getPosition());
+  //});
 }
 
 /* Set the PopUp to Active */
 function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
   // TODO clear list of events / previously added event listeners
-  document.getElementById("submit-recommendation").addEventListener("click", () =>
-    storeMarker(latLng));
 }
 
 /* Use the position of marker on map to auto-fill location */
 function populateLocation(pos) {
   const location = pos.lat() + ", " + pos.lng();
   document.getElementById("location").value = location;
-}
-
-/* Store marker in datastore */
-function storeMarker(latLng) {
-  const params = new URLSearchParams();
-  params.append('latitude', latLng.lat());
-  params.append('longitude', latLng.lng());
-  fetch('/add-marker', {
-    method: 'POST', 
-    body: params
-  });
 }
 
 /* Fetch all markers from datastore and add to map*/
