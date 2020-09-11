@@ -39,7 +39,6 @@ public class AllMarkersServlet extends HttpServlet {
     Collection<Marker> allMarkers = getMarkers();
     Gson gson = new Gson();
     String json = gson.toJson(allMarkers);
-    System.out.println(json);
     response.getWriter().println(json);
   }
   

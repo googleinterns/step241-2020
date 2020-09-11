@@ -180,7 +180,7 @@ function placeMarkerAndPanTo(latLng, map) {
   const marker = new google.maps.Marker({
     position: latLng,
     map: map,
-    icon: greyIcon
+    //icon: greyIcon
   });
   /* Recenter the Map */
   map.panTo(latLng);
@@ -201,29 +201,11 @@ function placeMarker(markerDetails, map) {
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
   });
-
-  marker.set("id", markerDetails.id); //add the id to the marker
-
-  /* Add Listener for Click on Marker */
-  //google.maps.event.addListener(marker, "click", () => {
-    /* TODO search datastore to find the recommendation for that lat and lng */
-    /* TODO fetch recommendation data from datastore */
-      
-    /* Update the HTML */
-    // document.getElementById("category-header").innerHTML = marker.id;
-    // document.getElementById("category-header").style.backgroundColor = getBackgroundColour(placeCategory);
-    // document.getElementById("place-title").innerHTML = placeName;
-    // document.getElementById("rec-address").innerHTML = placeLatLng;
-    // document.getElementById("place-recommendation").innerHTML = placeRecommendation;
-     //document.getElementById("rec-container").style.display = "block";
-    // /* Adjust the map settings */
-    // map.setZoom(16);
-    // map.setCenter(marker.getPosition());
-  //});
+  marker.set("id", markerDetails.id);
 }
 
 /* Set the PopUp to Active */
-function togglePopup(latLng) {
+function togglePopup() {
   document.getElementById("popup-add-recs").classList.toggle("active");
   // TODO clear list of events / previously added event listeners
 }

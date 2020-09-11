@@ -56,7 +56,6 @@ public class RecommendationServlet extends HttpServlet {
     String description = request.getParameter("description");
     int costRating = Integer.parseInt(request.getParameter("price"));
     int crowdRating = Integer.parseInt(request.getParameter("crowd"));
-
     // Create entity on recommendation data
     Entity recommendationEntity = new Entity("Recommendation");
     recommendationEntity.setProperty("place-name", name);
