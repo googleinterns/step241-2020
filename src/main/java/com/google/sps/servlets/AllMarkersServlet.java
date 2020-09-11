@@ -39,12 +39,10 @@ public class AllMarkersServlet extends HttpServlet {
     Collection<Marker> allMarkers = getMarkers();
     Gson gson = new Gson();
     String json = gson.toJson(allMarkers);
-    System.out.println(json);
     response.getWriter().println(json);
   }
   
   private Collection<Marker> getMarkers() {
-    System.out.println("getMarkers");
      /* Collection to hold all markers from datastore */
     Collection<Marker> allMarkers = new ArrayList<>();
      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
