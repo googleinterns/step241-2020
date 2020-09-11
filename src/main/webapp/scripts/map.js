@@ -97,15 +97,18 @@ function initMap(category) {
     placeMarkerAndPanTo(e.latLng, map);
   });
 
-  /* Add Hard-Coded Markers */
+  /* Filter out the recommendations by category if a category parameter is passed */
+  /* this is the case when a category button is clicked */
   if(category) {
     addMarker(map, recommendations.filter(recommendation => recommendation.category === category));
   }
+  /* Add all recommendations if there is no parameter given (when loading the page)*/
   else {
     addMarker(map, recommendations);
   }
 }
 
+/* Add Hard-Coded Markers to map */
 function addMarker(map, recommendationsToAdd) {
   /* Iterate through stored recommendationsToAdd to get details */
   for (i = 0; i < recommendationsToAdd.length; i++) {
