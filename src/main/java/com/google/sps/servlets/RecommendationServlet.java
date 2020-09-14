@@ -17,7 +17,6 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.images.ServingUrlOptions;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -63,10 +62,8 @@ public class RecommendationServlet extends HttpServlet {
     recommendationEntity.setProperty("crowd-rating", crowdRating);
 
     // Send the recommendation to the datastore
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(recommendationEntity);
+    DatastoreServiceFactory.getDatastoreService().put(recommendationEntity);
 
     response.sendRedirect("/recommendation-map.html");
   }
-
 }
