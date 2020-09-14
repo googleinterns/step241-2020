@@ -158,7 +158,10 @@ nav ul li a {
 
 .subtitle {
   color: white;
+<<<<<<< HEAD
   font-family: 'Questrial', sans-serif;
+=======
+>>>>>>> 4ffcd97d5ceb7e9f36ad585fe78421f4df61df7e
   font-size: 40px;
   font-weight: 700;
 }
