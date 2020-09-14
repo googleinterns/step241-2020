@@ -40,20 +40,24 @@ public class PersonalDataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get current user email to generate entity key
-    String userEmail = UserServiceFactory.getUserService().getCurrentUser().getEmail();
-    Key userKey = KeyFactory.createKey("User", userEmail);
+    String email = UserServiceFactory.getUserService().getCurrentUser().getEmail();
+    Key userKey = KeyFactory.createKey("User", email);
 
     try {
       // Get current user details from datastore
       Entity entity = DatastoreServiceFactory.getDatastoreService().get(userKey);
       String name = (String) entity.getProperty("name");
       String department = (String) entity.getProperty("department");
+      // double casting is needed since integer is stored as long integer in datastore.
+      // Reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
+      int year = (int) (long) entity.getProperty("year");
+      String phone = (String) entity.getProperty("phone");
       String bio = (String) entity.getProperty("bio");
       String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
       long updatedTime = (long) entity.getProperty("updatedTime");
 
       // Return current user's details
-      String json = new Gson().toJson(new User(userEmail, name, department, bio, profilePictureUrl, updatedTime));
+      String json = new Gson().toJson(new User(email, name, department, year, phone, bio, profilePictureUrl, updatedTime));
       response.setContentType("application/json");
       response.getWriter().println(json);
     } catch (EntityNotFoundException e) {

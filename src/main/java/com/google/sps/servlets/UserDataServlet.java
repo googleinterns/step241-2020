@@ -64,40 +64,49 @@ public class UserDataServlet extends HttpServlet {
     // Convert entities to java class user entities
     List<User> users = new ArrayList<>();
     for (Entity entity : prepared.asIterable()) {
-      String userEmail = (String) entity.getProperty("userEmail");
+      String email = (String) entity.getProperty("email");
       String name = (String) entity.getProperty("name");
       String department = (String) entity.getProperty("department");
+      // double casting is needed since integer is stored as long integer in datastore.
+      // Reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
+      int year = (int) (long) entity.getProperty("year");
+      String phone = (String) entity.getProperty("phone");
       String bio = (String) entity.getProperty("bio");
       String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
       long updatedTime = (long) entity.getProperty("updatedTime");
-      users.add(new User(userEmail, name, department, bio, profilePictureUrl, updatedTime));
+      users.add(new User(email, name, department, year, phone, bio, profilePictureUrl, updatedTime));
     }
 
     // Return list of user details
     String json = new Gson().toJson(users);
-    response.setContentType("application/json;");
+    response.setContentType("application/json");
     response.getWriter().println(json);
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
-    String userEmail = userService.getCurrentUser().getEmail();
-    long timestamp = System.currentTimeMillis();
+    String email = userService.getCurrentUser().getEmail();
+    long updatedTime = System.currentTimeMillis();
 
     // Fetch user data from filled form on the client side
     String name = request.getParameter("name");
     String department = request.getParameter("department");
+    int year = Integer.parseInt(request.getParameter("year"));
+    String phone = request.getParameter("phone");
     String bio = request.getParameter("bio");
     String profilePictureUrl = getUploadedFileUrl(request);
 
     // Build user entity and upsert to datastore
-    Entity user = new Entity("User", userEmail);
-    user.setProperty("userEmail", userEmail);
+    Entity user = new Entity("User", email);
+    user.setProperty("email", email);
     user.setProperty("name", name);
     user.setProperty("department", department);
+    user.setProperty("year", year);
+    user.setProperty("phone", phone);
     user.setProperty("bio", bio);
-    user.setProperty("timestamp", timestamp);
+    user.setProperty("updatedTime", updatedTime);
+
     // TODO: do not change profilePictureUrl if no file is uploaded
     if(profilePictureUrl != null){
       user.setProperty("profilePictureUrl", profilePictureUrl);

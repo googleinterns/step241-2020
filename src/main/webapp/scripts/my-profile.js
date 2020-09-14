@@ -39,15 +39,18 @@ function loadDetails() {
     } else {
       const user = await response.json();
       // Populate user details section
-      const profilePictureHTML = "<img class=\"user-img\" src=\"" + user.profilePictureUrl + "\"></img>";
-      const nameHTML = "<h2>" + user.name + "</h2>";
-      const departmentHTML = "<h3>" + user.department + "</h3>";
+      const profilePictureHTML = "<img class=\"profile-picture\" src=\"" + user.profilePictureUrl + "\"></img>";
+      const nameHTML = "<h3>" + user.name + "</h3>";
+      const departmentHTML = "<h4>" + user.department + "Year" + user.year + "</h4>";
+      const phoneHTML = "<h5>" + user.phone + "</h5>";
       const bioHTML = "<p>" + user.bio + "</p>";
-      document.getElementById("details").innerHTML = profilePictureHTML + nameHTML + departmentHTML + bioHTML;
+      document.getElementById("details").innerHTML = profilePictureHTML + nameHTML + departmentHTML + phoneHTML + bioHTML;
 
       // Pre-fill input for editting profile with the current user details
       document.getElementById("name").setAttribute("value", user.name); 
-      document.getElementById("department").setAttribute("value", user.department); 
+      document.getElementById("department").setAttribute("value", user.department);
+      document.getElementById("year").getElementsByTagName('option')[(user.year - 1)].selected = "selected";
+      document.getElementById("phone").setAttribute("value", user.phone);
       document.getElementById("bio").innerHTML = user.bio;
     }
   });
