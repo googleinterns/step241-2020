@@ -26,58 +26,80 @@
     <!-- Instructions -->
     <p id="instructions">Fill in your preferences to generate the top 5 recommendations for you!</p>
     <button onclick="toTopFunction()" id="to-top-button">Up to Top</button>
-    <div class="content">
-      <div class="wrapper">
-        <div class="preferences-container">
+    <div class="wrapper">
+      <div class="preferences-container">
         <!-- User Preferences -->
-          <form>
-            <div class="preferences">
-              <h2>Preferences</h2>
-              <div class="button-row-description">
-                <p>What type of place recommendations are you looking for?</p>
-              </div>
-              <div class="button-row category-bar">
-                <label class="category">
-                  <input type="radio" name="recommendation-category" id="restaurants" required> Restaurants
-                  </input>
-                </label>
-                <label class="category">
-                  <input type="radio" name="recommendation-category" id="places-to-visit"> Places to Visit
-                  </input>
-                </label>
-                <label class="category">
-                  <input type="radio" name="recommendation-category" id="bars-clubs"> Bars & Clubs
-                  </input>
-                </label>
-                <label class="category">
-                  <input type="radio" name="recommendation-category" id="study-places"> Study Places
-                  </input>
-                </label>
-              </div>
-              <div class="button-row-description">
-                <p>Choose your preference for the following:</p>
-              </div>
-              <div class="button-row">
-                <div class="flex-item">Cheap</div>
-                <label class="flex-item"><input type="radio" value="1" name="price" required></label>
-                <label class="flex-item"><input type="radio" value="2" name="price"></label>
-                <label class="flex-item"><input type="radio" value="3" name="price"></label>
-                <label class="flex-item"><input type="radio" value="4" name="price"></label>
-                <label class="flex-item"><input type="radio" value="5" name="price"></label>
-                <div class="flex-item">Expensive</div>
-              </div>
-              <div class="button-row">
-                <div class="flex-item">Quiet</div>
-                <label class="flex-item"><input type="radio" value="1" name="crowd" required></label>
-                <label class="flex-item"><input type="radio" value="2" name="crowd"></label>
-                <label class="flex-item"><input type="radio" value="3" name="crowd"></label>
-                <label class="flex-item"><input type="radio" value="4" name="crowd"></label>
-                <label class="flex-item"><input type="radio" value="5" name="crowd"></label>
-                <div class="flex-item">Loud</div>
-              </div>
-              <button class="button">Generate Recommendations</button>
-            </div>
-          </form>
+        <div class="preferences">
+          <h2>Preferences</h2>
+          <div class="button-row">
+            <label class="category active">
+              <input type="radio" name="recommendation-category" id="restaurants"> Restaurants
+            </label>
+            <label class="category">
+              <input type="radio" name="recommendation-category" id="places-to-visit"> Places to Visit
+            </label>
+            <label class="category">
+              <input type="radio" name="recommendation-category" id="bars-clubs"> Bars & Clubs
+            </label>
+            <label class="category">
+              <input type="radio" name="recommendation-category" id="study-places"> Study Places
+            </label>
+          </div>
+          <div class="button-row">
+              <div class="flex-item">Cheap</div>
+              <label class="flex-item"><input type="radio" value="1" name="price"></label>
+              <label class="flex-item"><input type="radio" value="2" name="price"></label>
+              <label class="flex-item"><input type="radio" value="3" name="price"></label>
+              <label class="flex-item"><input type="radio" value="4" name="price"></label>
+              <label class="flex-item"><input type="radio" value="5" name="price"></label>
+              <div class="flex-item">Expensive</div>
+          </div>
+          <div class="button-row">
+              <div class="flex-item">Quiet</div>
+              <label class="flex-item"><input type="radio" value="1" name="crowd"></label>
+              <label class="flex-item"><input type="radio" value="2" name="crowd"></label>
+              <label class="flex-item"><input type="radio" value="3" name="crowd"></label>
+              <label class="flex-item"><input type="radio" value="4" name="crowd"></label>
+              <label class="flex-item"><input type="radio" value="5" name="crowd"></label>
+              <div class="flex-item">Loud</div>
+          </div>
+          <button class="button">Generate Recommendations</button>
+        </div>
+      </div>
+      <!-- Displaying top 5 recommendations -->
+      <div class="recommendations-container">
+        <h2>Top 5 Recommendations</h2>
+        <div id="recommendation-1" class="recommendation-box">
+          <!-- Sample text to show where the recommendation format -->
+          <p id="top-recommendation">Most Recommended</p>
+          <p id="category-header">Category Example</p>
+          <h3 id="place-title">Title Example</h3>
+          <p id="rec-address">Address Example</p>
+          <p id="place-recommendation">Description Example</p>
+        </div>
+        <div id="recommendation-2" class="recommendation-box">
+          <p id="category-header"></p>
+          <h3 id="place-title"></h3>
+          <p id="rec-address"></p>
+          <p id="place-recommendation"></p>
+        </div>
+        <div id="recommendation-3" class="recommendation-box">
+          <p id="category-header"></p>
+          <h3 id="place-title"></h3>
+          <p id="rec-address"></p>
+          <p id="place-recommendation"></p>
+        </div>
+        <div id="recommendation-4" class="recommendation-box">
+          <p id="category-header"></p>
+          <h3 id="place-title"></h3>
+          <p id="rec-address"></p>
+          <p id="place-recommendation"></p>
+        </div>
+        <div id="recommendation-5" class="recommendation-box">
+          <p id="category-header"></p>
+          <h3 id="place-title"></h3>
+          <p id="rec-address"></p>
+          <p id="place-recommendation"></p>
         </div>
       </div>
     </div>

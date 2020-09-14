@@ -5,7 +5,7 @@
 /* Wrapper Containing Preference Form and Recommendations */
 .wrapper {
   display: flex;
-  width: 50%;
+  margin: 10px 40px;
 }
 
 .preferences-container {
@@ -13,7 +13,8 @@
   border-radius: 25px;
   box-sizing: border-box;
   flex: 1;
-  margin: 40px;
+  height: 50%;
+  margin: 40px 40px 40px 0px;
   padding: 20px;
   text-align: center;
   width: 50%;
@@ -23,14 +24,9 @@
   margin: 30px 40px 0px 40px;
 }
 
-.button-row, button-row-description {
+.button-row {
   display: flex;
   margin-bottom: 1em;
-  text-align: center;
-}
-
-.category-bar {
-  display: inline-flex;
 }
 
 .flex-item:before {
@@ -93,4 +89,39 @@ input[type='radio']:checked:after {
 
 .button:hover {    
   background: #77d1ce;
+}
+
+.recommendations-container {
+  display: inline-grid;
+  width: 50%;
+}
+
+.recommendations-container h2 {
+  background: #303c6c;
+  border-radius: 15px;
+  color: white;
+  font-weight: 600;
+  margin: 40px 20px 10px;
+}
+
+#top-recommendation {
+  text-align: left;
+  background: #f4976c;
+  color: white !important;
+  width: 170px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.recommendation-box {
+  background: antiquewhite;
+  border-radius: 20px;
+  height: 200px;
+  margin: 15px;
+  padding: 10px;
+}
+
+.recommendation-box p, .recommendation-box h3 {
+  color: #303c6c !important;
+  font-weight: 600;
 }
