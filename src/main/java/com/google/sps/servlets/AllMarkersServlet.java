@@ -18,6 +18,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.PropertyProjection;
 import com.google.appengine.api.datastore.Query;
 import com.google.gson.Gson;
 import com.google.sps.data.Marker;
@@ -46,6 +47,8 @@ public class AllMarkersServlet extends HttpServlet {
     /* Collection to hold all markers from datastore */
     Collection<Marker> allMarkers = new ArrayList<>();
     Query query = new Query("Recommendation");
+    query.addProjection(new PropertyProjection("latitude", Double.class));
+    query.addProjection(new PropertyProjection("longitude", Double.class));
     PreparedQuery results = DatastoreServiceFactory.getDatastoreService().prepare(query);
     for (Entity entity : results.asIterable()) {
       double lat = (double) entity.getProperty("latitude");
