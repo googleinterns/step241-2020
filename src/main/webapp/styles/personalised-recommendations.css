@@ -92,7 +92,6 @@ input[type='radio']:checked:after {
 }
 
 .recommendations-container {
-  display: inline-grid;
   width: 50%;
 }
 
@@ -101,7 +100,18 @@ input[type='radio']:checked:after {
   border-radius: 15px;
   color: white;
   font-weight: 600;
+  height: 30px;
   margin: 40px 20px 10px;
+}
+
+.recommendations-container h4 {
+  background: #38afac;
+  border-radius: 15px;
+  color: white;
+  font-weight: 400;
+  height: 20px;
+  margin: auto;
+  padding: 15px;
 }
 
 #top-recommendation {
@@ -116,7 +126,7 @@ input[type='radio']:checked:after {
 .recommendation-box {
   background: antiquewhite;
   border-radius: 20px;
-  height: 200px;
+  height: 130px;
   margin: 15px;
   padding: 10px;
 }

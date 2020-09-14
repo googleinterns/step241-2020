@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/styles/fonts.css">
     <link rel="stylesheet" href="/styles/common.css">
     <link rel="stylesheet" href="/styles/personalised-recommendations.css">
+    <script src="/scripts/common.js"></script>
+    <script src="/scripts/personalised-recommendations.js"></script>
   </head>
   <body>
     <div class="header">
@@ -63,43 +65,13 @@
               <label class="flex-item"><input type="radio" value="5" name="crowd"></label>
               <div class="flex-item">Loud</div>
           </div>
-          <button class="button">Generate Recommendations</button>
+          <button class="button" onclick="loadTopRecommendations()">Generate Recommendations</button>
         </div>
       </div>
       <!-- Displaying top 5 recommendations -->
       <div class="recommendations-container">
         <h2>Top 5 Recommendations</h2>
-        <div id="recommendation-1" class="recommendation-box">
-          <!-- Sample text to show where the recommendation format -->
-          <p id="top-recommendation">Most Recommended</p>
-          <p id="category-header">Category Example</p>
-          <h3 id="place-title">Title Example</h3>
-          <p id="rec-address">Address Example</p>
-          <p id="place-recommendation">Description Example</p>
-        </div>
-        <div id="recommendation-2" class="recommendation-box">
-          <p id="category-header"></p>
-          <h3 id="place-title"></h3>
-          <p id="rec-address"></p>
-          <p id="place-recommendation"></p>
-        </div>
-        <div id="recommendation-3" class="recommendation-box">
-          <p id="category-header"></p>
-          <h3 id="place-title"></h3>
-          <p id="rec-address"></p>
-          <p id="place-recommendation"></p>
-        </div>
-        <div id="recommendation-4" class="recommendation-box">
-          <p id="category-header"></p>
-          <h3 id="place-title"></h3>
-          <p id="rec-address"></p>
-          <p id="place-recommendation"></p>
-        </div>
-        <div id="recommendation-5" class="recommendation-box">
-          <p id="category-header"></p>
-          <h3 id="place-title"></h3>
-          <p id="rec-address"></p>
-          <p id="place-recommendation"></p>
+        <div id="top-recommendations-list">
         </div>
       </div>
     </div>
