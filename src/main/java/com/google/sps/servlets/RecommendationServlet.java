@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that sends user recommendation data to datastore */
+/** Servlet that stores user recommendation data in datastore */
 @WebServlet("/recommendation")
 public class RecommendationServlet extends HttpServlet {
 
