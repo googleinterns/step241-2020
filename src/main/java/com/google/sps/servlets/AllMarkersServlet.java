@@ -45,9 +45,8 @@ public class AllMarkersServlet extends HttpServlet {
   private Collection<Marker> getMarkers() {
     /* Collection to hold all markers from datastore */
     Collection<Marker> allMarkers = new ArrayList<>();
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query query = new Query("Recommendation");
-    PreparedQuery results = datastore.prepare(query);
+    PreparedQuery results = DatastoreServiceFactory.getDatastoreService().prepare(query);
     for (Entity entity : results.asIterable()) {
       double lat = (double) entity.getProperty("latitude");
       double lng = (double) entity.getProperty("longitude");

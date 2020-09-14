@@ -180,11 +180,11 @@ function placeMarkerAndPanTo(latLng, map) {
   const marker = new google.maps.Marker({
     position: latLng,
     map: map,
-    //icon: greyIcon
+    icon: greyIcon
   });
   /* Recenter the Map */
   map.panTo(latLng);
-  togglePopup(latLng);
+  togglePopup();
   /* Update the latitude and longitude values in the popup */
   populateLocation(latLng);
 
@@ -222,7 +222,7 @@ function fetchAndPlaceMarkers(map) {
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarker(marker, map)
+      placeMarker(marker, map);
     });
   });
 }
