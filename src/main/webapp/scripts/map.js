@@ -102,7 +102,7 @@ function initMap(category) {
   if(category) {
     addMarker(map, recommendations.filter(recommendation => recommendation.category === category));
   }
-  /* Add all recommendations if there is no parameter given (when loading the page)*/
+  /* Add all recommendations if there is no parameter given (when loading the page) */
   else {
     addMarker(map, recommendations);
   }
