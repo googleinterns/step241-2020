@@ -99,7 +99,7 @@ function initMap(category) {
 
   /* Filter out the recommendations by category if a category parameter is passed */
   /* this is the case when a category button is clicked */
-  if(category) {
+  if (category) {
     addMarker(map, recommendations.filter(recommendation => recommendation.category === category));
   }
   /* Add all recommendations if there is no parameter given (when loading the page) */
