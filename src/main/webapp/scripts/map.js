@@ -96,6 +96,7 @@ function initMap(category) {
   
   /* Get all stored recommendation lat, lng and id */
   fetchAndPlaceMarkers(map);
+
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
@@ -195,7 +196,7 @@ function placeMarkerAndPanTo(latLng, map) {
 
 /* Function to place markers from the datastore */
 function placeMarker(markerDetails, map) {
-  const marker = new google.maps.Marker ({
+  marker = new google.maps.Marker ({
     position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
