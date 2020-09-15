@@ -95,7 +95,7 @@ function initMap() {
   });
   
   /* Get all stored markers */
-  fetchMarkers(map);
+  fetchAndPlaceMarkers(map);
 
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
@@ -185,11 +185,11 @@ function placeMarkerAndPanTo(latLng, map) {
     marker.setMap(null);
   });
 }
-  
+
 /* Function to place markers from the datastore */
-function placeMarker(latLng, map) {
+function placeMarker(markerDetails, map) {
   new google.maps.Marker ({
-    position: latLng,
+    position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
   });
@@ -200,7 +200,7 @@ function togglePopup(latLng) {
   document.getElementById("popup-add-recs").classList.toggle("active");
   // TODO clear list of events / previously added event listeners
   document.getElementById("submit-recommendation").addEventListener("click", () =>
-    postMarker(latLng));
+    storeMarker(latLng));
 }
 
 /* Use the position of marker on map to auto-fill location */
@@ -209,11 +209,11 @@ function populateLocation(pos) {
   document.getElementById("location").value = location;
 }
 
-/* POST marker */
-function postMarker(latLng) {
+/* Store marker in datastore */
+function storeMarker(latLng) {
   const params = new URLSearchParams();
-  params.append('lat', latLng.lat());
-  params.append('lng', latLng.lng());
+  params.append('latitude', latLng.lat());
+  params.append('longitude', latLng.lng());
   fetch('/add-marker', {
     method: 'POST', 
     body: params
@@ -221,12 +221,12 @@ function postMarker(latLng) {
 }
 
 /* Fetch all markers from datastore and add to map*/
-function fetchMarkers(map) {
+function fetchAndPlaceMarkers(map) {
   fetch('/all-markers')
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarker(new google.maps.LatLng(marker.lat, marker.lng), map)
+      placeMarker(marker, map)
     });
   });
 }

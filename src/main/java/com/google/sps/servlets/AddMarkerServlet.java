@@ -33,8 +33,8 @@ public class AddMarkerServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    double lat = Double.parseDouble(request.getParameter("lat"));
-    double lng = Double.parseDouble(request.getParameter("lng"));
+    double lat = Double.parseDouble(request.getParameter("latitude"));
+    double lng = Double.parseDouble(request.getParameter("longitude"));
     Marker marker = new Marker(lat, lng);
     storeMarker(marker);
   }
@@ -42,8 +42,8 @@ public class AddMarkerServlet extends HttpServlet {
   private void storeMarker(Marker marker) {
     /* Add the marker to the datastore */
     Entity markerEntity = new Entity("Marker");
-    markerEntity.setProperty("lat", marker.getLat());
-    markerEntity.setProperty("lng", marker.getLng());
+    markerEntity.setProperty("latitude", marker.getLat());
+    markerEntity.setProperty("longitude", marker.getLng());
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(markerEntity);
   }

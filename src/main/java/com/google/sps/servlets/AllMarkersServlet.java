@@ -49,8 +49,8 @@ public class AllMarkersServlet extends HttpServlet {
     Query query = new Query("Marker");
     PreparedQuery results = datastore.prepare(query);
     for (Entity entity : results.asIterable()) {
-      double lat = (double) entity.getProperty("lat");
-      double lng = (double) entity.getProperty("lng");
+      double lat = (double) entity.getProperty("latitude");
+      double lng = (double) entity.getProperty("longitude");
       Marker marker = new Marker(lat, lng);
       allMarkers.add(marker);
     }
