@@ -95,7 +95,7 @@ function initMap() {
   });
   
   /* Get all stored markers */
-  fetchMarkers(map);
+  fetchAndPlaceMarkers(map);
 
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
@@ -209,7 +209,7 @@ function populateLocation(pos) {
   document.getElementById("location").value = location;
 }
 
-/* store marker in datastore */
+/* Store marker in datastore */
 function storeMarker(latLng) {
   const params = new URLSearchParams();
   params.append('latitude', latLng.lat());
@@ -221,7 +221,7 @@ function storeMarker(latLng) {
 }
 
 /* Fetch all markers from datastore and add to map*/
-function fetchMarkers(map) {
+function fetchAndPlaceMarkers(map) {
   fetch('/all-markers')
   .then(response => response.json())
   .then((markers) => {

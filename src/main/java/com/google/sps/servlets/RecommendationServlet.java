@@ -34,6 +34,11 @@ public class RecommendationServlet extends HttpServlet {
     String formattedLatLng = request.getParameter("location");
 
     // Get latitude and longitude from formattedLatLng
+
+    /* Expected format for formattedLatLng:
+            lat, lng
+       e.g. 51.346833241, -0.0234157345
+    */
     String [] latLng = formattedLatLng.split(", ");
     double lat = Double.parseDouble(latLng[0]);
     double lng = Double.parseDouble(latLng[1]);
