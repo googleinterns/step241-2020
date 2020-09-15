@@ -35,8 +35,8 @@ public class RecommendationServlet extends HttpServlet {
 
     // Get latitude and longitude from formattedLatLng
     String [] latLng = formattedLatLng.split(", ");
-    String lat = latLng[0];
-    String lng = latLng[1];
+    double lat = Double.parseDouble(latLng[0]);
+    double lng = Double.parseDouble(latLng[1]);
     String category = request.getParameter("category-list");
     String description = request.getParameter("description");
     int costRating = Integer.parseInt(request.getParameter("price"));

@@ -176,7 +176,7 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   /* Recenter the Map */
   map.panTo(latLng);
-  togglePopup(latLng, marker);
+  togglePopup(latLng);
   /* Update the latitude and longitude values in the popup */
   populateLocation(latLng);
 
@@ -187,9 +187,9 @@ function placeMarkerAndPanTo(latLng, map) {
 }
 
 /* Function to place markers from the datastore */
-function placeMarker(latLng, map) {
+function placeMarker(markerDetails, map) {
   new google.maps.Marker ({
-    position: latLng,
+    position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
   });
@@ -212,8 +212,8 @@ function populateLocation(pos) {
 /* store marker in datastore */
 function storeMarker(latLng) {
   const params = new URLSearchParams();
-  params.append('lat', latLng.lat());
-  params.append('lng', latLng.lng());
+  params.append('latitude', latLng.lat());
+  params.append('longitude', latLng.lng());
   fetch('/add-marker', {
     method: 'POST', 
     body: params
@@ -226,7 +226,7 @@ function fetchMarkers(map) {
   .then(response => response.json())
   .then((markers) => {
     markers.forEach((marker) => {
-      placeMarker(new google.maps.LatLng(marker.lat, marker.lng), map)
+      placeMarker(marker, map)
     });
   });
 }
