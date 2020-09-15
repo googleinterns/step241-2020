@@ -74,7 +74,7 @@
         <h2>Add Recommendation</h2>
         <p>Please fill out this form to add a recommendation.</p>
         <!-- Form for Adding Recommendation -->
-        <form>
+        <form id="recommendation-form" method="POST" action="recommendation">
           <label for="place-name">Place Name:</label><br>
           <textarea type="text" id="place-name" name="place-name" cols="40" rows="1" required></textarea><br>
           <label for="location">Location/Address:</label><br>
@@ -112,7 +112,7 @@
             <label class="flex-item"><input type="radio" value="5" name="crowd"></label>
             <div class="flex-item-description">Loud</div>
           </div>
-          <input type="submit" value="Submit">
+          <input type="submit" value="Submit" id="submit-recommendation">
         </form>
       </div>
     </div>
