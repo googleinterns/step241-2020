@@ -17,6 +17,12 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.images.ServingUrlOptions;
+import com.google.gson.Gson;
+import com.google.sps.data.Recommendation;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +41,28 @@ public class RecommendationServlet extends HttpServlet {
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get details for recommendation 
+    Long id = Long.parseLong(request.getParameter("id"));
+    
+    try {
+      Key key = KeyFactory.createKey("Recommendation", id);
+      Entity recommendation = datastore.get(key);
+      // Get details of recommendation
+      String name = (String) recommendation.getProperty("place-name");
+      String category = (String) recommendation.getProperty("category");
+      double lat = (double) recommendation.getProperty("latitude");
+      double lng = (double) recommendation.getProperty("longitude");
+      String description = (String) recommendation.getProperty("description");
+      int costRating = (int) (long) recommendation.getProperty("cost-rating");
+      int crowdRating = (int) (long) recommendation.getProperty("crowd-rating");
+
+      response.setContentType("application/json");
+      String json = new Gson().toJson(new Recommendation(name, category, lat, lng, description, costRating, crowdRating));
+      response.getWriter().println(json);
+    }
+    catch (EntityNotFoundException e) {
+      e.printStackTrace();
+      response.sendError(HttpServletResponse.SC_NOT_FOUND);
+    }
   }
 
   @Override
@@ -56,11 +83,12 @@ public class RecommendationServlet extends HttpServlet {
     String description = request.getParameter("description");
     int costRating = Integer.parseInt(request.getParameter("price"));
     int crowdRating = Integer.parseInt(request.getParameter("crowd"));
-    // Create entity on recommendation data
+
+    // Create entity from recommendation data
     Entity recommendationEntity = new Entity("Recommendation");
     recommendationEntity.setProperty("place-name", name);
     recommendationEntity.setProperty("latitude", lat);
-    recommendationEntity.setProperty("longitude", lng);
+    recommendationEntity.setProperty("longitude", lng); 
     recommendationEntity.setProperty("category", category);
     recommendationEntity.setProperty("description", description);
     recommendationEntity.setProperty("cost-rating", costRating);
