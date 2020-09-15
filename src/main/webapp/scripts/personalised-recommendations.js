@@ -42,8 +42,9 @@ const topRecommendations = [
 
 /* Load top 5 recommendations */
 function loadTopRecommendations() {
-  var i;
-  for (i = 0; i < topRecommendations.length; i++) {
+  const topRecommendationsList = document.getElementById("top-recommendations-list");
+  topRecommendationsList.innerHTML = "";
+  for (var i = 1; i <= topRecommendations.length; i++) {
     const topRecommendation = topRecommendations[i];
     const recommendationBox = document.createElement("div");
     recommendationBox.className = "recommendation-box";
@@ -51,6 +52,6 @@ function loadTopRecommendations() {
     const nameHTML = "<h3><b>" + topRecommendation.name + "</b></h3>";
     const ratingHTML = "<p>crowd: " + topRecommendation.crowd + "   price:" + topRecommendation.price + "</p>";
     recommendationBox.innerHTML = rankHTML + nameHTML + ratingHTML;
-    document.getElementById("top-recommendations-list").append(recommendationBox);
+    topRecommendationsList.append(recommendationBox);
   }
 }
