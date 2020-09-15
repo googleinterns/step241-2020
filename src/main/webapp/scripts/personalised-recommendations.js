@@ -14,27 +14,42 @@
 
 const topRecommendations = [
   {
-    name: "Pret A Manger", 
+    name: "Pret A Manger",
+    latitude: 51.5252574,
+    longitude: -0.1282885,
+    description: "Counter-serve chain for ready-made sandwiches plus breakfast, coffee, soups & salads.",
     crowd: 3,
     price: 1
   },
   {
-    name: "Wasabi", 
+    name: "Wasabi",
+    description: "Light-filled, modern chain branch serving up bento boxes, sushi and hot Japanese dishes.",
+    latitude: 51.5172219,
+    longitude: -0.1334257,
     crowd: 3,
     price: 2
   },
   {
-    name: "Franco Manca", 
+    name: "Shake Shack",
+    description: "Branch of an American chain known for its gourmet burgers & frozen custard shakes. Dog-friendly.",
+    latitude: 51.5172383,
+    longitude: -0.1399918,
     crowd: 2,
     price: 2
   },
   {
-    name: "Taco Bell", 
+    name: "Taco Bell",
+    latitude: 51.5203205,
+    longitude: -0.125156,
+    description: "Fast-food chain serving Mexican-inspired fare such as tacos, quesadillas & nachos.",
     crowd: 4,
     price: 1
   },
   {
-    name: "KFC", 
+    name: "KFC",
+    latitude: 51.5204878,
+    longitude: -0.1431986,
+    description: "Fast-food chain known for its buckets of fried chicken, plus wings & sides.",
     crowd: 4,
     price: 2
   }
@@ -44,14 +59,21 @@ const topRecommendations = [
 function loadTopRecommendations() {
   const topRecommendationsList = document.getElementById("top-recommendations-list");
   topRecommendationsList.innerHTML = "";
+
+  const recommendationBox = document.createElement("div");
+  recommendationBox.className = "recommendation-box";
   for (var i = 1; i <= topRecommendations.length; i++) {
     const topRecommendation = topRecommendations[i];
     const recommendationBox = document.createElement("div");
     recommendationBox.className = "recommendation-box";
-    const rankHTML = "<h4>Rank " + i + "</h4>";
-    const nameHTML = "<h3><b>" + topRecommendation.name + "</b></h3>";
-    const ratingHTML = "<p>crowd: " + topRecommendation.crowd + "   price:" + topRecommendation.price + "</p>";
-    recommendationBox.innerHTML = rankHTML + nameHTML + ratingHTML;
+    if(i == 1) {
+      recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
+    }
+    const nameHTML = "<h3><b>#" + i + " " + topRecommendation.name + "</b></h3>";
+    const locationHTML = "<p>latitiude: " + topRecommendation.latitude + ", longitude: " + topRecommendation.longitude + "</p>";
+    const ratingHTML = "<p>crowd: " + topRecommendation.crowd + "/5, price: " + topRecommendation.price + "/5</p>";
+    const descriptionHTML = "<p>" + topRecommendation.description + "</p>";
+    recommendationBox.innerHTML += nameHTML + locationHTML + ratingHTML + descriptionHTML;
     topRecommendationsList.append(recommendationBox);
   }
 }

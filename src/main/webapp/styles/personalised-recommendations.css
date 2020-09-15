@@ -114,8 +114,14 @@ input[type='radio']:checked:after {
   padding: 15px;
 }
 
-#top-recommendation {
-  text-align: left;
+.recommendation-box {
+  background: antiquewhite;
+  border-radius: 20px;
+  margin: 15px;
+  padding: 10px;
+}
+
+.top-recommendation {
   background: #f4976c;
   color: white !important;
   width: 170px;
@@ -123,15 +129,7 @@ input[type='radio']:checked:after {
   margin: 5px;
 }
 
-.recommendation-box {
-  background: antiquewhite;
-  border-radius: 20px;
-  height: 130px;
-  margin: 15px;
-  padding: 10px;
-}
-
 .recommendation-box p, .recommendation-box h3 {
-  color: #303c6c !important;
+  color: #303c6c;
   font-weight: 600;
 }
