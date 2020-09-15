@@ -83,7 +83,7 @@ const greyIcon = {
 }
 
 /* Set Up Map */
-function initMap() { 
+function initMap(category) { 
   /* 'Hard Coded' origin, Google UK Pancras Square */
   const origin = {
     lat: 51.533364, 
@@ -100,15 +100,23 @@ function initMap() {
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
-  
-  /* Add Hard-Coded Markers */
-  addHardCodedMarkers(map);
+
+  /* Filter out the recommendations by category if a category parameter is passed */
+  /* this is the case when a category button is clicked */
+  if (category) {
+    addMarker(map, recommendations.filter(recommendation => recommendation.category === category));
+  }
+  /* Add all recommendations if there is no parameter given (when loading the page) */
+  else {
+    addMarker(map, recommendations);
+  }
 }
 
-function addHardCodedMarkers(map) {
-  /* Iterate through stored recommendations to get details */
-  for (i = 0; i < recommendations.length; i++) {
-    const recommendation = recommendations[i];
+/* Add Hard-Coded Markers to map */
+function addMarker(map, recommendationsToAdd) {
+  /* Iterate through stored recommendationsToAdd to get details */
+  for (i = 0; i < recommendationsToAdd.length; i++) {
+    const recommendation = recommendationsToAdd[i];
     const placeCategory = recommendation.category;
     const placeName = recommendation.name;
     const placeLatLng = new google.maps.LatLng(recommendation.lat, recommendation.lng);
