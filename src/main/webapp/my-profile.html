@@ -53,17 +53,17 @@
             <form id="user-form" method="POST" enctype="multipart/form-data">            
               <label for="Name">Hello! my name is</label>
               <input type="text" id="name" name="name" size="40" required></input>
-              <label for="Department">I am currently a student in the department of</label>
+              <label for="Department">I am a student in the department of</label>
               <input type="text" id="department" name="department" size="40" required></input>
-              <label for="year">currently on year</label>
+              <label for="year">currently in year</label>
               <select id="year" name="year">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
               </select>
-              <label for="phone">my phone number is</label>
-              <input type="tel" id="phone" name="phone" required></input>
+              <label for="phone">my phone number (UK mobile) is</label>
+              <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" maxlength="11" required></input>
               <label for="Bio">more info about me (bio)</label>
               <textarea type="text" id="bio" name="bio" cols="40" rows="3"></textarea>
               <p>and here is my profile picture!</p>

@@ -18,7 +18,7 @@ function generateUserCards() {
     users.forEach((user) => {
       const userCardElement = document.createElement("div");
       userCardElement.className = "user-card";
-      const profilePictureHTML = "<img class=\"profile-pic\" src=\"" + user.profilePictureUrl + "\"></img>";
+      const profilePictureHTML = "<img class=\"profile-picture\" src=\"" + user.profilePictureUrl + "\"></img>";
       const nameHTML = "<h3>" + user.name + "</h3>";
       const departmentHTML = "<h4>" + user.department + " Year "+ user.year + "</h4>";
       const userPageLink = "<a href='/user-details.html?email=" + user.email + "'>more info</a>";

@@ -21,12 +21,12 @@ public final class User {
   private final String name;
   private final String department;
   private final int year;
-  private final long phone;
+  private final String phone;
   private final String bio;
   private final String profilePictureUrl;
   private final long updatedTime;
 
-  public User(String email, String name, String department, int year, long phone, String bio, String profilePictureUrl, long updatedTime) {
+  public User(String email, String name, String department, int year, String phone, String bio, String profilePictureUrl, long updatedTime) {
     this.email = email;
     this.name = name;
     this.department = department;
