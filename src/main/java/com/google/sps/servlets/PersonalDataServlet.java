@@ -52,6 +52,7 @@ public class PersonalDataServlet extends HttpServlet {
   private BlobstoreService blobstoreService;
   private UserService userService;
 
+  @Override
   public void init(){
     datastore = DatastoreServiceFactory.getDatastoreService();
     blobstoreService = BlobstoreServiceFactory.getBlobstoreService();

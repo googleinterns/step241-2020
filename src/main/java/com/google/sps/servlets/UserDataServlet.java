@@ -46,7 +46,7 @@ public class UserDataServlet extends HttpServlet {
       // Get current user details from datastore
       Entity entity = DatastoreServiceFactory.getDatastoreService().get(userKey);
       String name = (String) entity.getProperty("name");
-      String department = (String) entity.getProperty("department");   
+      String department = (String) entity.getProperty("department");
       int year = (int) (long) entity.getProperty("year");
       long phone = (long) entity.getProperty("phone");
       String bio = (String) entity.getProperty("bio");

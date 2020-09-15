@@ -21,7 +21,7 @@ function generateUserDetails() {
     document.getElementById("title").innerHTML = user.name;
     const userDetailsElement = document.getElementById("user-details");
     const profilePictureHTML = "<img class=\"profile-pic\" src=\"" + user.profilePictureUrl + "\"></img>";
-    const departmentHTML = "<h2>" + user.department + " year "+ user.year + "</h2>";
+    const departmentHTML = "<h2>" + user.department + " Year "+ user.year + "</h2>";
     const phoneHTML = "<h3>" + user.phone + "</h3>";
     const bioHTML = "<p>" + user.bio + "</p>";
     const emailTo = "<a href='mailto:" + user.email + "?subject=Enquiries for Student Recommendations'>message me</a>";

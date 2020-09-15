@@ -20,7 +20,7 @@ function generateUserCards() {
       userCardElement.className = "user-card";
       const profilePictureHTML = "<img class=\"profile-pic\" src=\"" + user.profilePictureUrl + "\"></img>";
       const nameHTML = "<h3>" + user.name + "</h3>";
-      const departmentHTML = "<h4>" + user.department + " year "+ user.year + "</h4>";
+      const departmentHTML = "<h4>" + user.department + " Year "+ user.year + "</h4>";
       const userPageLink = "<a href='/user-details.html?email=" + user.email + "'>more info</a>";
       const userPageHTML = "<div class='button'>" + userPageLink + "</div>";
       userCardElement.innerHTML = profilePictureHTML + nameHTML + departmentHTML + userPageHTML;

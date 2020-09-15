@@ -52,7 +52,8 @@ public class UserDirectoryServlet extends HttpServlet {
       String department = (String) entity.getProperty("department");
       int year = (int) (long) entity.getProperty("year");
       String profilePictureUrl = (String) entity.getProperty("profilePictureUrl");
-      users.add(new User(email, name, department, year, profilePictureUrl));
+      long updatedTime = (long) entity.getProperty("updatedTime");
+      users.add(new User(email, name, department, year, profilePictureUrl, updatedTime));
     }
 
     // Return list of user details
