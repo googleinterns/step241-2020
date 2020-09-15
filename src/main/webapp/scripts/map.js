@@ -96,7 +96,7 @@ function initMap() {
   
   /* Get all stored recommendation lat, lng and id */
   fetchMarkerInfo(map);
-
+  
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
@@ -188,12 +188,49 @@ function placeMarkerAndPanTo(latLng, map) {
 
 /* Function to place markers from the datastore */
 function placeMarker(markerDetails, map) {
-  const marker = new google.maps.Marker ({
+  marker = new google.maps.Marker ({
     position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
   });
   marker.set("id", markerDetails.id);
+
+  // TODO fix issue with listeners
+  /* Add Listener for Click on Marker */
+   google.maps.event.addListener(marker, "click", () => {
+     fetchRecommendationInfo(marker.id);
+   });
+}
+
+/* Get recommendation from datastore and fill html */
+function fetchRecommendationInfo(id) {
+  const params = new URLSearchParams();
+  params.append('id', id);
+  fetch("/recommendation?id=" + id).then(result => result.json()).then((recommendation) => {
+    /* Update the HTML */
+      document.getElementById("category-header").innerHTML = formatCategory(recommendation.category);
+      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(recommendation.category);
+      document.getElementById("place-title").innerHTML = recommendation.name;
+      document.getElementById("rec-address").innerHTML = recommendation.lat+", "+recommendation.lng;
+      document.getElementById("place-recommendation").innerHTML = recommendation.description;
+      document.getElementById("rec-container").style.display = "block";
+  });
+}
+
+/* Formats the category string */
+function formatCategory(category) {
+  switch(category) {
+    case 'restaurants':
+      return "Restaurants";
+    case 'places-to-visit':
+      return "Places to Visit";
+    case 'bars-and-clubs':
+      return "Bars and Clubs";
+    case 'study-places':
+      return "Study Places";
+    default:
+      return "";
+  }
 }
 
 /* Set the PopUp to Active */
