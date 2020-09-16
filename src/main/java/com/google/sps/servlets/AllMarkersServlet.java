@@ -49,12 +49,14 @@ public class AllMarkersServlet extends HttpServlet {
     Query query = new Query("Recommendation");
     query.addProjection(new PropertyProjection("latitude", Double.class));
     query.addProjection(new PropertyProjection("longitude", Double.class));
+    query.addProjection(new PropertyProjection("category", String.class));
     PreparedQuery results = DatastoreServiceFactory.getDatastoreService().prepare(query);
     for (Entity entity : results.asIterable()) {
       double lat = (double) entity.getProperty("latitude");
       double lng = (double) entity.getProperty("longitude");
+      String category = entity.getProperty("category").toString();
       long id = entity.getKey().getId();
-      Marker marker = new Marker(lat, lng, id);
+      Marker marker = new Marker(lat, lng, id, category);
       allMarkers.add(marker);
     }
     return allMarkers;

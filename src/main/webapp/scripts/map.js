@@ -199,9 +199,10 @@ function placeMarker(markerDetails, map) {
   marker = new google.maps.Marker ({
     position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
-    icon: greyIcon, // TODO change the colour of the icon depending on the category
+    icon: getColourMarker(formatCategory(markerDetails.category)),
+    id: markerDetails.id
   });
-  marker.set("id", markerDetails.id);
+  //marker.set("id", markerDetails.id);
 
   // TODO fix issue with listeners
   /* Add Listener for Click on Marker */
