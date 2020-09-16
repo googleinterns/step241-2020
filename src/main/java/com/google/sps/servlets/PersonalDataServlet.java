@@ -97,7 +97,7 @@ public class PersonalDataServlet extends HttpServlet {
     String name = request.getParameter("name");
     String department = request.getParameter("department");
     int year = Integer.parseInt(request.getParameter("year"));
-    long phone = Long.parseLong(request.getParameter("phone"));
+    String phone = request.getParameter("phone");
     String bio = request.getParameter("bio");
     String profilePictureUrl = getUploadedFileUrl(request);
 

@@ -38,6 +38,6 @@ public final class User {
   }
 
   public User(String email, String name, String department, int year, String profilePictureUrl, long updatedTime) {
-    this(email, name, department, year, 0, "", profilePictureUrl, updatedTime);
+    this(email, name, department, year, "0", "", profilePictureUrl, updatedTime);
   }
 }
