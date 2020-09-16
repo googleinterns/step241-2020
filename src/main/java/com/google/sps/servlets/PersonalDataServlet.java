@@ -111,7 +111,7 @@ public class PersonalDataServlet extends HttpServlet {
     user.setProperty("bio", bio);
     user.setProperty("updatedTime", updatedTime);
 
-    // TODO: do not change profilePictureUrl if no file is uploaded
+    // TODO: fix check when no file is uploaded, current check does not work
     if(profilePictureUrl != null){
       user.setProperty("profilePictureUrl", profilePictureUrl);
     }
