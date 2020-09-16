@@ -202,7 +202,6 @@ function placeMarker(markerDetails, map) {
     icon: getColourMarker(formatCategory(markerDetails.category)),
     id: markerDetails.id
   });
-  //marker.set("id", markerDetails.id);
 
   // TODO fix issue with listeners
   /* Add Listener for Click on Marker */
