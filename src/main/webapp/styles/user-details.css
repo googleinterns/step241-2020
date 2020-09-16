@@ -1,25 +1,21 @@
-h3, h4, p {
-  line-height: 1.15;
-}
-
-.user-card {
+#user-details {
   background: #f4976c;
   border-radius: 25px;
   color: white;
-  display: inline-block;
-  margin: 30px;
+  height: 700px;
+  line-height: 1.5;
+  margin: 50px auto;
   padding: 20px;
   text-align: center;
-  width: 300px;
-  vertical-align: bottom;
+  width: 800px;
 }
 
-.profile-picture {
+.profile-pic {
   border-radius: 20%;
-  height: 230px;
+  height: 300px;
   margin: auto;
-  padding: 20px;
-  width: 230px;
+  padding: 45px;
+  width: 300px;
 }
 
 .button {    
@@ -30,5 +26,5 @@ h3, h4, p {
 }
 
 .button:hover {    
-  background: #5cd6d6;
+  background: #9afaf7;
 }

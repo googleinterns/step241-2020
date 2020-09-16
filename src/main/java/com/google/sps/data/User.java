@@ -36,4 +36,8 @@ public final class User {
     this.profilePictureUrl = profilePictureUrl;
     this.updatedTime = updatedTime;
   }
+
+  public User(String email, String name, String department, int year, String profilePictureUrl, long updatedTime) {
+    this(email, name, department, year, "0", "", profilePictureUrl, updatedTime);
+  }
 }

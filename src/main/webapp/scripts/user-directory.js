@@ -13,19 +13,17 @@
 // limitations under the License.
 
 function generateUserCards() {
-  fetch("user-data").then(result => result.json()).then((users) => {
+  fetch("/user-directory").then(result => result.json()).then((users) => {
     const userDirectoryElement = document.getElementById("user-directory");
     users.forEach((user) => {
       const userCardElement = document.createElement("div");
       userCardElement.className = "user-card";
       const profilePictureHTML = "<img class=\"profile-picture\" src=\"" + user.profilePictureUrl + "\"></img>";
       const nameHTML = "<h3>" + user.name + "</h3>";
-      const departmentHTML = "<h4>" + user.department + "Year" + user.year + "</h4>";
-      const phoneHTML = "<h5>" + user.phone + "</h5>";
-      const bioHTML = "<p>" + user.bio + "</p>";
-      const emailTo = "<a href='mailto:" + user.email + "?subject=Enquiries for Student Recommendations'>message me</a>";
-      const emailButtonHTML = "<div class='button'>" + emailTo + "</div>";
-      userCardElement.innerHTML = profilePictureHTML + nameHTML + departmentHTML + phoneHTML + emailButtonHTML;
+      const departmentHTML = "<h4>" + user.department + " Year "+ user.year + "</h4>";
+      const userPageLink = "<a href='/user-details.html?email=" + user.email + "'>more info</a>";
+      const userPageHTML = "<div class='button'>" + userPageLink + "</div>";
+      userCardElement.innerHTML = profilePictureHTML + nameHTML + departmentHTML + userPageHTML;
       userDirectoryElement.appendChild(userCardElement);
     });
   });

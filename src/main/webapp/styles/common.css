@@ -6,6 +6,10 @@ body {
   width: 100%;
 }
 
+.content {
+  min-height: calc(100vh - 300px);
+}
+
 h1 {
   color: white;
   font-family: 'Chelsea Market', cursive;
@@ -149,6 +153,14 @@ nav ul li a {
 }
 
 .title {
+  color: #303c6c;
+  font-family: 'Questrial', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  padding: 30px;
+}
+
+#title {
   color: #303c6c;
   font-family: 'Questrial', sans-serif;
   font-size: 48px;
