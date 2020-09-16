@@ -63,7 +63,7 @@ function loadTopRecommendations() {
   const recommendationBox = document.createElement("div");
   recommendationBox.className = "recommendation-box";
   for (var i = 1; i <= topRecommendations.length; i++) {
-    const topRecommendation = topRecommendations[i];
+    const topRecommendation = topRecommendations[i - 1];
     const recommendationBox = document.createElement("div");
     recommendationBox.className = "recommendation-box";
     if(i == 1) {
