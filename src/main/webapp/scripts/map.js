@@ -196,16 +196,15 @@ function placeMarkerAndPanTo(latLng, map) {
 
 /* Function to place markers from the datastore */
 function placeMarker(markerDetails, map) {
-  marker = new google.maps.Marker ({
+  const marker = new google.maps.Marker ({
     position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
     icon: greyIcon, // TODO change the colour of the icon depending on the category
+    id: markerDetails.id
   });
-  marker.set("id", markerDetails.id);
 
-  // TODO fix issue with listeners
   /* Add Listener for Click on Marker */
-   google.maps.event.addListener(marker, "click", () => {
+   marker.addListener("click", () => {
      fetchRecommendationInfo(marker.id);
    });
 }
@@ -217,7 +216,9 @@ function fetchRecommendationInfo(id) {
   fetch("/recommendation?id=" + id).then(result => result.json()).then((recommendation) => {
     /* Update the HTML */
       document.getElementById("category-header").innerHTML = formatCategory(recommendation.category);
-      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(recommendation.category);
+      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(
+          formatCategory(recommendation.category)
+        );
       document.getElementById("place-title").innerHTML = recommendation.name;
       document.getElementById("rec-address").innerHTML = recommendation.lat+", "+recommendation.lng;
       document.getElementById("place-recommendation").innerHTML = recommendation.description;
