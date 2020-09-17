@@ -194,7 +194,6 @@ function getColourMarker(category) {
   }
 }
 
-
 /* Formats the category string */
 function formatCategory(category) {
   switch(category) {
