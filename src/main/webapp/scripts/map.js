@@ -212,30 +212,28 @@ function placeMarker(markerDetails, map) {
 /* Get recommendation from datastore and fill html */
 function fetchRecommendationInfo(id) {
   const params = new URLSearchParams();
-  params.append('id', id);
   fetch("/recommendation?id=" + id).then(result => result.json()).then((recommendation) => {
     /* Update the HTML */
-      document.getElementById("category-header").innerHTML = formatCategory(recommendation.category);
-      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(
-          formatCategory(recommendation.category)
-        );
-      document.getElementById("place-title").innerHTML = recommendation.name;
-      document.getElementById("rec-address").innerHTML = recommendation.lat+", "+recommendation.lng;
-      document.getElementById("place-recommendation").innerHTML = recommendation.description;
-      document.getElementById("rec-container").style.display = "block";
+    const formattedCategory = formatCategory(recommendation.category);
+    document.getElementById("category-header").innerHTML = formattedCategory;
+    document.getElementById("category-header").style.backgroundColor = getBackgroundColour(formattedCategory);
+    document.getElementById("place-title").innerHTML = recommendation.name;
+    document.getElementById("rec-address").innerHTML = recommendation.lat+", "+recommendation.lng;
+    document.getElementById("place-recommendation").innerHTML = recommendation.description;
+    document.getElementById("rec-container").style.display = "block";
   });
 }
 
 /* Formats the category string */
 function formatCategory(category) {
   switch(category) {
-    case 'restaurants':
+    case "restaurants":
       return "Restaurants";
-    case 'places-to-visit':
+    case "places-to-visit":
       return "Places to Visit";
-    case 'bars-and-clubs':
+    case "bars-and-clubs":
       return "Bars and Clubs";
-    case 'study-places':
+    case "study-places":
       return "Study Places";
     default:
       return "";

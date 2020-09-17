@@ -52,6 +52,8 @@ public class RecommendationServlet extends HttpServlet {
       double lat = (double) recommendation.getProperty("latitude");
       double lng = (double) recommendation.getProperty("longitude");
       String description = (String) recommendation.getProperty("description");
+      // double casting is needed here because the integer is stored as a long integer in datastore.
+      // for reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
       int costRating = (int) (long) recommendation.getProperty("cost-rating");
       int crowdRating = (int) (long) recommendation.getProperty("crowd-rating");
 
@@ -88,7 +90,7 @@ public class RecommendationServlet extends HttpServlet {
     Entity recommendationEntity = new Entity("Recommendation");
     recommendationEntity.setProperty("place-name", name);
     recommendationEntity.setProperty("latitude", lat);
-    recommendationEntity.setProperty("longitude", lng); 
+    recommendationEntity.setProperty("longitude", lng);
     recommendationEntity.setProperty("category", category);
     recommendationEntity.setProperty("description", description);
     recommendationEntity.setProperty("cost-rating", costRating);
