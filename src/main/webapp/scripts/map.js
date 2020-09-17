@@ -211,7 +211,6 @@ function placeMarker(markerDetails, map) {
 
 /* Get recommendation from datastore and fill html */
 function fetchRecommendationInfo(id) {
-  const params = new URLSearchParams();
   fetch("/recommendation?id=" + id).then(result => result.json()).then((recommendation) => {
     /* Update the HTML */
     const formattedCategory = formatCategory(recommendation.category);
