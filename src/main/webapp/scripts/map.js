@@ -203,9 +203,8 @@ function placeMarker(markerDetails, map) {
     id: markerDetails.id
   });
 
-  // TODO fix issue with listeners
   /* Add Listener for Click on Marker */
-   google.maps.event.addListener(marker, "click", () => {
+   marker.addListener("click", () => {
      fetchRecommendationInfo(marker.id);
    });
 }
@@ -217,7 +216,9 @@ function fetchRecommendationInfo(id) {
   fetch("/recommendation?id=" + id).then(result => result.json()).then((recommendation) => {
     /* Update the HTML */
       document.getElementById("category-header").innerHTML = formatCategory(recommendation.category);
-      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(recommendation.category);
+      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(
+          formatCategory(recommendation.category)
+        );
       document.getElementById("place-title").innerHTML = recommendation.name;
       document.getElementById("rec-address").innerHTML = recommendation.lat+", "+recommendation.lng;
       document.getElementById("place-recommendation").innerHTML = recommendation.description;
