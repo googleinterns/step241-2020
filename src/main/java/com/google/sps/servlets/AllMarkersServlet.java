@@ -54,7 +54,7 @@ public class AllMarkersServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       double lat = (double) entity.getProperty("latitude");
       double lng = (double) entity.getProperty("longitude");
-      String category = entity.getProperty("category").toString();
+      String category = (String) entity.getProperty("category");
       long id = entity.getKey().getId();
       Marker marker = new Marker(lat, lng, id, category);
       allMarkers.add(marker);
