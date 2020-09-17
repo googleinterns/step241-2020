@@ -18,6 +18,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.PropertyProjection;
 import com.google.appengine.api.datastore.Query;
 import com.google.gson.Gson;
 import com.google.sps.data.Marker;
@@ -44,14 +45,18 @@ public class AllMarkersServlet extends HttpServlet {
   
   private Collection<Marker> getMarkers() {
     /* Collection to hold all markers from datastore */
-    Collection <Marker> allMarkers = new ArrayList<>();
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Query query = new Query("Marker");
-    PreparedQuery results = datastore.prepare(query);
+    Collection<Marker> allMarkers = new ArrayList<>();
+    Query query = new Query("Recommendation");
+    query.addProjection(new PropertyProjection("latitude", Double.class));
+    query.addProjection(new PropertyProjection("longitude", Double.class));
+    query.addProjection(new PropertyProjection("category", String.class));
+    PreparedQuery results = DatastoreServiceFactory.getDatastoreService().prepare(query);
     for (Entity entity : results.asIterable()) {
       double lat = (double) entity.getProperty("latitude");
       double lng = (double) entity.getProperty("longitude");
-      Marker marker = new Marker(lat, lng);
+      String category = (String) entity.getProperty("category");
+      long id = entity.getKey().getId();
+      Marker marker = new Marker(lat, lng, id, category);
       allMarkers.add(marker);
     }
     return allMarkers;

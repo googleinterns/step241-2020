@@ -17,6 +17,12 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.images.ServingUrlOptions;
+import com.google.gson.Gson;
+import com.google.sps.data.Recommendation;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,13 +32,46 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that stores user recommendation data in datastore */
 @WebServlet("/recommendation")
 public class RecommendationServlet extends HttpServlet {
+  
+  private DatastoreService datastore;
+
+  public void init() {
+    datastore = DatastoreServiceFactory.getDatastoreService();
+  }
+  
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Long id = Long.parseLong(request.getParameter("id"));
+    
+    try {
+      Key key = KeyFactory.createKey("Recommendation", id);
+      Entity recommendation = datastore.get(key);
+      // Get details of recommendation
+      String name = (String) recommendation.getProperty("place-name");
+      String category = (String) recommendation.getProperty("category");
+      double lat = (double) recommendation.getProperty("latitude");
+      double lng = (double) recommendation.getProperty("longitude");
+      String description = (String) recommendation.getProperty("description");
+      // double casting is needed here because the integer is stored as a long integer in datastore.
+      // for reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
+      int costRating = (int) (long) recommendation.getProperty("cost-rating");
+      int crowdRating = (int) (long) recommendation.getProperty("crowd-rating");
+
+      response.setContentType("application/json");
+      String json = new Gson().toJson(new Recommendation(name, category, lat, lng, description, costRating, crowdRating));
+      response.getWriter().println(json);
+    }
+    catch (EntityNotFoundException e) {
+      e.printStackTrace();
+      response.sendError(HttpServletResponse.SC_NOT_FOUND);
+    }
+  }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
     String name = request.getParameter("place-name");
     String formattedLatLng = request.getParameter("location");
-
     // Get latitude and longitude from formattedLatLng
 
     /* Expected format for formattedLatLng:
@@ -47,7 +86,7 @@ public class RecommendationServlet extends HttpServlet {
     int costRating = Integer.parseInt(request.getParameter("price"));
     int crowdRating = Integer.parseInt(request.getParameter("crowd"));
 
-    // Create entity on recommendation data
+    // Create entity from recommendation data
     Entity recommendationEntity = new Entity("Recommendation");
     recommendationEntity.setProperty("place-name", name);
     recommendationEntity.setProperty("latitude", lat);
