@@ -36,8 +36,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RecommenderServlet extends HttpServlet {
 
   private final int RECOMMENDATIONS_N = 3;
-  private final int FACTORS_N = 3;
-  private final String[] factors = {"price", "crowd", "distance"};
+  private final String[] FACTORS = {"price", "crowd", "distance"};
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -46,12 +45,12 @@ public class RecommenderServlet extends HttpServlet {
     // TODO: retrieve and return top 5 recommendations based on the value
   }
 
-  private List<DistancePair> getRecommendationsDistances(HttpServletRequest request){
+  private List<DistancePair> getRecommendationsDistances(HttpServletRequest request) {
     String category = request.getParameter("category");
     List<Entity> recommendations = getRecommendationsByCategory(category);
 
     List<DistancePair> distances = new ArrayList<>();
-    for(Entity recommendation : recommendations) {
+    for (Entity recommendation : recommendations) {
       long id = recommendation.getKey().getId();
       int distance = calculateDistance(request, recommendation);
       distances.add(new DistancePair(id, distance));
@@ -61,7 +60,7 @@ public class RecommenderServlet extends HttpServlet {
 
   private List<Entity> getRecommendationsByCategory(String category){
     Query query = new Query("recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
-    for(String factor : factors) {
+    for(String factor : FACTORS) {
       query.addProjection(new PropertyProjection(factor, Integer.class));
     }
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -71,7 +70,7 @@ public class RecommenderServlet extends HttpServlet {
   private int calculateDistance(HttpServletRequest request, Entity recommendation) {
     int distance = 0;
     // for every factor considered
-    for(String factor : factors) {
+    for(String factor : FACTORS) {
       // get the rating of the recommendation and the rating from the user preference
       int recommendationRating = (int) recommendation.getProperty(factor);
       int preferenceRating = Integer.parseInt(request.getParameter(factor));

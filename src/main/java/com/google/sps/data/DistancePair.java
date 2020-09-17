@@ -13,9 +13,10 @@
 // limitations under the License.
 
 package com.google.sps.data;
+
 import java.lang.Comparable;
 
-/** A class representing the user login status and url to login. */
+/** A class representing a pair containing recommendation ID and distance */
 public final class DistancePair implements Comparable<DistancePair>{
 
   private final long id;
