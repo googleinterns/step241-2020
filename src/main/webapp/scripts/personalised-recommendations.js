@@ -66,7 +66,7 @@ function loadTopRecommendations() {
     const topRecommendation = topRecommendations[i - 1];
     const recommendationBox = document.createElement("div");
     recommendationBox.className = "recommendation-box";
-    if(i == 1) {
+    if (i == 1) {
       recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
     }
     const nameHTML = "<h3><b>#" + i + " " + topRecommendation.name + "</b></h3>";
