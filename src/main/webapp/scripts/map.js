@@ -199,7 +199,7 @@ function placeMarker(markerDetails, map) {
   const marker = new google.maps.Marker ({
     position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
-    icon: greyIcon, // TODO change the colour of the icon depending on the category
+    icon: getColourMarker(formatCategory(markerDetails.category)),
     id: markerDetails.id
   });
 
