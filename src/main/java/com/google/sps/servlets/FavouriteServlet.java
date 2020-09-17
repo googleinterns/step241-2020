@@ -18,6 +18,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -44,6 +45,7 @@ public class FavouriteServlet extends HttpServlet {
   private DatastoreService datastore;
   private UserService userService;
 
+  @Override
   public void init(){
     datastore = DatastoreServiceFactory.getDatastoreService();
     userService = UserServiceFactory.getUserService();
@@ -82,11 +84,21 @@ public class FavouriteServlet extends HttpServlet {
     String email = userService.getCurrentUser().getEmail();
     long recommendationId = Long.parseLong(request.getParameter("id"));
 
-    // Send favourited recommendation ID to datastore
-    Entity favourite = new Entity("Favourite");
-    favourite.setProperty("email", email);
-    favourite.setProperty("recommendation-id", recommendationId);
-    datastore.put(favourite);
+    // Send favourited recommendation ID to datastore, if it has not been stored
+    if(!isFavourite(email, recommendationId)) {
+      Entity favourite = new Entity("Favourite");
+      favourite.setProperty("email", email);
+      favourite.setProperty("recommendation-id", recommendationId);
+      datastore.put(favourite);
+    }
+  }
+
+  private boolean isFavourite(String email, long recommendationId) {
+    Query query = new Query("Favourite")
+      .setFilter(new FilterPredicate("email", FilterOperator.EQUAL, email))
+      .setFilter(new FilterPredicate("recommendation-id", FilterOperator.EQUAL, recommendationId));
+    List<Entity> favourite = datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+    return favourite != null && !favourite.isEmpty();
   }
 
   // Convert datastore entity into recommendation object
