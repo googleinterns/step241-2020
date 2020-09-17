@@ -17,6 +17,7 @@ package com.google.sps.data;
 /** The class represents a recommendation */
 public final class Recommendation {
 
+  private final long id;
   private final String name;
   private final String category;
   private final double lat;
@@ -25,9 +26,10 @@ public final class Recommendation {
   private final int costRating;
   private final int crowdRating;
 
-  public Recommendation(String name, String category, double lat, double lng, 
+  public Recommendation(long id, String name, String category, double lat, double lng, 
       String description, int costRating, int crowdRating)
   {
+    this.id = id;
     this.name = name;
     this.category = category;
     this.lat = lat;
