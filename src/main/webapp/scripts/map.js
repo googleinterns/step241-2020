@@ -196,7 +196,7 @@ function placeMarkerAndPanTo(latLng, map) {
 
 /* Function to place markers from the datastore */
 function placeMarker(markerDetails, map) {
-  marker = new google.maps.Marker ({
+  const marker = new google.maps.Marker ({
     position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
     map: map,
     icon: getColourMarker(formatCategory(markerDetails.category)),
