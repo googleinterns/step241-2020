@@ -30,7 +30,7 @@
 }
 
 /* Close Button [X] for the Popup */
-.popup .close-button {
+#close-button {
   background: #222;
   border-radius: 50%;
   color: #fff;

@@ -2,6 +2,10 @@ h3, p, label {
   color: black;
 }
 
+.content {
+  min-height: 0px;
+}
+
 /* Recommendation Map Styling */
 .map-category-button {
   border-radius: 10px;
@@ -17,6 +21,15 @@ h3, p, label {
   padding: 15px 20px;
   text-align: center;
   width: 18%;
+}
+
+/* Category Button Colours */
+#all-button {
+  background-color: #05ac3c;
+}
+
+#all-button:hover {
+  background-color: #1fd65c;
 }
 
 /* Category Button Colours */
