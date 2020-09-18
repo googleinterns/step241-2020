@@ -40,7 +40,9 @@ public class RecommenderServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get all pairs of recommendation IDs and corresponding distances from user's preference
     List<DistancePair> distances = getRecommendationsDistances(request);
+    // Sort by distance
     Collections.sort(distances);
     // TODO: retrieve and return top 5 recommendations based on the value
   }
@@ -60,6 +62,7 @@ public class RecommenderServlet extends HttpServlet {
 
   private List<Entity> getRecommendationsByCategory(String category){
     Query query = new Query("recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
+    // Get the rating for each factor
     for(String factor : FACTORS) {
       query.addProjection(new PropertyProjection(factor, Integer.class));
     }
