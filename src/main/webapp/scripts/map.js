@@ -113,7 +113,6 @@ function initMap(category) {
   /* this is the case when a category button is clicked */
   if (category) {
     markersToPlace = recommendationMarkers.filter(marker => formatCategory(marker.category) == category);
-    console.log(markersToPlace);
   }
 
   markersToPlace.forEach(marker => placeMarker(marker, map));
