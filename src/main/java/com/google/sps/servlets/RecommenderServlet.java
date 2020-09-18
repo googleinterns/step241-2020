@@ -35,8 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/recommender")
 public class RecommenderServlet extends HttpServlet {
 
-  private final int RECOMMENDATIONS_N = 3;
-  private final String[] FACTORS = {"price", "crowd", "distance"};
+  private final String[] FACTORS = {"price", "crowd"};
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -60,7 +59,7 @@ public class RecommenderServlet extends HttpServlet {
     return distances;
   }
 
-  private List<Entity> getRecommendationsByCategory(String category){
+  private List<Entity> getRecommendationsByCategory(String category) {
     Query query = new Query("recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
     // Get the rating for each factor
     for(String factor : FACTORS) {
