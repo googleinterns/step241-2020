@@ -124,6 +124,7 @@ public class RecommenderServlet extends HttpServlet {
       // Double casting is needed here because in datastore, the int is stored as a long.
       // for reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
       int recommendationRating = (int) (long) recommendation.getProperty(factor);
+
       int preferenceRating = Integer.parseInt(request.getParameter(factor));
       // Square the absolute difference to calculate the distance
       distance += Math.pow((recommendationRating - preferenceRating), 2);
