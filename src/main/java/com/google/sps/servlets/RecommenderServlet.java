@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/recommender")
 public class RecommenderServlet extends HttpServlet {
 
-  private final String[] FACTORS = {"price", "crowd"};
+  private final String[] FACTORS = {"price-rating", "crowd-rating"};
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -60,7 +60,7 @@ public class RecommenderServlet extends HttpServlet {
   }
 
   private List<Entity> getRecommendationsByCategory(String category) {
-    Query query = new Query("recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
+    Query query = new Query("Recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
     // Get the rating for each factor
     for(String factor : FACTORS) {
       query.addProjection(new PropertyProjection(factor, Integer.class));
@@ -72,7 +72,7 @@ public class RecommenderServlet extends HttpServlet {
   private int calculateDistance(HttpServletRequest request, Entity recommendation) {
     int distance = 0;
     // for every factor considered
-    for(String factor : FACTORS) {
+    for (String factor : FACTORS) {
       // get the rating of the recommendation and the rating from the user preference
       int recommendationRating = (int) recommendation.getProperty(factor);
       int preferenceRating = Integer.parseInt(request.getParameter(factor));
