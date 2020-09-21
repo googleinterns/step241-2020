@@ -12,68 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const topRecommendations = [
-  {
-    name: "Pret A Manger",
-    latitude: 51.5252574,
-    longitude: -0.1282885,
-    description: "Counter-serve chain for ready-made sandwiches plus breakfast, coffee, soups & salads.",
-    crowd: 3,
-    price: 1
-  },
-  {
-    name: "Wasabi",
-    description: "Light-filled, modern chain branch serving up bento boxes, sushi and hot Japanese dishes.",
-    latitude: 51.5172219,
-    longitude: -0.1334257,
-    crowd: 3,
-    price: 2
-  },
-  {
-    name: "Shake Shack",
-    description: "Branch of an American chain known for its gourmet burgers & frozen custard shakes. Dog-friendly.",
-    latitude: 51.5172383,
-    longitude: -0.1399918,
-    crowd: 2,
-    price: 2
-  },
-  {
-    name: "Taco Bell",
-    latitude: 51.5203205,
-    longitude: -0.125156,
-    description: "Fast-food chain serving Mexican-inspired fare such as tacos, quesadillas & nachos.",
-    crowd: 4,
-    price: 1
-  },
-  {
-    name: "KFC",
-    latitude: 51.5204878,
-    longitude: -0.1431986,
-    description: "Fast-food chain known for its buckets of fried chicken, plus wings & sides.",
-    crowd: 4,
-    price: 2
-  }
-];
-
-/* Load top 5 recommendations */
 function loadTopRecommendations() {
-  const topRecommendationsList = document.getElementById("top-recommendations-list");
-  topRecommendationsList.innerHTML = "";
+  // Get category, costRating and crowdRating from user input radio buttons
+  var chosenCategory = document.querySelector('input[name="recommendation-category"]:checked').value;
+  var preferredCost = document.querySelector('input[name="price"]:checked').value;
+  var preferredCrowd = document.querySelector('input[name="crowd"]:checked').value;
 
+  fetch('/recommender?category=' + chosenCategory +"&cost-rating=" 
+      + preferredCost +"&crowd-rating=" + preferredCrowd)
+  .then(response => response.json())
+  .then((recommendations) => {
+    for (var j = 0; j < 5; j++) {
+      displayRecommendation(recommendations[j], j+1);
+    }
+  });
+}
+
+/* Update HTML to display recommendation */
+function displayRecommendation(recommendation, j) {
+  const topRecommendationsList = document.getElementById("top-recommendations-list");
   const recommendationBox = document.createElement("div");
   recommendationBox.className = "recommendation-box";
-  for (var i = 1; i <= topRecommendations.length; i++) {
-    const topRecommendation = topRecommendations[i - 1];
-    const recommendationBox = document.createElement("div");
-    recommendationBox.className = "recommendation-box";
-    if (i == 1) {
+  // if highest recommendation, label with 'Most Recommended' in the HTML
+  if (j == 1) {
       recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
-    }
-    const nameHTML = "<h3><b>#" + i + " " + topRecommendation.name + "</b></h3>";
-    const locationHTML = "<p>latitiude: " + topRecommendation.latitude + ", longitude: " + topRecommendation.longitude + "</p>";
-    const ratingHTML = "<p>crowd: " + topRecommendation.crowd + "/5, price: " + topRecommendation.price + "/5</p>";
-    const descriptionHTML = "<p>" + topRecommendation.description + "</p>";
-    recommendationBox.innerHTML += nameHTML + locationHTML + ratingHTML + descriptionHTML;
-    topRecommendationsList.append(recommendationBox);
   }
+  const nameHTML = "<h3><b>#" + j + " " + recommendation.name + "</b></h3>";
+  const locationHTML = "<p>latitiude: " + recommendation.lat + ", longitude: " + recommendation.lng + "</p>";
+  const ratingHTML = "<p>crowd: " + recommendation.crowdRating + "/5, price: " + recommendation.costRating + "/5</p>";
+  const descriptionHTML = "<p>" + recommendation.description + "</p>";
+  recommendationBox.innerHTML += nameHTML + locationHTML + ratingHTML + descriptionHTML;
+  topRecommendationsList.append(recommendationBox);
 }
