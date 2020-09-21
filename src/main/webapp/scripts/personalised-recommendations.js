@@ -35,7 +35,7 @@ function displayRecommendation(recommendation, j) {
   recommendationBox.className = "recommendation-box";
   // if highest recommendation, label with 'Most Recommended' in the HTML
   if (j == 1) {
-      recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
+    recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
   }
   const nameHTML = "<h3><b>#" + j + " " + recommendation.name + "</b></h3>";
   const locationHTML = "<p>latitiude: " + recommendation.lat + ", longitude: " + recommendation.lng + "</p>";
