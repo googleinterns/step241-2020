@@ -38,7 +38,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that sends and get user data to and from the datastore */
+/** Servlet that sends and gets user's favourite recommendation */
 @WebServlet("/favourite")
 public class FavouriteServlet extends HttpServlet {
 
@@ -53,7 +53,7 @@ public class FavouriteServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get list of user's favourite recommendation from datastore
+    // Get list of user's favourite recommendations from datastore
     String email = userService.getCurrentUser().getEmail();
     Query query = new Query("Favourite").setFilter(new FilterPredicate("email", FilterOperator.EQUAL, email));
     PreparedQuery prepared = datastore.prepare(query);
@@ -109,6 +109,8 @@ public class FavouriteServlet extends HttpServlet {
     double lng = (double) recommendation.getProperty("longitude");
     String category = (String) recommendation.getProperty("category");
     String description = (String) recommendation.getProperty("description");
+    // double casting is needed since integer is stored as long integer in datastore.
+    // Reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
     int costRating = (int) (long) recommendation.getProperty("cost-rating");
     int crowdRating = (int) (long) recommendation.getProperty("crowd-rating");
     return new Recommendation(id, name, category, lat, lng, description, costRating, crowdRating);
