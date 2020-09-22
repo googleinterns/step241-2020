@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/recommender")
 public class RecommenderServlet extends HttpServlet {
 
-  private final String[] FACTORS = {"price-rating", "crowd-rating"};
+  private final String[] FACTORS = {"cost-rating", "crowd-rating"};
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
