@@ -22,10 +22,7 @@ function loadTopRecommendations() {
       + preferredCost +"&crowd-rating=" + preferredCrowd)
   .then(response => response.json())
   .then((recommendations) => {
-    // for (var j = 0; j < 5; j++) {
-    //   displayRecommendation(recommendations[j], j+1);
-    // }
-      displayRecommendation(recommendations);
+    displayRecommendation(recommendations);
   });
 }
 
