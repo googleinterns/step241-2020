@@ -84,7 +84,7 @@ const greyIcon = {
 
 let recommendationMarkers = [];
 
-/* Fetch all stored recommendation markers from datastore and initialize map*/
+/* Fetch all stored recommendation markers from datastore and initialize map. */
 function init() {
   fetch('/all-markers').then(response => response.json()).then((markers) => {
     recommendationMarkers = markers;
@@ -111,11 +111,8 @@ function initMap(category) {
   let markersToPlace = recommendationMarkers;
   /* Filter out the recommendation markers by category if a category parameter is passed */
   /* this is the case when a category button is clicked */
-  if (category) {
-    markersToPlace = recommendationMarkers.filter(marker => formatCategory(marker.category) == category);
-  }
-
-  markersToPlace.forEach(marker => placeMarker(marker, map));
+  recommendationMarkers.filter(marker => !category || formatCategory(marker.category) == category)
+      .forEach(marker => placeMarker(marker, map));
 }
 
 /* Place Marker Where Map is Clicked On & Show Popup*/
