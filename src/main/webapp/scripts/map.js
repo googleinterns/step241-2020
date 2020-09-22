@@ -108,7 +108,6 @@ function initMap(category) {
     placeMarkerAndPanTo(e.latLng, map);
   });
 
-  let markersToPlace = recommendationMarkers;
   /* Filter out the recommendation markers by category if a category parameter is passed */
   /* this is the case when a category button is clicked */
   recommendationMarkers.filter(marker => !category || formatCategory(marker.category) == category)
