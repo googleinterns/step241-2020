@@ -15,7 +15,7 @@
       defer
     ></script>
   </head>
-  <body onload="initMap()">
+  <body onload="init()">
     <div class="header">
       <h1>Student Recommendations</h1>
       <h2>a recommendation system for students, by students!</h2>
@@ -49,8 +49,9 @@
       <!-- The Recommendation Map -->
       <div class="map-container">
         <div class="map-category-section">
+          <button class="map-category-button" id="all-button" onclick="initMap()">All</button>
           <button class="map-category-button" id="restaurants-button" onclick="initMap('Restaurants')">Restaurants</button>
-          <button class="map-category-button" id="places-button" onclick="initMap('Places To Visit')">Places to Visit</button>
+          <button class="map-category-button" id="places-button" onclick="initMap('Places to Visit')">Places to Visit</button>
           <button class="map-category-button" id="bars-and-clubs-button" onclick="initMap('Bars and Clubs')">Bars and Clubs</button>
           <button class="map-category-button" id="study-button" onclick="initMap('Study Places')">Study Places</button>
         </div>
@@ -70,7 +71,7 @@
     <div class="popup" id="popup-add-recs">
       <div class="overlay"></div>
       <div class="popup-content">
-        <div class="close-button" onclick="togglePopup()">&times;</div>
+        <div id="close-button">&times;</div>
         <h2>Add Recommendation</h2>
         <p>Please fill out this form to add a recommendation.</p>
         <!-- Form for Adding Recommendation -->

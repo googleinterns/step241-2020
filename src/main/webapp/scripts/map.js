@@ -82,8 +82,18 @@ const greyIcon = {
   scaledSize: new Image(30, 40)
 }
 
+let recommendationMarkers = [];
+
+/* Fetch all stored recommendation markers from datastore and initialize map. */
+function init() {
+  fetch('/all-markers').then(response => response.json()).then((markers) => {
+    recommendationMarkers = markers;
+    initMap();
+  });
+}
+
 /* Set Up Map */
-function initMap(category) { 
+function initMap(category) {
   /* 'Hard Coded' origin, Google UK Pancras Square */
   const origin = {
     lat: 51.533364, 
@@ -93,55 +103,59 @@ function initMap(category) {
     center: origin,
     zoom: 15
   });
-  
-  /* Get all stored recommendation lat, lng and id */
-  fetchAndPlaceMarkers(map);
 
   map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
 
-  /* Filter out the recommendations by category if a category parameter is passed */
+  /* Filter out the recommendation markers by category if a category parameter is passed */
   /* this is the case when a category button is clicked */
-  if (category) {
-    addMarker(map, recommendations.filter(recommendation => recommendation.category === category));
-  }
-  /* Add all recommendations if there is no parameter given (when loading the page) */
-  else {
-    addMarker(map, recommendations);
-  }
+  recommendationMarkers.filter(marker => !category || formatCategory(marker.category) == category)
+      .forEach(marker => placeMarker(marker, map));
 }
 
-/* Add Hard-Coded Markers to map */
-function addMarker(map, recommendationsToAdd) {
-  /* Iterate through stored recommendationsToAdd to get details */
-  for (i = 0; i < recommendationsToAdd.length; i++) {
-    const recommendation = recommendationsToAdd[i];
-    const placeCategory = recommendation.category;
-    const placeName = recommendation.name;
-    const placeLatLng = new google.maps.LatLng(recommendation.lat, recommendation.lng);
-    const placeRecommendation = recommendation.description;
-    /* TODO link the marker to the placeCost, placeCrowd, placeRecommendation (to store recommendation) */
-    const marker = new google.maps.Marker({
-      position: placeLatLng,
-      map: map,
-      title: placeName,
-      icon: getColourMarker(placeCategory)
-    });
-    /* Add Listener for Click on Marker */
-    google.maps.event.addListener(marker, "click", () => {
-      /* Update the HTML */
-      document.getElementById("category-header").innerHTML = placeCategory;
-      document.getElementById("category-header").style.backgroundColor = getBackgroundColour(placeCategory);
-      document.getElementById("place-title").innerHTML = placeName;
-      document.getElementById("rec-address").innerHTML = placeLatLng;
-      document.getElementById("place-recommendation").innerHTML = placeRecommendation;
-      document.getElementById("rec-container").style.display = "block";
-      /* Adjust the map settings */
-      map.setZoom(16);
-      map.setCenter(marker.getPosition());
-    });
-  }
+/* Place Marker Where Map is Clicked On & Show Popup*/
+function placeMarkerAndPanTo(latLng, map) {
+  const marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+    icon: greyIcon
+  });
+  /* Recenter the Map */
+  map.panTo(latLng);
+  /* Update the latitude and longitude values in the popup */
+  populateLocation(latLng);
+  document.getElementById("close-button").onclick = () => closePopup(marker);
+  togglePopup();
+}
+
+/* Function to place markers from the datastore */
+function placeMarker(markerDetails, map) {
+  const marker = new google.maps.Marker ({
+    position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
+    map: map,
+    icon: getColourMarker(formatCategory(markerDetails.category)),
+    id: markerDetails.id
+  });
+
+  /* Add Listener for Click on Marker */
+   marker.addListener("click", () => {
+     fetchRecommendationInfo(marker.id);
+   });
+}
+
+/* Get recommendation from datastore and fill html */
+function fetchRecommendationInfo(id) {
+  fetch("/recommendation?id=" + id).then(result => result.json()).then((recommendation) => {
+    /* Update the HTML */
+    const formattedCategory = formatCategory(recommendation.category);
+    document.getElementById("category-header").innerHTML = formattedCategory;
+    document.getElementById("category-header").style.backgroundColor = getBackgroundColour(formattedCategory);
+    document.getElementById("place-title").innerHTML = recommendation.name;
+    document.getElementById("rec-address").innerHTML = recommendation.lat + ", " + recommendation.lng;
+    document.getElementById("place-recommendation").innerHTML = recommendation.description;
+    document.getElementById("rec-container").style.display = "block";
+  });
 }
 
 function getBackgroundColour(category) {
@@ -175,54 +189,6 @@ function getColourMarker(category) {
   }
 }
 
-/* Place Marker Where Map is Clicked On & Show Popup*/
-function placeMarkerAndPanTo(latLng, map) {
-  const marker = new google.maps.Marker({
-    position: latLng,
-    map: map,
-    icon: greyIcon
-  });
-  /* Recenter the Map */
-  map.panTo(latLng);
-  togglePopup();
-  /* Update the latitude and longitude values in the popup */
-  populateLocation(latLng);
-
-  /* If marker is right-clicked, delete */
-  google.maps.event.addListener(marker, "rightclick", function(event) {
-    marker.setMap(null);
-  });
-}
-
-/* Function to place markers from the datastore */
-function placeMarker(markerDetails, map) {
-  const marker = new google.maps.Marker ({
-    position: new google.maps.LatLng(markerDetails.lat, markerDetails.lng),
-    map: map,
-    icon: getColourMarker(formatCategory(markerDetails.category)),
-    id: markerDetails.id
-  });
-
-  /* Add Listener for Click on Marker */
-   marker.addListener("click", () => {
-     fetchRecommendationInfo(marker.id);
-   });
-}
-
-/* Get recommendation from datastore and fill html */
-function fetchRecommendationInfo(id) {
-  fetch("/recommendation?id=" + id).then(result => result.json()).then((recommendation) => {
-    /* Update the HTML */
-    const formattedCategory = formatCategory(recommendation.category);
-    document.getElementById("category-header").innerHTML = formattedCategory;
-    document.getElementById("category-header").style.backgroundColor = getBackgroundColour(formattedCategory);
-    document.getElementById("place-title").innerHTML = recommendation.name;
-    document.getElementById("rec-address").innerHTML = recommendation.lat+", "+recommendation.lng;
-    document.getElementById("place-recommendation").innerHTML = recommendation.description;
-    document.getElementById("rec-container").style.display = "block";
-  });
-}
-
 /* Formats the category string */
 function formatCategory(category) {
   switch(category) {
@@ -242,22 +208,16 @@ function formatCategory(category) {
 /* Set the PopUp to Active */
 function togglePopup() {
   document.getElementById("popup-add-recs").classList.toggle("active");
-  // TODO clear list of events / previously added event listeners
+}
+
+function closePopup(marker) {
+  // delete greyIcon marker when popup box is closed
+  marker.setMap(null);
+  togglePopup();
 }
 
 /* Use the position of marker on map to auto-fill location */
 function populateLocation(pos) {
   const location = pos.lat() + ", " + pos.lng();
   document.getElementById("location").value = location;
-}
-
-/* Fetch all markers from datastore and add to map*/
-function fetchAndPlaceMarkers(map) {
-  fetch('/all-markers')
-  .then(response => response.json())
-  .then((markers) => {
-    markers.forEach((marker) => {
-      placeMarker(marker, map);
-    });
-  });
 }
