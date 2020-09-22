@@ -111,7 +111,7 @@ public class RecommenderServlet extends HttpServlet {
   private List<Entity> getRecommendationsByCategory(String category) {
     Query query = new Query("Recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
     // Get the rating for each factor
-    for(String factor : FACTORS) {
+    for (String factor : FACTORS) {
       query.addProjection(new PropertyProjection(factor, Integer.class));
     }
     return datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
@@ -120,11 +120,10 @@ public class RecommenderServlet extends HttpServlet {
   private int calculateDistance(HttpServletRequest request, Entity recommendation) {
     int distance = 0;
     // Get the rating of the recommendation and the rating from the user preference for each factor
-    for(String factor : FACTORS) {
+    for (String factor : FACTORS) {
       // Double casting is needed here because in datastore, the int is stored as a long.
       // for reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
       int recommendationRating = (int) (long) recommendation.getProperty(factor);
-
       int preferenceRating = Integer.parseInt(request.getParameter(factor));
       // Square the absolute difference to calculate the distance
       distance += Math.pow((recommendationRating - preferenceRating), 2);
