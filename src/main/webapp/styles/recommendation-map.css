@@ -4,6 +4,7 @@ h3, p, label {
 
 .content {
   min-height: 0px;
+  display: flex;
 }
 
 /* Recommendation Map Styling */
@@ -93,11 +94,6 @@ h3, p, label {
   height: 500px;
   flex: 0 0 50%;
   margin: 40px;
-}
-
-/* Content from Above Map */
-.content {
-  display: flex;
 }
 
 .info-paragraph {
