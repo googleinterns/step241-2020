@@ -22,25 +22,29 @@ function loadTopRecommendations() {
       + preferredCost +"&crowd-rating=" + preferredCrowd)
   .then(response => response.json())
   .then((recommendations) => {
-    for (var j = 0; j < 5; j++) {
-      displayRecommendation(recommendations[j], j+1);
-    }
+    // for (var j = 0; j < 5; j++) {
+    //   displayRecommendation(recommendations[j], j+1);
+    // }
+      displayRecommendation(recommendations);
   });
 }
 
 /* Update HTML to display recommendation */
-function displayRecommendation(recommendation, j) {
+function displayRecommendation(recommendations) {
   const topRecommendationsList = document.getElementById("top-recommendations-list");
-  const recommendationBox = document.createElement("div");
-  recommendationBox.className = "recommendation-box";
-  // if highest recommendation, label with 'Most Recommended' in the HTML
-  if (j == 1) {
-    recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
+  topRecommendationsList.innerHTML = "";
+  for (var j = 0; j < 5; j++) {
+    const recommendationBox = document.createElement("div");
+    recommendationBox.className = "recommendation-box";
+    // if highest recommendation, label with 'Most Recommended' in the HTML
+    if (j == 0) {
+      recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
+    }
+    const nameHTML = "<h3><b>#" + (j+1) + " " + recommendations[j].name + "</b></h3>";
+    const locationHTML = "<p>latitiude: " + recommendations[j].lat + ", longitude: " + recommendations[j].lng + "</p>";
+    const ratingHTML = "<p>crowd: " + recommendations[j].crowdRating + "/5, price: " + recommendations[j].costRating + "/5</p>";
+    const descriptionHTML = "<p>" + recommendations[j].description + "</p>";
+    recommendationBox.innerHTML += nameHTML + locationHTML + ratingHTML + descriptionHTML;
+    topRecommendationsList.append(recommendationBox);
   }
-  const nameHTML = "<h3><b>#" + j + " " + recommendation.name + "</b></h3>";
-  const locationHTML = "<p>latitiude: " + recommendation.lat + ", longitude: " + recommendation.lng + "</p>";
-  const ratingHTML = "<p>crowd: " + recommendation.crowdRating + "/5, price: " + recommendation.costRating + "/5</p>";
-  const descriptionHTML = "<p>" + recommendation.description + "</p>";
-  recommendationBox.innerHTML += nameHTML + locationHTML + ratingHTML + descriptionHTML;
-  topRecommendationsList.append(recommendationBox);
 }
