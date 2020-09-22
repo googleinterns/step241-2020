@@ -14,14 +14,12 @@
 
 function loadTopRecommendations() {
   // Get category, costRating and crowdRating from user input radio buttons
-  var chosenCategory = document.querySelector('input[name="recommendation-category"]:checked').value;
-  var preferredCost = document.querySelector('input[name="price"]:checked').value;
-  var preferredCrowd = document.querySelector('input[name="crowd"]:checked').value;
-
-  fetch('/recommender?category=' + chosenCategory +"&cost-rating=" 
-      + preferredCost +"&crowd-rating=" + preferredCrowd)
-  .then(response => response.json())
-  .then((recommendations) => {
+  const chosenCategory = document.querySelector('input[name="recommendation-category"]:checked').value;
+  const preferredCost = document.querySelector('input[name="price"]:checked').value;
+  const preferredCrowd = document.querySelector('input[name="crowd"]:checked').value;
+  const url = "recommender?category=" + chosenCategory +"&cost-rating=" 
+      + preferredCost +"&crowd-rating=" + preferredCrowd;
+  fetch(url).then(response => response.json()).then((recommendations) => {
     displayRecommendation(recommendations);
   });
 }
@@ -30,17 +28,18 @@ function loadTopRecommendations() {
 function displayRecommendation(recommendations) {
   const topRecommendationsList = document.getElementById("top-recommendations-list");
   topRecommendationsList.innerHTML = "";
-  for (var j = 0; j < 5; j++) {
+  for (var i = 0; i < 5; i++) {
     const recommendationBox = document.createElement("div");
     recommendationBox.className = "recommendation-box";
     // if highest recommendation, label with 'Most Recommended' in the HTML
-    if (j == 0) {
+    if (i == 0) {
       recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
     }
-    const nameHTML = "<h3><b>#" + (j+1) + " " + recommendations[j].name + "</b></h3>";
-    const locationHTML = "<p>latitiude: " + recommendations[j].lat + ", longitude: " + recommendations[j].lng + "</p>";
-    const ratingHTML = "<p>crowd: " + recommendations[j].crowdRating + "/5, price: " + recommendations[j].costRating + "/5</p>";
-    const descriptionHTML = "<p>" + recommendations[j].description + "</p>";
+    const recommendation = recommendations[i];
+    const nameHTML = "<h3><b>#" + (i+1) + " " + recommendation.name + "</b></h3>";
+    const locationHTML = "<p>latitiude: " + recommendation.lat + ", longitude: " + recommendation.lng + "</p>";
+    const ratingHTML = "<p>crowd: " + recommendation.crowdRating + "/5, price: " + recommendation.costRating + "/5</p>";
+    const descriptionHTML = "<p>" + recommendation.description + "</p>";
     recommendationBox.innerHTML += nameHTML + locationHTML + ratingHTML + descriptionHTML;
     topRecommendationsList.append(recommendationBox);
   }
