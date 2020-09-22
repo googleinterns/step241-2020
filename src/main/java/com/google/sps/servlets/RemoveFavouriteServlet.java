@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that remove a user's favourite recommendation from datastore */
+/** Servlet that removes a user's favourite recommendation from datastore */
 @WebServlet("/remove-favourite")
 public class RemoveFavouriteServlet extends HttpServlet {
 
