@@ -62,7 +62,7 @@ public class RecommenderServlet extends HttpServlet {
   private List<Entity> getRecommendationsByCategory(String category) {
     Query query = new Query("Recommendation").setFilter(new FilterPredicate("category", FilterOperator.EQUAL, category));
     // Get the rating for each factor
-    for(String factor : FACTORS) {
+    for (String factor : FACTORS) {
       query.addProjection(new PropertyProjection(factor, Integer.class));
     }
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
