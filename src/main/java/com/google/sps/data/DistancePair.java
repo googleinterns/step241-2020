@@ -31,4 +31,12 @@ public final class DistancePair implements Comparable<DistancePair>{
   public int compareTo(DistancePair that) {
     return this.distance - that.distance;
   }
+
+  public long getId() {
+    return this.id;
+  }
+
+  public long getDistance() {
+    return this.distance;
+  }
 }
