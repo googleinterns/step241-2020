@@ -122,15 +122,6 @@ public class PersonalDataServlet extends HttpServlet {
 
   // Get URL to the uploaded file
   private String getUploadedFileUrl(HttpServletRequest request) {
-    // User does not submit any file
-    try {
-      if(request.getPart("user-img").getSize() == 0) {
-        return null;
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
     List<BlobKey> blobKeys = blobstoreService.getUploads(request).get("user-img");
 
     // User submitted form without selecting a file, so we can't get a URL. (devserver)
@@ -147,7 +138,8 @@ public class PersonalDataServlet extends HttpServlet {
     }
 
     // Use ImagesService to get a URL that points to the uploaded file.
-    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
-    return ImagesServiceFactory.getImagesService().getServingUrl(options);
+    // ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
+    // return ImagesServiceFactory.getImagesService().getServingUrl(options);
+    return "https://storage.cloud.google.com" + blobInfo.getGsObjectName();
   }
 }

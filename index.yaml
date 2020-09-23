@@ -1,0 +1,10 @@
+indexes:
+- kind: Recommendation
+  properties:
+  - name: category
+  - name: latitude
+  - name: longitude
+- kind: Recommendation
+  properties:
+  - name: cost-rating
+  - name: crowd-rating
