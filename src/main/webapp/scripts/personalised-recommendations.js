@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* Load top 5 recommendations */
 function loadTopRecommendations() {
   // Get category, costRating and crowdRating from user input radio buttons
   const chosenCategory = document.querySelector('input[name="recommendation-category"]:checked').value;
@@ -36,7 +37,7 @@ function displayRecommendation(recommendations) {
       recommendationBox.innerHTML = "<p class=\"top-recommendation\">Most Recommended</p>";
     }
     const recommendation = recommendations[i];
-    const nameHTML = "<h3><b>#" + (i+1) + " " + recommendation.name + "</b></h3>";
+    const nameHTML = "<h3><b>#" + (i + 1) + " " + recommendation.name + "</b></h3>";
     const locationHTML = "<p>latitiude: " + recommendation.lat + ", longitude: " + recommendation.lng + "</p>";
     const ratingHTML = "<p>crowd: " + recommendation.crowdRating + "/5, price: " + recommendation.costRating + "/5</p>";
     const descriptionHTML = "<p>" + recommendation.description + "</p>";

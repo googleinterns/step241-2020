@@ -50,13 +50,6 @@ public class RecommenderServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String name = "";
-    String category = "";
-    String description = "";
-    double lat = 0.0;
-    double lng = 0.0;
-    int costRating = 0;
-    int crowdRating = 0;
     
     List<Recommendation> recommendations = new ArrayList<>();
     
@@ -73,15 +66,15 @@ public class RecommenderServlet extends HttpServlet {
         Key key = KeyFactory.createKey("Recommendation", id);
         Entity recommendation = datastore.get(key);
         // Get details of recommendation
-        name = (String) recommendation.getProperty("place-name");
-        category = (String) recommendation.getProperty("category");
-        lat = (double) recommendation.getProperty("latitude");
-        lng = (double) recommendation.getProperty("longitude");
-        description = (String) recommendation.getProperty("description");
+        String name = (String) recommendation.getProperty("place-name");
+        String category = (String) recommendation.getProperty("category");
+        double lat = (double) recommendation.getProperty("latitude");
+        double lng = (double) recommendation.getProperty("longitude");
+        String description = (String) recommendation.getProperty("description");
         // Double casting is needed here because the integer is stored as a long integer in datastore.
         // for reference: https://cloud.google.com/appengine/docs/standard/java/datastore/entities#Properties_and_value_types
-        costRating = (int) (long) recommendation.getProperty("cost-rating");
-        crowdRating = (int) (long) recommendation.getProperty("crowd-rating");
+        int costRating = (int) (long) recommendation.getProperty("cost-rating");
+        int crowdRating = (int) (long) recommendation.getProperty("crowd-rating");
         Recommendation featuredRecommendation = new Recommendation(name, category, lat, lng, description, costRating, crowdRating);
         // Add the recommendation to recommendations list to be returned
         recommendations.add(featuredRecommendation);
