@@ -29,7 +29,7 @@ function loadTopRecommendations() {
 function displayRecommendation(recommendations) {
   const topRecommendationsList = document.getElementById("top-recommendations-list");
   topRecommendationsList.innerHTML = "";
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < recommendations.length; i++) {
     const recommendationBox = document.createElement("div");
     recommendationBox.className = "recommendation-box";
     // if highest recommendation, label with 'Most Recommended' in the HTML

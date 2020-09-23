@@ -58,7 +58,7 @@ public class RecommenderServlet extends HttpServlet {
     // Sort by distance
     Collections.sort(distances);
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < Math.min(5, distances.size()); i++) {
       // Get recommendation ID
       DistancePair recommendationDistance = distances.get(i);
       long id = recommendationDistance.getId();
