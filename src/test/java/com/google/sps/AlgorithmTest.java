@@ -290,5 +290,4 @@ public final class AlgorithmTest {
     // Check if json returned from recommender servlet is as expected
     assertEquals(json+"\n", stringWriter.toString());
   }  
-
 }
