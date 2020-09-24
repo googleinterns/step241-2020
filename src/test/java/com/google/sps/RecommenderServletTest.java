@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
 package com.google.sps.servlets;
 
 import static com.google.appengine.api.datastore.FetchOptions.Builder.withLimit;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -26,7 +27,8 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.sps.data.Recommendation;
 import com.google.gson.Gson;
-import java.io.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -38,7 +40,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public final class AlgorithmTest {
+public final class RecommenderServletTest {
     
   private final LocalServiceTestHelper helper =
       new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
@@ -57,7 +59,7 @@ public final class AlgorithmTest {
     restaurantA.setProperty("category", "restaurants");
     restaurantA.setProperty("description", "A great place to eat");
     restaurantA.setProperty("cost-rating", 1);
-    restaurantA.setProperty("crowd-rating", 1);
+    restaurantA.setProperty("crowd-rating", 2);
     Entity restaurantB = new Entity("Recommendation");
     restaurantB.setProperty("place-name", "Restaurant B");
     restaurantB.setProperty("latitude", 52.0);
@@ -81,7 +83,7 @@ public final class AlgorithmTest {
     restaurantD.setProperty("category", "restaurants");
     restaurantD.setProperty("description", "A charming place to eat");
     restaurantD.setProperty("cost-rating", 4);
-    restaurantD.setProperty("crowd-rating", 4);
+    restaurantD.setProperty("crowd-rating", 3);
     Entity restaurantE = new Entity("Recommendation");
     restaurantE.setProperty("place-name", "Restaurant E");
     restaurantE.setProperty("latitude", 55.0);
@@ -90,7 +92,8 @@ public final class AlgorithmTest {
     restaurantE.setProperty("description", "A popular place to eat");
     restaurantE.setProperty("cost-rating", 5);
     restaurantE.setProperty("crowd-rating", 5);
-    // Places to Visit
+    
+    // Places to Study
     Entity studyPlaceA = new Entity("Recommendation");
     studyPlaceA.setProperty("place-name", "Study Place A");
     studyPlaceA.setProperty("latitude", 60.0);
@@ -107,6 +110,7 @@ public final class AlgorithmTest {
     studyPlaceB.setProperty("description", "A very popular place to study.");
     studyPlaceB.setProperty("cost-rating", 5);
     studyPlaceB.setProperty("crowd-rating", 5);
+    
     // Places to Visit
     Entity placeToVisitA = new Entity("Recommendation");
     placeToVisitA.setProperty("place-name", "Place To Visit A");
@@ -155,7 +159,8 @@ public final class AlgorithmTest {
     placeToVisitF.setProperty("category", "places-to-visit");
     placeToVisitF.setProperty("description", "A wonderful place to visit.");
     placeToVisitF.setProperty("cost-rating", 2);
-    placeToVisitF.setProperty("crowd-rating", 1);
+    placeToVisitF.setProperty("crowd-rating", 2);
+    
     // Store recommendations in datastore
     ds.put(restaurantA);
     ds.put(restaurantB);
@@ -176,118 +181,93 @@ public final class AlgorithmTest {
   public void tearDown() {
     helper.tearDown();
   }
+  
+  // Function to mock the request and response
+  public String helperFunction (String category, String costRating, String crowdRating) throws Exception {
+    // Mock request and mock response
+    HttpServletRequest request = mock(HttpServletRequest.class);
+    HttpServletResponse response = mock(HttpServletResponse.class);
+    when(request.getParameter("category")).thenReturn(category);
+    when(request.getParameter("cost-rating")).thenReturn(costRating);
+    when(request.getParameter("crowd-rating")).thenReturn(crowdRating);
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter writer = new PrintWriter(stringWriter);
+    when(response.getWriter()).thenReturn(writer);
+    myServlet.doGet(request, response);
+    writer.flush();
+    return(stringWriter.toString());
+  }
 
   @Test
-  public void testAllFiveReturned() throws Exception{
+  public void allFiveReturned() throws Exception {
     // When there are exactly five recommendations of that category, the algorithm should return  
     // all 5 recommendations. The coordinate formed by (cost-rating, crowd-rating) should be closest
     // to the coordinate of user preference for the first recommendation, then respectively for 
     // the remaining 4 (lowest Euclidean distance)
-
-    // Mock request and mock response
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-    when(request.getParameter("category")).thenReturn("restaurants");
-    when(request.getParameter("cost-rating")).thenReturn("3");
-    when(request.getParameter("crowd-rating")).thenReturn("3");
-    StringWriter stringWriter = new StringWriter();
-    PrintWriter writer = new PrintWriter(stringWriter);
-    when(response.getWriter()).thenReturn(writer);
-    myServlet.doGet(request, response);
-    writer.flush();
     // 'Top 5' recommendations, ordered using the Euclidean distance (ED) algorithm
     Collection<Recommendation> expected = Arrays.asList(
       new Recommendation("Restaurant C", "restaurants", 53.0, -0.3, "A wonderful place to eat", 3, 3), // ED = 0
-      new Recommendation("Restaurant B", "restaurants", 52.0, -0.2, "A lovely place to eat", 2, 2), // ED = 1
-      new Recommendation("Restaurant D", "restaurants", 54.0, -0.4, "A charming place to eat", 4, 4), // ED = 1
-      new Recommendation("Restaurant A", "restaurants", 51.0, -0.1, "A great place to eat", 1, 1), // ED = sqrt(8) = 2.828...
-      new Recommendation("Restaurant E", "restaurants", 55.0, -0.5, "A popular place to eat", 5, 5) // ED = sqrt(8) = 2.828...
+      new Recommendation("Restaurant D", "restaurants", 54.0, -0.4, "A charming place to eat", 4, 3), // ED = 1
+      new Recommendation("Restaurant B", "restaurants", 52.0, -0.2, "A lovely place to eat", 2, 2), // ED = 2
+      new Recommendation("Restaurant A", "restaurants", 51.0, -0.1, "A great place to eat", 1, 2), // ED = 5
+      new Recommendation("Restaurant E", "restaurants", 55.0, -0.5, "A popular place to eat", 5, 5) // ED = 8
     );
+    String stringWriter = helperFunction("restaurants", "3", "3");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json+"\n", stringWriter.toString());
+    assertEquals(json + "\n", stringWriter);
   }
 
   @Test
-  public void testLessThanFiveReturned() throws Exception{
+  public void lessThanFiveReturned() throws Exception{
     // When there are less than five recommendations of that category, the algorithm should return the number that is 
     // there, in the most 'relevant' order based on Euclidean distance from user preference
     // For 'study-places' category, there are only 2 recommendations
 
-    // Mock request and mock response
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-    when(request.getParameter("category")).thenReturn("study-places");
-    when(request.getParameter("cost-rating")).thenReturn("2");
-    when(request.getParameter("crowd-rating")).thenReturn("3");
-    StringWriter stringWriter = new StringWriter();
-    PrintWriter writer = new PrintWriter(stringWriter);
-    when(response.getWriter()).thenReturn(writer);
-    myServlet.doGet(request, response);
-    writer.flush();
     // Only 2 recommendations answers as there are only two for this category, ordered by 'relevance' using the 
     // Euclidean distance (ED) algorithm
     Collection<Recommendation> expected = Arrays.asList(
-      new Recommendation("Study Place A", "study-places", 60.0, -0.6, "Really great place to study.", 1, 1), // ED = sqrt(5) = 2.236...
-      new Recommendation("Study Place B", "study-places", 70.0, -0.7, "A very popular place to study.", 5, 5) // ED = sqrt(13) = 3.605...
+      new Recommendation("Study Place A", "study-places", 60.0, -0.6, "Really great place to study.", 1, 1), // ED = 5
+      new Recommendation("Study Place B", "study-places", 70.0, -0.7, "A very popular place to study.", 5, 5) // ED = 13
     );
+    String stringWriter = helperFunction("study-places", "2", "3");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json+"\n", stringWriter.toString());
+    assertEquals(json + "\n", stringWriter);
   }  
 
   @Test
-  public void testNoRecommendationsReturned() throws Exception{
+  public void noRecommendationsReturned() throws Exception{
     // When there are no recommendations of that category, the algorithm should return no recommendations.
 
-    // Mock request and mock response
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-    when(request.getParameter("category")).thenReturn("bars-and-clubs");
-    when(request.getParameter("cost-rating")).thenReturn("5");
-    when(request.getParameter("crowd-rating")).thenReturn("3");
-    StringWriter stringWriter = new StringWriter();
-    PrintWriter writer = new PrintWriter(stringWriter);
-    when(response.getWriter()).thenReturn(writer);
-    myServlet.doGet(request, response);
-    writer.flush();
     // Empty collection of recommendations
     Collection<Recommendation> expected = Arrays.asList();
+    String stringWriter = helperFunction("bars-and-clubs", "5", "3");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json+"\n", stringWriter.toString());
+    assertEquals(json + "\n", stringWriter);
   }
   
   @Test
-  public void testOnlyFiveReturned() throws Exception{
+  public void onlyFiveReturned() throws Exception{
     // When there are more than five recommendations of that category, the algorithm should return  
     // only the 5 recommendations that are most relevant (have the smallest Euclidean distance from user preference).
 
-    // Mock request and mock response
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
-    when(request.getParameter("category")).thenReturn("places-to-visit");
-    when(request.getParameter("cost-rating")).thenReturn("1");
-    when(request.getParameter("crowd-rating")).thenReturn("1");
-    StringWriter stringWriter = new StringWriter();
-    PrintWriter writer = new PrintWriter(stringWriter);
-    when(response.getWriter()).thenReturn(writer);
-    myServlet.doGet(request, response);
-    writer.flush();
-    // Empty collection of recommendations
+    // Expected top 5 recommendations
     Collection<Recommendation> expected = Arrays.asList(
       new Recommendation("Place To Visit E", "places-to-visit", 40.6, -0.6, "A charming place to visit.", 1, 2), // ED = 1
-      new Recommendation("Place To Visit F", "places-to-visit", 40.7, -0.7, "A wonderful place to visit.", 2, 1), // ED = 1
-      new Recommendation("Place To Visit D", "places-to-visit", 40.5, -0.5, "An interesting place to visit.", 2, 3), // ED = 1
-      new Recommendation("Place To Visit A", "places-to-visit", 40.2, -0.2, "A great place to visit.", 3, 3), // ED = sqrt(5) = 2.236...
-      new Recommendation("Place To Visit C", "places-to-visit", 40.4, -0.4, "A nice place to visit.", 4, 5) // ED = 5
+      new Recommendation("Place To Visit F", "places-to-visit", 40.7, -0.7, "A wonderful place to visit.", 2, 2), // ED = 2
+      new Recommendation("Place To Visit D", "places-to-visit", 40.5, -0.5, "An interesting place to visit.", 2, 3), // ED = 5
+      new Recommendation("Place To Visit A", "places-to-visit", 40.2, -0.2, "A great place to visit.", 3, 3), // ED = 8
+      new Recommendation("Place To Visit C", "places-to-visit", 40.4, -0.4, "A nice place to visit.", 4, 5) // ED = 25
     );
+    String stringWriter = helperFunction("places-to-visit", "1", "1");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json+"\n", stringWriter.toString());
+    assertEquals(json + "\n", stringWriter);
   }  
 }

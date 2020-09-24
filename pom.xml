@@ -58,18 +58,6 @@
       <version>1.9.64</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.google.appengine</groupId>
-      <artifactId>appengine-tools-sdk</artifactId>
-      <version>1.9.64</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.api-client</groupId>
-      <artifactId>google-api-client-appengine</artifactId>
-      <version>1.23.0</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   
   <build>
