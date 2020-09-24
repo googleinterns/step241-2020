@@ -288,8 +288,6 @@ public final class AlgorithmTest {
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    System.out.println("expected: "+ json);
-    System.out.println("stringWr: "+stringWriter.toString());
     assertEquals(json+"\n", stringWriter.toString());
   }  
 
