@@ -24,11 +24,11 @@ window.onload = function() {
       // On the login page put the link to login with email on the login button 
       document.getElementById("login-link").href = details.loginURL;
     }
-    else if (window.location.href === loginPageURL) {
-      // If user is logged in and currently on login page, then redirect to the recommendation map
-      const recommendationMapURL = loginPageURL + "recommendation-map.html"
-      window.location.href = recommendationMapURL;
-    }
+    // else if (window.location.href === loginPageURL) {
+    //   // If user is logged in and currently on login page, then redirect to the recommendation map
+    //   const recommendationMapURL = loginPageURL + "recommendation-map.html"
+    //   window.location.href = recommendationMapURL;
+    // }
   });
 }
 

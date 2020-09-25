@@ -20,6 +20,9 @@ function generateUserDetails() {
   fetch("/user-data?email=" + email).then(result => result.json()).then((user) => {
     document.getElementById("title").innerHTML = user.name;
     const userDetailsElement = document.getElementById("user-details");
+    if ( !user.hasOwnProperty("profilePictureUrl") ) {
+      user.profilePictureUrl = "/images/avatar.jpg";
+    }
     const profilePictureHTML = "<img class=\"profile-pic\" src=\"" + user.profilePictureUrl + "\"></img>";
     const departmentHTML = "<h2>" + user.department + " Year "+ user.year + "</h2>";
     const phoneHTML = "<h3>" + user.phone + "</h3>";
