@@ -183,7 +183,7 @@ public final class RecommenderServletTest {
   }
   
   // Function to mock the request and response
-  public String helperFunction (String category, String costRating, String crowdRating) throws Exception {
+  public String getPersonalisedRecommendations (String category, String costRating, String crowdRating) throws Exception {
     // Mock request and mock response
     HttpServletRequest request = mock(HttpServletRequest.class);
     HttpServletResponse response = mock(HttpServletResponse.class);
@@ -195,7 +195,7 @@ public final class RecommenderServletTest {
     when(response.getWriter()).thenReturn(writer);
     myServlet.doGet(request, response);
     writer.flush();
-    return(stringWriter.toString());
+    return stringWriter.toString();
   }
 
   @Test
@@ -212,11 +212,11 @@ public final class RecommenderServletTest {
       new Recommendation("Restaurant A", "restaurants", 51.0, -0.1, "A great place to eat", 1, 2), // ED = 5
       new Recommendation("Restaurant E", "restaurants", 55.0, -0.5, "A popular place to eat", 5, 5) // ED = 8
     );
-    String stringWriter = helperFunction("restaurants", "3", "3");
+    String personalisedRecommendation = getPersonalisedRecommendations("restaurants", "3", "3");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json + "\n", stringWriter);
+    assertEquals(json + "\n", personalisedRecommendation);
   }
 
   @Test
@@ -231,11 +231,11 @@ public final class RecommenderServletTest {
       new Recommendation("Study Place A", "study-places", 60.0, -0.6, "Really great place to study.", 1, 1), // ED = 5
       new Recommendation("Study Place B", "study-places", 70.0, -0.7, "A very popular place to study.", 5, 5) // ED = 13
     );
-    String stringWriter = helperFunction("study-places", "2", "3");
+    String personalisedRecommendation = getPersonalisedRecommendations("study-places", "2", "3");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json + "\n", stringWriter);
+    assertEquals(json + "\n", personalisedRecommendation);
   }  
 
   @Test
@@ -244,11 +244,11 @@ public final class RecommenderServletTest {
 
     // Empty collection of recommendations
     Collection<Recommendation> expected = Arrays.asList();
-    String stringWriter = helperFunction("bars-and-clubs", "5", "3");
+    String personalisedRecommendation = getPersonalisedRecommendations("bars-and-clubs", "5", "3");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json + "\n", stringWriter);
+    assertEquals(json + "\n", personalisedRecommendation);
   }
   
   @Test
@@ -264,10 +264,10 @@ public final class RecommenderServletTest {
       new Recommendation("Place To Visit A", "places-to-visit", 40.2, -0.2, "A great place to visit.", 3, 3), // ED = 8
       new Recommendation("Place To Visit C", "places-to-visit", 40.4, -0.4, "A nice place to visit.", 4, 5) // ED = 25
     );
-    String stringWriter = helperFunction("places-to-visit", "1", "1");
+    String personalisedRecommendation = getPersonalisedRecommendations("places-to-visit", "1", "1");
     // Convert expected to json, to compare
     String json = new Gson().toJson(expected);
     // Check if json returned from recommender servlet is as expected
-    assertEquals(json + "\n", stringWriter);
+    assertEquals(json + "\n", personalisedRecommendation);
   }  
 }
