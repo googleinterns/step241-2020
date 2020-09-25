@@ -39,6 +39,9 @@ function loadDetails() {
     } else {
       const user = await response.json();
       // Populate user details section
+      if ( !user.hasOwnProperty("profilePictureUrl") ) {
+        user.profilePictureUrl = "/images/avatar.jpg";
+      }
       const profilePictureHTML = "<img class=\"profile-picture\" src=\"" + user.profilePictureUrl + "\"></img>";
       const nameHTML = "<h3>" + user.name + "</h3>";
       const departmentHTML = "<h4>" + user.department + "Year" + user.year + "</h4>";
