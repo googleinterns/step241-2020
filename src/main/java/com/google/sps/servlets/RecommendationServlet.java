@@ -58,7 +58,7 @@ public class RecommendationServlet extends HttpServlet {
       int crowdRating = (int) (long) recommendation.getProperty("crowd-rating");
 
       response.setContentType("application/json");
-      String json = new Gson().toJson(new Recommendation(name, category, lat, lng, description, costRating, crowdRating));
+      String json = new Gson().toJson(new Recommendation(id, name, category, lat, lng, description, costRating, crowdRating));
       response.getWriter().println(json);
     }
     catch (EntityNotFoundException e) {
